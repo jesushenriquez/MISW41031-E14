@@ -34,3 +34,9 @@
 | Sign in (Admin)    | Iniciar sesión en el dashboard administrativo con un email y password invalidos            | Daniel Jimenez   |
 | Sign in (Admin)    |                                                                                            | Yojan Hungria    |
 | Sign in (Admin)    |                                                                                            | Yojan Hungria    |
+
+## Como ejecutar el proyecto en Cypress
+
+1. Ubicarse dentro de la carpeta cypress `cd cypress`.
+2. Ejecutar el comando `npm install`.
+3. Ejecutar el comando `npm run start`.
