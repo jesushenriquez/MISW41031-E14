@@ -1,0 +1,15 @@
+{
+  "name": "misw41031-e14",
+  "version": "1.0.0",
+  "description": "## Funcionalidades:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/cypress/bin/cypress open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.11.0"
+  }
+}
