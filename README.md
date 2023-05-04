@@ -64,4 +64,4 @@ export PATH=$ANDROID_HOME/tools/bin:$PATH
 ```
 3. Instalar appium `npm install -g appium`.
 4. Verificar proyecto con `kraken-node doctor` o si lo tiene instalado local `./node_modules/kraken-node/bin/kraken-node doctor`.
-5. Ejecutar pruebas con `kraken-node run` o `./node_modules/kraken-node/bin/kraken-node run`
+5. Ejecutar pruebas con `kraken-node run` o `./node_modules/kraken-node/bin/kraken-node run` en windows usar: `node node_modules\kraken-node\bin\kraken-node run`
