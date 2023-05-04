@@ -37,6 +37,31 @@
 
 ## Como ejecutar el proyecto en Cypress
 
+### Prerequisitos
+
+* Tener instalado Cypress en tu entorno global.
+
+### Pasos
+
 1. Ubicarse dentro de la carpeta cypress `cd cypress`.
-2. Ejecutar el comando `npm install`.
-3. Ejecutar el comando `npm run start`.
+2. Ejecutar comando `cypress open`.
+3. Hacer click en Add Project y buscar la carpeta cypress de este repositorio, donde esta ubicado el archivo `cypress.config.js`.
+
+## Como ejecutar el proyecto en Kraken
+
+### Prerequisitos
+* Node v14.X.X
+
+### Pasos
+
+1. Ubicarse dentro de la carpeta kraken `cd kraken`.
+2. Configurar variable de entorno `ANDROID_HOME`.
+```
+export ANDROID_HOME=<path_android_home> (Ejemplo: $HOME/Library/Android/sdk)
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/tools/bin:$PATH
+```
+3. Instalar appium `npm install -g appium`.
+4. Verificar proyecto con `kraken-node doctor` o si lo tiene instalado local `./node_modules/kraken-node/bin/kraken-node doctor`.
+5. Ejecutar pruebas con `kraken-node run` o `./node_modules/kraken-node/bin/kraken-node run`
