@@ -153,6 +153,29 @@ When('I click on the button Sing in ->', async function () {
             await element.keys(body);
             return await element.keys('Enter');
         });
+        When('I enter post button', async function () {
+            let element = await this.driver.$('div[data-placeholder="Begin writing your post..."]');
+            await element.click();
+            await element.click();
+            await element.click();
+            await element.keys('Enter');
+            await element.keys('/button');
+            return await element.keys('Enter');
+            
+        });
+
+        When('I setup button data', async function(){
+            
+            let btnText = await this.driver.$('input.gh-input#button-text-input[placeholder="Add button text"]');
+            await btnText.click();
+            await btnText.click();
+            await btnText.keys("Ir a Uniandes");
+            
+            let btnUrl = await this.driver.$('input.gh-input-with-select-input[placeholder="https://yoursite.com/#/portal/signup/"]');
+            await btnUrl.click();
+            await btnUrl.click();
+            await btnUrl.keys("https://sistemas.uniandes.edu.co/maestrias/miso/virtual/");
+        })
 
     /* 
     * #################################################################

@@ -1,5 +1,24 @@
 Feature: Add Post
 
+@user2 @web
+Scenario: Registrar y Publicar un nuevo Post con boton
+  Given I want to login by env
+  And I wait for 1 seconds
+  And I click on the plus button in the Menu
+  Then I check load Post Create form
+  When I enter title "Titulo Primer Post con boton"
+  And I enter post button
+  And I setup button data
+  And I wait for 1 seconds
+  And I click on publish
+  And I wait for 1 seconds
+  And I click on Continue, final review
+  And I wait for 1 seconds
+  And I click on confirm publish
+  And I wait for 1 seconds
+  Then I validate text of title "Titulo Primer Post con boton"
+
+
 @user3 @web
 Scenario: Registrar y Publicar un nuevo Post
   Given I want to login by env
@@ -25,9 +44,9 @@ Scenario: Registrar y Publicar un nuevo Post con imagen
   And I click on the plus button in the Menu
   Then I check load Post Create form
   When I enter title "Titulo Primer Post con Imagen"
-  And I wait for 10 seconds
+  And I wait for 1 seconds
   And I enter post Image "/image https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-  And I wait for 10 seconds
+  And I wait for 1 seconds
   And I click on publish
   And I wait for 1 seconds
   And I click on Continue, final review
