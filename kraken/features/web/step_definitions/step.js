@@ -27,3 +27,14 @@ When('I click on the button Sing in ->', async function () {
         throw new Error('Fallo en el inicio de sesión');
     }
   });
+
+  Then('I should see a button Sing in -> with text Retry',async function(){
+    const button = await this.driver.$('#ember5 span');
+    const buttonText = await button.getText();
+    
+    if (buttonText.includes('Retry')){
+        console.log("Se muestra el texto correcto cuando no puede iniciar sesion!")
+    }else{
+        throw new Error('No Se muestra el texto correcto cuando no puede iniciar sesion, en el boton.');
+    }
+  })
