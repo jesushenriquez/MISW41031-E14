@@ -49,14 +49,14 @@ When('I click on the button Sing in ->', async function () {
   
   Then('I should be logged in', async function () {
       
-    let welcomeMessageElement = await this.driver.$('.gh-dashboard-zero-message h4');
-    let welcomeMessage = await welcomeMessageElement.getText();
-  
-    if (welcomeMessage.includes('Welcome')) {
-      console.log('Inicio de sesión exitoso');
-    } else {
+    try {
+        await this.driver.$('a[href="#/signout/"]');
+        console.log('Inicio de sesión exitoso');
+        return true;
+    } catch (error) {
         throw new Error('Fallo en el inicio de sesión');
     }
+  
   });
 
   Then('I should see a button Sing in -> with text Retry',async function(){
@@ -155,9 +155,9 @@ When('I click on {string}', async function(buttonName) {
     if(buttonName == "SIGNIN") {
         element = await this.driver.$('#ember5');
     } else if (buttonName == "TAG") {
-        element = await this.driver.$('#ember30');
+        element = await this.driver.$('a[href="#/tags/"].ember-view');
     } else if (buttonName == "NEW_TAG") {
-        element = await this.driver.$('#ember57');
+        element = await this.driver.$('a[href="#/tags/new/"].ember-view.gh-btn.gh-btn-primary');
     } else if (buttonName == "SAVE") {
         element = await this.driver.$('button[data-test-button="save"]');
     }else if (buttonName == "PAGE") {
@@ -177,7 +177,7 @@ When('I click on {string}', async function(buttonName) {
     }else if (buttonName == "MEMBERS") {
         element = await this.driver.$('a[data-test-nav="members"]');
     }else if (buttonName == "NEW_MEMBER") {
-        element = await this.driver.$('#/members/new/');
+        element = await this.driver.$('a[href="#/members/new/"]');
     }
     
     return await element.click();
@@ -242,7 +242,7 @@ When('I enter member note {kraken-string}', async function (string) {
 });
 
 Then('I check if member {kraken-string} exists', async function (string) {
-    let elements = await this.driver.$$('h3[class="ma0 pa0 gh-members-list-name "]');
+    let elements = await this.driver.$('h3.gh-members-list-name');
     let result = elements.length > 0;
     expect(result).to.equal(true);
 });

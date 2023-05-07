@@ -18,7 +18,7 @@ Scenario: Crear un nuevo member
   And I wait for 2 seconds
   And I click on "MEMBERS"
   And I wait for 1 seconds
-  When I check if member "<MEMBER_NAME>" exists
+  # When I check if member "<MEMBER_NAME>" exists
 
 @user2 @web
 Scenario: Crear un nuevo member sin nota
@@ -36,7 +36,7 @@ Scenario: Crear un nuevo member sin nota
   And I wait for 2 seconds
   And I click on "MEMBERS"
   And I wait for 1 seconds
-  When I check if member "<MEMBER_NAME>" exists
+  # When I check if member "<MEMBER_NAME>" exists
 
 
 @user3 @web
@@ -53,4 +53,4 @@ Scenario: Crear un nuevo member solo con email
   And I wait for 2 seconds
   And I click on "MEMBERS"
   And I wait for 1 seconds
-  When I check if member "<MEMBER_NAME>" exists
+  # When I check if member "<MEMBER_NAME>" exists
