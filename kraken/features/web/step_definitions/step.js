@@ -107,3 +107,10 @@ Then('I check if member {kraken-string} exists', async function (string) {
     let result = elements.length > 0;
     expect(result).to.equal(true);
 });
+
+Then('I check errors', async function () {
+    let element = await this.driver.$('p[class="response"]');
+    let text = await element.getText();
+    expect(text).to.equal("You must specify a name for the tag.");
+});
+
