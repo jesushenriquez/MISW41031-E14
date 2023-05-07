@@ -21,6 +21,18 @@ When('I click on {string}', async function(buttonName) {
         element = await this.driver.$('#ember57');
     } else if (buttonName == "SAVE") {
         element = await this.driver.$('button[data-test-button="save"]');
+    }else if (buttonName == "PAGE") {
+        element = await this.driver.$('a[data-test-nav="pages"]');
+    }else if (buttonName == "NEW_PAGE") {
+        element = await this.driver.$('a[href="#/editor/page/"]');
+    }else if (buttonName == "SAVE_PAGE") {
+        element = await this.driver.$('button[data-test-button="publish-flow"]');
+    }else if (buttonName == "CONTINUE") {
+        element = await this.driver.$('button[data-test-button="continue"]');
+    }else if (buttonName == "CONFIRM_PUBLISH") {
+        element = await this.driver.$('button[data-test-button="confirm-publish"]');
+    }else if (buttonName == "BACK_TO_EDITOR") {
+        element = await this.driver.$('button[data-test-button="back-to-editor"]');
     }
     
     return await element.click();
@@ -50,4 +62,14 @@ Then('I check if tag {kraken-string} exists', async function (string) {
     let elements = await this.driver.$$("h3[data-test-tag-name]");
     let result = elements.length > 0;
     expect(result).to.equal(true);
+});
+
+When('I enter page name {kraken-string}', async function (string) {
+    let element = await this.driver.$('textarea[placeholder="Page title"]');
+    return await element.setValue(string);
+});
+
+When('I enter page description {kraken-string}', async function (string) {
+    let element = await this.driver.$('div[data-placeholder="Begin writing your page..."]');
+    return await element.setValue(string);
 });
