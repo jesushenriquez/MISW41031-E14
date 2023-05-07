@@ -2,13 +2,7 @@ Feature: Sign In
 
 @user1 @web
 Scenario: Registrar Pagina sin foto
-  Given I navigate to page "http://localhost:2368/ghost/#/signin"
-  And I wait for 1 seconds
-  And I enter email "<USERNAME1>"
-  And I wait for 1 seconds
-  And I enter password "<PASSWORD1>"
-  And I wait for 1 seconds
-  And I click on "SIGNIN"
+  Given I want to login by env
   And I wait for 1 seconds
   And I click on "PAGE"
   And I wait for 1 seconds

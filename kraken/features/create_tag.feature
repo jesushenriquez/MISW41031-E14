@@ -26,13 +26,7 @@ Scenario: Crear un nuevo tag desde el panel de Tags sin datos en los campos
 
 @user2 @web
 Scenario: Crear un nuevo tag desde el panel de Tags
-  Given I navigate to page "http://localhost:2368/ghost/#/signin"
-  And I wait for 1 seconds
-  And I enter email "<USERNAME1>"
-  And I wait for 1 seconds
-  And I enter password "<PASSWORD1>"
-  And I wait for 1 seconds
-  And I click on "SIGNIN"
+  Given I want to login by env
   And I click on "TAG"
   And I click on "NEW_TAG"
   And I wait for 1 seconds

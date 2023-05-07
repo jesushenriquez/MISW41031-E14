@@ -1,6 +1,31 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const expect = require('chai').expect;
+require('dotenv').config();
 
+// ...
+
+
+/** 
+ * LOGIN GENERAL PARA REUTILIZAR EN TODOS LOS TEST
+ * Debe crear un .env con los siguientes datos
+ * LOGIN_URL=http://localhost:2368/ghost/#/signin
+ * LOGIN_USERNAME=????
+ * LOGIN_PASSWORD=????
+*/
+When("I want to login by env", async function(){
+    const loginUrl = process.env.LOGIN_URL;
+    const username = process.env.LOGIN_USERNAME;
+    const password = process.env.LOGIN_PASSWORD;
+
+
+    this.driver.url(loginUrl)
+    let emailField = await this.driver.$('#identification');
+    let passField = await this.driver.$('#password');
+    let singInBotton = await this.driver.$(`#ember5`);
+    await emailField.setValue(username);
+    await passField.setValue(password);
+    return await singInBotton.click();
+})
 /* 
  * #################################################################
  *                              LOGIN 
