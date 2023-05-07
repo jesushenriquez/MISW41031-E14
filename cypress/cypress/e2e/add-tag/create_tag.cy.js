@@ -1,8 +1,9 @@
-describe('Los estudiantes under monkeys', function() {
-    it('visits los estudiantes and survives monkeys', function() {
-        cy.visit('https://losestudiantes.co');
-        cy.wait(1000);
-        randomEvent(10);
+const { signIn } = require('../../support/utils');
+
+describe('Create Tags', function() {
+    it('Crear un nuevo tag desde el panel de Tags', function() {
+        signIn();
+
         //randomClick(10);
     })
 })
