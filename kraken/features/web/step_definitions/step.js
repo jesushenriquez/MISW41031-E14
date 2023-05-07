@@ -35,6 +35,10 @@ When('I click on {string}', async function(buttonName) {
         element = await this.driver.$('button[data-test-button="back-to-editor"]');
     }else if (buttonName == "BACK_TO_PAGES") {
         element = await this.driver.$('a[data-test-link="pages"]');
+    }else if (buttonName == "MEMBERS") {
+        element = await this.driver.$('a[data-test-nav="members"]');
+    }else if (buttonName == "NEW_MEMBER") {
+        element = await this.driver.$('#/members/new/');
     }
     
     return await element.click();
@@ -78,6 +82,28 @@ When('I enter page description {kraken-string}', async function (string) {
 
 Then('I check if page {kraken-string} exists', async function (string) {
     let elements = await this.driver.$$("h3[class=gh-content-entry-title]");
+    let result = elements.length > 0;
+    expect(result).to.equal(true);
+});
+
+
+When('I enter member name {kraken-string}', async function (string) {
+    let element = await this.driver.$('#member-name');
+    return await element.setValue(string);
+});
+
+When('I enter member email {kraken-string}', async function (string) {
+    let element = await this.driver.$('#member-email');
+    return await element.setValue(string);
+});
+
+When('I enter member note {kraken-string}', async function (string) {
+    let element = await this.driver.$('#member-note');
+    return await element.setValue(string);
+});
+
+Then('I check if member {kraken-string} exists', async function (string) {
+    let elements = await this.driver.$$('h3[class="ma0 pa0 gh-members-list-name "]');
     let result = elements.length > 0;
     expect(result).to.equal(true);
 });

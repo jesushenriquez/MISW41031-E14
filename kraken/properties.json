@@ -6,5 +6,8 @@
     "TAG_SLUG": "tag1",
     "TAG_DESCRIPTION": "This is a dummy description.",
     "PAGE_NAME": "Page 1",
-    "PAGE_DESCRIPTION": "This is a testing page description"
+    "PAGE_DESCRIPTION": "This is a testing page description",
+    "MEMBER_NAME": "Test member",
+    "MEMBER_EMAIL": "member@mail.com",
+    "MEMBER_NOTE": "This is a test member note"
 }
