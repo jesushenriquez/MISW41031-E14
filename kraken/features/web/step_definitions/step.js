@@ -144,6 +144,16 @@ When('I click on the button Sing in ->', async function () {
         }
       });
 
+        When('I enter post Image {string}', async function (body) {
+            let element = await this.driver.$('div[data-placeholder="Begin writing your post..."]');
+            await element.click();
+            await element.click();
+            await element.click();
+            await element.keys('Enter');
+            await element.keys(body);
+            return await element.keys('Enter');
+        });
+
     /* 
     * #################################################################
     *                   ENTER PAGE AND CREATE TAG JESUS
