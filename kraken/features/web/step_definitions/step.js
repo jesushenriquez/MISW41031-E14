@@ -232,6 +232,19 @@ When('I validate image', async function () {
     expect(element).to.not.be.null;
 });
 
+Then('I check if page untitle exists', async function () {
+    let elements = await this.driver.$$("h3[class=gh-content-entry-title]");
+    let result = false;
+    for(let i = 0; i < elements.length; i++) {
+        let text = await elements[i].getText();
+        if (text && text.includes("Untitle")) { // add a null/undefined check here
+            result = true;
+            break;
+        }
+    }
+    expect(result).to.equal(true);
+});
+
 Then('I check if page {kraken-string} exists', async function (string) {
     let elements = await this.driver.$$("h3[class=gh-content-entry-title]");
     let result = elements.length > 0;
