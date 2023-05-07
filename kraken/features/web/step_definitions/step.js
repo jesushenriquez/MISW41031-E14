@@ -219,6 +219,13 @@ When('I enter page description {kraken-string}', async function (string) {
     return await element.setValue(string);
 });
 
+When('I enter page image {kraken-string}', async function (string) {
+    let element = await this.driver.$('div[data-placeholder="Begin writing your page..."]');
+    await element.click();
+    await element.keys(string);
+    return await element.keys('Enter');
+});
+
 Then('I check if page {kraken-string} exists', async function (string) {
     let elements = await this.driver.$$("h3[class=gh-content-entry-title]");
     let result = elements.length > 0;

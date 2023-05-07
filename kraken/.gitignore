@@ -45,3 +45,5 @@ Thumbs.db
 # kraken files
 /reports
 /.kraken
+package-lock.json
+.env
