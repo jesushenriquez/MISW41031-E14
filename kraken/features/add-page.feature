@@ -45,7 +45,7 @@ Scenario: Registrar y publir una nueva pagina
   Then I check if page "<PAGE_NAME>" exists
 
 @user3 @web
-Scenario: Registrar y publir una nueva pagina
+Scenario: Registrar y publir una nueva pagina con imagen
   Given I want to login by env
   And I click on "PAGE"
   And I click on "NEW_PAGE"
@@ -60,4 +60,4 @@ Scenario: Registrar y publir una nueva pagina
   And I wait for 1 seconds
   And I click on "BACK_TO_PAGES"
   And I wait for 1 seconds
-  Then I check if page "<PAGE_NAME>" exists
+  Then I check if page "<PAGE_NAME>" with image
