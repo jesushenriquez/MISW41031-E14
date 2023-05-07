@@ -4,8 +4,8 @@ Feature: Sign In
 Scenario: Intento de inicio de sesion fallido
   Given I navigate to page "http://localhost:2368/ghost/#/signin"
   And I wait for 5 seconds
-  And I enter email "daniel.jimenez@email.com"
-  And I enter password "123487"
+  And I enter email "admin@miso.com"
+  And I enter password "Admin123456"
   And I click on the button Sing in ->
   And I wait for 5 seconds
   Then I should see a button Sing in -> with text Retry
@@ -17,8 +17,8 @@ Scenario: Intento de inicio de sesion fallido
 Scenario: Iniciar sesión en el dashboard administrativo con un email y password existente y validos
   Given I navigate to page "http://localhost:2368/ghost/#/signin"
   And I wait for 5 seconds
-  And I enter email "daniel.jimenez@ingenieros.com"
-  And I enter password "Asdf1234$*"
+  And I enter email "admin@miso.com"
+  And I enter password "Admin123456"
   And I click on the button Sing in ->
   And I wait for 5 seconds
   Then I should be logged in
