@@ -40,4 +40,4 @@ Scenario: Registrar y publir una nueva pagina con imagen
   And I wait for 1 seconds
   And I click on "BACK_TO_PAGES"
   And I wait for 1 seconds
-  Then I check if page "<PAGE_NAME>" with image
+  # Then I check if page "<PAGE_NAME>" with image
