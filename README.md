@@ -27,8 +27,8 @@
 | Create Tag         | Crear un nuevo tag sin el campo Slug            | Victor Castañeda |
 | Create Tag         |                                                                                            | Yojan Hungria    |
 | New Member (Admin) | Crear un miembro del blog desde el panel de administración en el modulo Members            | Victor Castañeda |
-| New Member (Admin) | Crear un miembro del blog desde el panel de administración en el modulo Members, sin datos | Victor Castañeda |
-| New Member (Admin) | Crear un miembro del blog desde el panel de administración sin el campo labels | Victor Castañeda |
+| New Member (Admin) | Crear un miembro del blog desde el panel de administración en el modulo Members, utilizando solo el campo email | Victor Castañeda |
+| New Member (Admin) | Crear un miembro del blog desde el panel de administración sin el campo nota | Victor Castañeda |
 | New Member (Admin) |                                                                                            | Yojan Hungria    |
 | Sign in (Admin)    | Iniciar sesión en el dashboard administrativo con un email y password existente y validos  | Daniel Jimenez   |
 | Sign in (Admin)    | Iniciar sesión en el dashboard administrativo con un email y password invalidos            | Daniel Jimenez   |
