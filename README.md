@@ -24,8 +24,8 @@
 | Add Post           |                                                                                            | Yojan Hungria    |
 | Create Tag         | Crear un nuevo tag desde el panel de Tags                                                  | Jesus Henriquez  |
 | Create Tag         | Crear un nuevo tag desde el panel de Tags sin datos en los campos                          | Jesus Henriquez  |
-| Create Tag         | Crear un nuevo tag sin el campo Slug            | Victor Castañeda |
-| Create Tag         |                                                                                            | Yojan Hungria    |
+| Create Tag         | Crear un nuevo tag sin el campo Slug                                                       | Victor Castañeda |
+| Create Tag         | Crear un nuevo tag con detalles específicos                                                | Yojan Hungria    |
 | New Member (Admin) | Crear un miembro del blog desde el panel de administración en el modulo Members            | Victor Castañeda |
 | New Member (Admin) | Crear un miembro del blog desde el panel de administración en el modulo Members, utilizando solo el campo email | Victor Castañeda |
 | New Member (Admin) | Crear un miembro del blog desde el panel de administración sin el campo nota | Victor Castañeda |
