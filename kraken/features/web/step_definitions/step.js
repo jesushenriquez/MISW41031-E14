@@ -1,4 +1,5 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
+const expect = require('chai').expect;
 
 /* 
  * #################################################################
@@ -117,3 +118,112 @@ When('I click on the button Sing in ->', async function () {
             throw new Error("El texto no coincide.");
         }
       });
+
+    /* 
+    * #################################################################
+    *                   ENTER PAGE AND CREATE TAG JESUS
+    * #################################################################
+    */
+
+When('I click on {string}', async function(buttonName) {
+    let element;
+    if(buttonName == "SIGNIN") {
+        element = await this.driver.$('#ember5');
+    } else if (buttonName == "TAG") {
+        element = await this.driver.$('#ember30');
+    } else if (buttonName == "NEW_TAG") {
+        element = await this.driver.$('#ember57');
+    } else if (buttonName == "SAVE") {
+        element = await this.driver.$('button[data-test-button="save"]');
+    }else if (buttonName == "PAGE") {
+        element = await this.driver.$('a[data-test-nav="pages"]');
+    }else if (buttonName == "NEW_PAGE") {
+        element = await this.driver.$('a[href="#/editor/page/"]');
+    }else if (buttonName == "SAVE_PAGE") {
+        element = await this.driver.$('button[data-test-button="publish-flow"]');
+    }else if (buttonName == "CONTINUE") {
+        element = await this.driver.$('button[data-test-button="continue"]');
+    }else if (buttonName == "CONFIRM_PUBLISH") {
+        element = await this.driver.$('button[data-test-button="confirm-publish"]');
+    }else if (buttonName == "BACK_TO_EDITOR") {
+        element = await this.driver.$('button[data-test-button="back-to-editor"]');
+    }else if (buttonName == "BACK_TO_PAGES") {
+        element = await this.driver.$('a[data-test-link="pages"]');
+    }else if (buttonName == "MEMBERS") {
+        element = await this.driver.$('a[data-test-nav="members"]');
+    }else if (buttonName == "NEW_MEMBER") {
+        element = await this.driver.$('#/members/new/');
+    }
+    
+    return await element.click();
+})
+
+When('I enter tag name {kraken-string}', async function (string) {
+    let element = await this.driver.$('#tag-name');
+    return await element.setValue(string);
+});
+
+When('I enter tag color {kraken-string}', async function (string) {
+    let element = await this.driver.$('input[name="accent-color"]');
+    return await element.setValue(string);
+});
+
+When('I enter tag slug {kraken-string}', async function (string) {
+    let element = await this.driver.$('#tag-slug');
+    return await element.setValue(string);
+});
+
+When('I enter tag description {kraken-string}', async function (string) {
+    let element = await this.driver.$('#tag-description');
+    return await element.setValue(string);
+});
+
+Then('I check if tag {kraken-string} exists', async function (string) {
+    let elements = await this.driver.$$("h3[data-test-tag-name]");
+    let result = elements.length > 0;
+    expect(result).to.equal(true);
+});
+
+When('I enter page name {kraken-string}', async function (string) {
+    let element = await this.driver.$('textarea[placeholder="Page title"]');
+    return await element.setValue(string);
+});
+
+When('I enter page description {kraken-string}', async function (string) {
+    let element = await this.driver.$('div[data-placeholder="Begin writing your page..."]');
+    return await element.setValue(string);
+});
+
+Then('I check if page {kraken-string} exists', async function (string) {
+    let elements = await this.driver.$$("h3[class=gh-content-entry-title]");
+    let result = elements.length > 0;
+    expect(result).to.equal(true);
+});
+
+
+When('I enter member name {kraken-string}', async function (string) {
+    let element = await this.driver.$('#member-name');
+    return await element.setValue(string);
+});
+
+When('I enter member email {kraken-string}', async function (string) {
+    let element = await this.driver.$('#member-email');
+    return await element.setValue(string);
+});
+
+When('I enter member note {kraken-string}', async function (string) {
+    let element = await this.driver.$('#member-note');
+    return await element.setValue(string);
+});
+
+Then('I check if member {kraken-string} exists', async function (string) {
+    let elements = await this.driver.$$('h3[class="ma0 pa0 gh-members-list-name "]');
+    let result = elements.length > 0;
+    expect(result).to.equal(true);
+});
+
+Then('I check errors', async function () {
+    let element = await this.driver.$('p[class="response"]');
+    let text = await element.getText();
+    expect(text).to.equal("You must specify a name for the tag.");
+});
