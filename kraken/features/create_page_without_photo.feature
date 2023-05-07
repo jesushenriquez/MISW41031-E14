@@ -26,3 +26,6 @@ Scenario: Registrar Pagina sin foto
   And I wait for 1 seconds
   And I click on "BACK_TO_EDITOR"
   And I wait for 1 seconds
+  And I click on "BACK_TO_PAGES"
+  And I wait for 1 seconds
+  Then I check if page "<PAGE_NAME>" exists

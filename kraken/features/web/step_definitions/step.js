@@ -33,6 +33,8 @@ When('I click on {string}', async function(buttonName) {
         element = await this.driver.$('button[data-test-button="confirm-publish"]');
     }else if (buttonName == "BACK_TO_EDITOR") {
         element = await this.driver.$('button[data-test-button="back-to-editor"]');
+    }else if (buttonName == "BACK_TO_PAGES") {
+        element = await this.driver.$('a[data-test-link="pages"]');
     }
     
     return await element.click();
@@ -72,4 +74,10 @@ When('I enter page name {kraken-string}', async function (string) {
 When('I enter page description {kraken-string}', async function (string) {
     let element = await this.driver.$('div[data-placeholder="Begin writing your page..."]');
     return await element.setValue(string);
+});
+
+Then('I check if page {kraken-string} exists', async function (string) {
+    let elements = await this.driver.$$("h3[class=gh-content-entry-title]");
+    let result = elements.length > 0;
+    expect(result).to.equal(true);
 });
