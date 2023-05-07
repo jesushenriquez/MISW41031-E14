@@ -1,4 +1,4 @@
-Feature: Sign In
+Feature: Add Page
 
 @user1 @web
 Scenario: Registrar Pagina sin foto
