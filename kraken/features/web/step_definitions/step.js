@@ -226,6 +226,12 @@ When('I enter page image {kraken-string}', async function (string) {
     return await element.keys('Enter');
 });
 
+When('I validate image', async function () {
+    let element = await this.driver.$('img');
+    
+    expect(element).to.not.be.null;
+});
+
 Then('I check if page {kraken-string} exists', async function (string) {
     let elements = await this.driver.$$("h3[class=gh-content-entry-title]");
     let result = elements.length > 0;
