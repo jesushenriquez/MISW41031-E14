@@ -41,4 +41,27 @@ describe('Add Page', function() {
         cy.get('a[data-test-link="pages"]').click();
         cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("Untitle")').should('have.length.at.least', 1);
     })
+
+    it('Registrar Pagina sin Foto', function() {
+        signIn();
+        cy.get('a[href="#/pages/"]').click();
+        cy.wait(1000);
+        cy.get('a[href="#/editor/page/"]').click();
+        cy.wait(1000);
+        cy.get('textarea[placeholder="Page title"]').type('Cypress page title');
+        cy.wait(1000);
+        cy.get('div[data-placeholder="Begin writing your page..."]').type('Cypress page description');
+        cy.wait(1000);
+        cy.get('button[data-test-button="publish-flow"]').click();
+        cy.wait(1000);
+        cy.get('button[data-test-button="continue"]').click();
+        cy.wait(1000);
+        cy.get('button[data-test-button="confirm-publish"]').click();
+        cy.wait(1000);
+        cy.get('button[data-test-button="back-to-editor"').click();
+        cy.wait(1000);
+        cy.get('a[href="#/pages/"]').click();
+        cy.wait(1000);
+        cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("Cypress page title")').should('have.length.at.least', 1);
+    })
 })
