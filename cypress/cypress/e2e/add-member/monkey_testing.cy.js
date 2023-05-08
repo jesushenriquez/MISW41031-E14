@@ -1,84 +1,24 @@
-describe('Los estudiantes under monkeys', function() {
-    it('visits los estudiantes and survives monkeys', function() {
-        cy.visit('https://losestudiantes.co');
+import { faker } from '@faker-js/faker';
+
+const { signIn } = require('../../support/utils');
+
+describe('Create members', () => {
+    it('Test create member', () => {
+        signIn();
+        cy.get('a[href="#/members/"]').click();
         cy.wait(1000);
-        randomEvent(10);
-        //randomClick(10);
+        cy.get('a[href="#/members/new/"]').click();	
+        cy.wait(1000);
+        cy.get('#member-name').type('Cypress member name');
+        cy.wait(1000);
+        cy.get('#member-email').type(faker.internet.email());
+        cy.wait(1000);
+        cy.get('#member-note').type('Cypress member note');
+        cy.wait(1000);
+        cy.get('button[data-test-button="save"]').click();
+        cy.wait(2000);
+        cy.get('a[data-test-link="members-back"]').click();
+        cy.wait(1000);
+        cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(':contains("Cypress member name")').should('have.length.at.least', 1);
     })
 })
-
-var focused = false
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min)) + min
-}
-
-const functions = [
-    randomClick,
-    typeRandomString,
-    selectRandomCombo,
-    randomClickOnButton
-]
-
-function randomEvent(monkeysLeft){
-    let typeIndex = getRandomInt(0, functions.length)
-    if(monkeysLeft > 0){
-        functions[typeIndex]()
-        monkeysLeft = monkeysLeft - 1;
-        cy.wait(1000)
-        randomEvent(monkeysLeft);
-    }
-}
-
-function randomClick() {
-        cy.get('a').then($links => {
-            var randomLink = $links.get(getRandomInt(0, $links.length));
-            if(!Cypress.dom.isHidden(randomLink)) {
-                cy.wrap(randomLink).click({force: true});
-            }
-        });
-}
-
-function typeRandomString(){
-    let type = 'input'
-
-    cy.get(type).then($inputs => {
-        var randomInput = $inputs.get(getRandomInt(0, $inputs.length));
-        if(!Cypress.dom.isHidden(randomInput)) {
-            cy.wrap(randomInput).type(generateRandomString(5));
-        }
-    });
-}
-
-function generateRandomString(length) {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
-
-function selectRandomCombo() {
-    let type = 'select'
-
-    cy.get(type, { timeout: 5000 }).then($selects => {
-        if($selects > 0){
-            var randomSelect = $selects.get(getRandomInt(0, $selects.length));
-            if(!Cypress.dom.isHidden(randomSelect)) {
-                cy.wrap(randomSelect).select(1);
-            }
-        }
-    });
-}
-
-function randomClickOnButton() {
-    cy.get('button').then($buttons => {
-        var randomButton = $buttons.get(getRandomInt(0, $buttons.length));
-        if(!Cypress.dom.isHidden(randomButton)) {
-            cy.wrap(randomButton).click({force: true});
-        }
-    });
-}
