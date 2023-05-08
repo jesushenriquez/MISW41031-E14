@@ -9,9 +9,9 @@ describe('Create Tags', function() {
         cy.get('#tag-slug').type("-");
         cy.get('#tag-description').type("This is an example of description");
         cy.get('button[data-test-button="save"]').click();
-        cy.visit('http://localhost:2368/ghost/#/tags');
-        cy.wait(5000)
-        cy.get('h3.gh-tag-list-name').filter(':contains("Tag 1")').should('have.length.at.least', 1);
+        cy.get('a[href="#/tags/"].ember-view').first().click();
+        cy.wait(2000)
+        cy.get('h3.gh-tag-list-name', { timeout: 10000 }).filter(':contains("Tag 1")').should('have.length.at.least', 1);
     })
 
     it('Crear un nuevo tag desde el panel de Tags sin datos en los campos', function() {
