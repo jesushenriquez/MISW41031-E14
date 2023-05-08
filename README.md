@@ -1,5 +1,14 @@
 # MISW41031-E14
 
+## Integrantes:
+
+| # | Nombre             | Correo                          |
+| - | ------------------ |
+| 1 | Victor Castañeda   | v.castanedap@uniandes.edu.co    |
+| 2 | Yojan Hungria      | ys.hungria@uniandes.edu.co      |
+| 3 | Daniel Jimenez     | d.jimenez112@uniandes.edu.co    |
+| 4 | Jesus Henriquez    | ja.henriquez@uniandes.edu.co    |
+
 ## Funcionalidades:
 
 | # | Funcionalidad      |
