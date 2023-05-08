@@ -33,7 +33,7 @@
 | Sign in (Admin)    | Iniciar sesión en el dashboard administrativo con un email y password existente y validos  | Daniel Jimenez   |
 | Sign in (Admin)    | Iniciar sesión en el dashboard administrativo con un email y password invalidos            | Daniel Jimenez   |
 | Sign in (Admin)    | Iniciar sesion con un email vacio                                                          | Yojan Hungria    |
-| Sign in (Admin)    |                                                                                            | Yojan Hungria    |
+| Sign in (Admin)    | Iniciar sesion con un password vacio                                                       | Yojan Hungria    |
 
 ## Como ejecutar el proyecto en Cypress
 
