@@ -21,7 +21,7 @@
 | Add Post           | Registrar y Publicar un nuevo Post                                                         | Daniel Jimenez   |
 | Add Post           | Registrar y Publicar un nuevo Post con Imagen                                              | Daniel Jimenez   |
 | Add Post           | Registrar y publir un nuevo Post con boton                                                 | Daniel Jimenez   |
-| Add Post           |                                                                                            | Yojan Hungria    |
+| Add Post           | Registrar y Publicar un nuevo Post con imagen y boton y texto                              | Yojan Hungria    |
 | Create Tag         | Crear un nuevo tag desde el panel de Tags                                                  | Jesus Henriquez  |
 | Create Tag         | Crear un nuevo tag desde el panel de Tags sin datos en los campos                          | Jesus Henriquez  |
 | Create Tag         | Crear un nuevo tag sin el campo Slug                                                       | Victor Castañeda |
