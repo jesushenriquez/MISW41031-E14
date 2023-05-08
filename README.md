@@ -3,7 +3,7 @@
 ## Integrantes:
 
 | # | Nombre             | Correo                          |
-| - | ------------------ |
+| - | ------------------ | ------------------------------- |
 | 1 | Victor Castañeda   | v.castanedap@uniandes.edu.co    |
 | 2 | Yojan Hungria      | ys.hungria@uniandes.edu.co      |
 | 3 | Daniel Jimenez     | d.jimenez112@uniandes.edu.co    |
