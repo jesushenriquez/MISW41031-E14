@@ -40,7 +40,7 @@ describe('Add Post', function() {
 
       it('Registrar y Publicar un nuevo Post con boton', () => {
         signIn();
-      
+
         cy.wait(1000);
         cy.get('[title="New post"]').click();
         cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
@@ -60,7 +60,7 @@ describe('Add Post', function() {
 
       it("Registrar y Publicar un nuevo Post con imagen y boton y texto", () => {
         signIn();
-      
+
         cy.wait(1000);
         cy.get('[title="New post"]').click();
         cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
