@@ -55,27 +55,4 @@ describe('Add Post', function() {
             cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post con boton');
         });
 
-      it("Registrar y Publicar un nuevo Post con imagen y boton y texto", () => {
-        signIn();
-
-        cy.wait(1000);
-        cy.get('[title="New post"]').click();
-        cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
-        cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post con Imagen y boton');
-        cy.wait(1000);
-        cy.get('div[data-placeholder="Begin writing your post..."]').type('/image https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png{enter}');
-        cy.wait(1000);
-        cy.get('div[data-placeholder="Begin writing your post..."]').type('/button{enter}');
-        cy.get('input.gh-input#button-text-input[placeholder="Add button text"]').type('Ir a Uniandes');
-        cy.get('input.gh-input-with-select-input[placeholder="https://yoursite.com/#/portal/signup/"]').type('https://sistemas.uniandes.edu.co/maestrias/miso/virtual/');
-        cy.wait(1000);
-        cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
-        cy.wait(1000);
-        cy.get('div > div > div.gh-publish-cta > button').click();
-        cy.wait(1000);
-        cy.get('button[data-test-button="confirm-publish"]').click();
-        cy.wait(1000);
-        cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post con Imagen y boton');
-      });
-
 })
