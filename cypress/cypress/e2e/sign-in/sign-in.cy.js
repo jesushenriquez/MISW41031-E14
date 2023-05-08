@@ -32,10 +32,10 @@ describe('Sign-in', function() {
 
     it('Iniciar sesion con un email vacio', function() {
       cy.get('@loginData').then((loginData) => {
-        const { LOGIN_URL, LOGIN_PASSWORD } = loginData;
+        const { LOGIN_URL, LOGIN_USERNAME } = loginData;
         cy.visit(LOGIN_URL);
         cy.wait(1000);
-        cy.get('').type(LOGIN_PASSWORD);
+        cy.get('').type(LOGIN_USERNAME);
         cy.get('#ember5').click();
         cy.wait(1000);
         cy.get('#ember5').contains('Retry');
@@ -45,10 +45,10 @@ describe('Sign-in', function() {
 
     it('Iniciar sesion con un password vacio', function() {
       cy.get('@loginData').then((loginData) => {
-        const { LOGIN_URL, LOGIN_USERNAME } = loginData;
+        const { LOGIN_URL, LOGIN_PASSWORD } = loginData;
         cy.visit(LOGIN_URL);
         cy.wait(1000);
-        cy.get('#identification').type(LOGIN_USERNAME);
+        cy.get('#identification').type(LOGIN_PASSWORD);
         cy.get('').type(LOGIN_PASSWORD);
         cy.get('#ember5').click();
         cy.wait(1000);
