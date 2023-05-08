@@ -20,7 +20,7 @@ Scenario: Iniciar sesión en el dashboard administrativo con un email y password
   Then I should be logged in
 
 @user3 @web
-Scenario: Sign in with valid email and empty password
+Scenario: Iniciar sesion con un email vacio
   Given I navigate to page "http://localhost:2368/ghost/#/signin"
   And I wait for 1 seconds
   And I enter email ""
