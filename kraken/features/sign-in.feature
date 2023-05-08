@@ -27,3 +27,13 @@ Scenario: Iniciar sesion con un email vacio
   And I click on the button Sing in ->
   And I wait for 1 seconds
   Then I should see a button Sing in -> with text Retry
+
+@user4 @web
+Scenario: Iniciar sesion con un password vacio
+  Given I navigate to page "http://localhost:2368/ghost/#/signin"
+  And I wait for 1 seconds
+  And I enter password ""
+  And I click on the button Sing in ->
+  And I wait for 1 seconds
+  Then I should see a button Sing in -> with text Retry
+
