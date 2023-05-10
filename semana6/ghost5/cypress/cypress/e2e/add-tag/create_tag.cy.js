@@ -21,6 +21,7 @@ describe('Add Tags', function() {
         cy.wait(2000)
         screen("Paso 8");
         cy.get('h3.gh-tag-list-name', { timeout: 10000 }).filter(':contains("Tag 1")').should('have.length.at.least', 1);
+        screen("Paso 9");
     })
 
     it('Crear un nuevo tag desde el panel de Tags sin datos en los campos', function() {
@@ -34,6 +35,7 @@ describe('Add Tags', function() {
         cy.get('button[data-test-button="save"]').click();
         screen("Paso 4");
         cy.get('p[class="response"]').should('include.text', 'You must specify a name for the tag.');
+        screen("Paso 8");
     })
     it('Crear un nuevo tag desde el panel de Tags sin campo slug', function() {
         let screen = screenshot.bind(null, "Add Tags", "Crear un nuevo tag desde el panel de Tags sin campo slug");
@@ -59,5 +61,6 @@ describe('Add Tags', function() {
         cy.wait(2000);
         screen("Paso 7");
         cy.get('h3.gh-tag-list-name', { timeout: 10000 }).filter(':contains("Tag 1")').should('have.length.at.least', 1);
+        screen("Paso 8");
     })
 })
