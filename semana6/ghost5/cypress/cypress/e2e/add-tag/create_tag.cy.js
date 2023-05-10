@@ -1,10 +1,8 @@
 const { signIn, screenshot } = require('../../support/utils');
 
-
-
-
 describe('Add Tags', function() {
     it('Crear un nuevo tag desde el panel de Tags', function() {
+        let screen = screenshot.bind(null, "Add Tags", "Crear un nuevo tag desde el panel de Tags");
         signIn();
         screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 1")
         cy.get('a[href="#/tags/"].ember-view').click();
