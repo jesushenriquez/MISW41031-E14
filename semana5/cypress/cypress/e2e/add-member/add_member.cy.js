@@ -7,7 +7,13 @@ describe('Create members', () => {
         signIn();
         cy.get('a[href="#/members/"]').click();
         cy.wait(1000);
-        cy.get('a[href="#/members/new/"]').click();	
+        cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+            if (length === 1) {
+                cy.get('a[href="#/members/new/"]').click()
+            } else {
+                cy.get('a[href="#/members/new/"]').first().click()
+            }
+        });	
         cy.wait(1000);
         cy.get('#member-name').type('Cypress member name');
         cy.wait(1000);
