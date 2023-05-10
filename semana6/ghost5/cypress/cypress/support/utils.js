@@ -5,6 +5,9 @@ function signIn() {
     cy.get('#password').type("pnz5nrp.put7jxt_DCH");
     cy.get('#ember5').click();
   }
-  
-  module.exports = { signIn };
+
+function screenshot(feature, scenario, step) {
+  cy.screenshot(`${feature} - ${scenario} - ${step}`)
+}
+  module.exports = { signIn, screenshot };
   
