@@ -4,21 +4,21 @@ describe('Add Tags', function() {
     it('Crear un nuevo tag desde el panel de Tags', function() {
         let screen = screenshot.bind(null, "Add Tags", "Crear un nuevo tag desde el panel de Tags");
         signIn();
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 1")
+        screen("Paso 1");
         cy.get('a[href="#/tags/"].ember-view').click();
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 2")
+        screen("Paso 2");
         cy.get('a[href="#/tags/new/"].ember-view.gh-btn.gh-btn-primary').click();
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 3")
+        screen("Paso 3");
         cy.get('#tag-name').type("Tag 1 - Test");
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 4")
+        screen("Paso 4");
         cy.get('#tag-slug').type("-");
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 5")
+        screen("Paso 5");
         cy.get('#tag-description').type("This is an example of description");
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 6")
+        screen("Paso 6");
         cy.get('button[data-test-button="save"]').click();
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 7")
+        screen("Paso 7");
         cy.get('a[href="#/tags/"].ember-view').first().click();
-        screenshot("Add Tags", "Crear un nuevo tag desde el panel de Tags", "Paso 8")
+        screen("Paso 7");
         cy.wait(2000)
         cy.get('h3.gh-tag-list-name', { timeout: 10000 }).filter(':contains("Tag 1")').should('have.length.at.least', 1);
     })
