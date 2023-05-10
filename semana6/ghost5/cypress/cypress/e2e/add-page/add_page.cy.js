@@ -24,7 +24,7 @@ describe('Add Page', function() {
         cy.get('a[data-test-link="pages"]').click();
         screen("Paso 10");
         cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("Page 1")').should('have.length.at.least', 1);
-        screen("Paso 10");
+        screen("Paso 11");
     })
 
     it('Registrar y publicar una nueva pagina con imagen', function() {
@@ -50,7 +50,7 @@ describe('Add Page', function() {
         cy.get('a[data-test-link="pages"]').click();
         screen("Paso 10");
         cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("Page 1")').should('have.length.at.least', 1);
-        screen("Paso 10");
+        screen("Paso 11");
     })
 
     it('Registrar Pagina sin Titulo', function() {
@@ -109,6 +109,6 @@ describe('Add Page', function() {
         cy.wait(1000);
         screen("Paso 10");
         cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("Cypress page title")').should('have.length.at.least', 1);
-        screen("Paso 10");
+        screen("Paso 11");
     })
 })
