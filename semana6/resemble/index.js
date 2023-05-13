@@ -1,6 +1,8 @@
 const compareImages = require("resemblejs/compareImages")
 const config = require("./config.json");
 const fs = require('fs');
+const path = require('path');
+
 
 const { viewportHeight, viewportWidth, browsers, options } = config;
 
@@ -18,20 +20,32 @@ async function executeTest(){
             fs.mkdirSync(`./results/${datetime}`, { recursive: true });
         }
         
-        const data = await compareImages(
-            fs.readFileSync(`./results/old_test1.png`),
-            fs.readFileSync(`./results/new_test1.png`),
-            options
-        );
-        resultInfo[b] = {
-            isSameDimensions: data.isSameDimensions,
-            dimensionDifference: data.dimensionDifference,
-            rawMisMatchPercentage: data.rawMisMatchPercentage,
-            misMatchPercentage: data.misMatchPercentage,
-            diffBounds: data.diffBounds,
-            analysisTime: data.analysisTime
-        }
-        fs.writeFileSync(`./results/${datetime}/compare-${b}.png`, data.getBuffer());
+        const ghost3Path = './results/ghost3';
+        const ghost5Path = './results/ghost5';
+
+          fs.readdirSync(ghost5Path).forEach(file => {
+            console.log(file);
+            if(path.extname(file).toLowerCase() === '.png') {
+              const oldPath = path.join(ghost3Path, file);
+              const newPath = path.join(ghost5Path, file);
+  
+              const data = compareImages(
+                fs.readFileSync(oldPath),
+                fs.readFileSync(newPath),
+                options
+              );
+              console.log(data);
+              resultInfo[b] = {
+                isSameDimensions: data.isSameDimensions,
+                dimensionDifference: data.dimensionDifference,
+                rawMisMatchPercentage: data.rawMisMatchPercentage,
+                misMatchPercentage: data.misMatchPercentage,
+                diffBounds: data.diffBounds,
+                analysisTime: data.analysisTime
+            }
+            fs.writeFileSync(`./results/${datetime}/compare-${b}.png`, data.getBuffer());
+            }
+          });
 
     }
 
@@ -43,7 +57,7 @@ async function executeTest(){
     return resultInfo;  
 }
 
-  function browser(b, info){
+function browser(b, info){
     return `<div class=" browser" id="test0">
     <div class=" btitle">
         <h2>Browser: ${b}</h2>
