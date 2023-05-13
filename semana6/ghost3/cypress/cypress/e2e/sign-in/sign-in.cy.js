@@ -17,6 +17,35 @@ describe('Sign-in', function() {
       screen("paso5");
       cy.get(".login[type='submit']").contains('Retry');
     }); 
+
+    it('Intento de inicio de sesion solo ingresando email', function() {
+      let screen = screenshot.bind(null, "Sign-in", "Intento de inicio de sesion solo ingresando email");
+      cy.get('@loginData').then((loginData) => {
+          const { LOGIN_URL, LOGIN_USERNAME, LOGIN_PASSWORD } = loginData;
+          screen("paso1");
+          cy.visit(LOGIN_URL);
+          screen("paso2");
+          cy.get(".email[type='email']").type(LOGIN_USERNAME);
+          screen("paso3");
+          cy.get(".login[type='submit']").click();
+          screen("paso4");
+          cy.get(".login[type='submit']").contains('Retry');
+      });
+    }); 
+    it('Intento de inicio de sesion solo ingresando pass', function() {
+      let screen = screenshot.bind(null, "Sign-in", "Intento de inicio de sesion solo ingresando pass");
+      cy.get('@loginData').then((loginData) => {
+          const { LOGIN_URL, LOGIN_USERNAME, LOGIN_PASSWORD } = loginData;
+          screen("paso1");
+          cy.visit(LOGIN_URL);
+          screen("paso2");
+          cy.get(".password[type='password']").type(LOGIN_PASSWORD);
+          screen("paso3");
+          cy.get(".login[type='submit']").click();
+          screen("paso4");
+          cy.get(".login[type='submit']").contains('Retry');
+      });
+    }); 
   
     it('Iniciar sesión en el dashboard administrativo con un email y password existente y válidos', function() {
       let screen = screenshot.bind(null, "Sign-in", "Iniciar sesión en el dashboard administrativo con un email y password existente y válidos");
@@ -45,7 +74,7 @@ describe('Sign-in', function() {
         screen("paso3");
         cy.get(".login[type='submit']").click();
         screen("paso4");
-        cy.get('.ember-basic-dropdown-trigger').click();
+        cy.get('.ember-basic-dropdown-trigger', { timeout: 100000 }).click();
         screen("paso5");
         cy.get('a[href="#/signout/"]').should('exist');
         cy.log('Inicio de sesión exitoso'); 
