@@ -6,5 +6,10 @@ function signIn() {
     cy.get(".login[type='submit']").click();
   }
   
-  module.exports = { signIn };
+function screenshot(feature, scenario, step) {
+  cy.screenshot(`${feature} - ${scenario} - ${step}`)
+}
+
+module.exports = { signIn, screenshot };
+    
   
