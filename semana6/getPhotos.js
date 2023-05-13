@@ -35,7 +35,7 @@ function copiarDirectorio(carpetaOrigen, carpetaDestino) {
     const origen = path.join(carpetaOrigen, archivo);
     const destino = path.join(carpetaDestino, archivo);
     if (fs.statSync(origen).isDirectory()) {
-      copiarDirectorio(origen, destino);
+      copiarDirectorio(origen, carpetaDestino);
     } else {
       fs.copyFileSync(origen, destino);
       console.log(`Se copió ${archivo} correctamente.`);
@@ -44,7 +44,7 @@ function copiarDirectorio(carpetaOrigen, carpetaDestino) {
 }
 
 // Copiar imágenes de Ghost3
-copiarDirectorio(carpetaOrigenGhost3, carpetaDestinoResembleGhost3);
+copiarDirectorio(carpetaOrigenGhost3, carpetaDestinoResembleGhost3, carpetaDestinoResembleGhost3);
 
 // Copiar imágenes de Ghost5
-copiarDirectorio(carpetaOrigenGhost5, carpetaDestinoResembleGhost5);
+copiarDirectorio(carpetaOrigenGhost5, carpetaDestinoResembleGhost5, carpetaDestinoResembleGhost3);
