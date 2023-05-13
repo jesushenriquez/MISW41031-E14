@@ -4,10 +4,11 @@ function signIn() {
     cy.get(".password[type='password']").type("pnz5nrp.put7jxt_DCH");
     cy.get(".login[type='submit']").click();
   }
-  
+
   function screenshot(feature, scenario, step) {
     cy.screenshot(`${feature} - ${scenario} - ${step}`)
   }
     module.exports = { signIn, screenshot };
+
     
   
