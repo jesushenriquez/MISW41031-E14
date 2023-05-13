@@ -1,58 +1,69 @@
-const { signIn } = require('../../support/utils');
-
+const { signIn, screenshot } = require('../../support/utils');
+import 'cypress-wait-until';
 describe('Add Post', function() {
         it('Registrar y Publicar un nuevo Post', function() {
+            let screen = screenshot.bind(null, "Add Post", "Registrar y Publicar un nuevo Post");
             signIn();
-            cy.wait(1000);
+            screen("paso1");
+            
             cy.get('[title="New post"]').click();
-            cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
-            cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post');
+            screen("paso2");
+            cy.get('[placeholder="Post Title"]').invoke('attr','placeholder').should('contain','Post Title')
+            screen("paso3");
+            cy.get('[placeholder="Post Title"]').type('Titulo Primer Post');
+            screen("paso4");
             cy.get('div[data-placeholder="Begin writing your post..."]').type('lorem Ipsum Dolor Sip ammet');
-            cy.wait(1000);
-            cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
-            cy.wait(1000);
-            cy.get('div > div > div.gh-publish-cta > button').click();
-            cy.wait(1000);
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            cy.wait(1000);
-            cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post');
+            screen("paso5");
+            cy.get('.gh-publishmenu').click();//publicar
+            screen("paso6");
+            cy.get('.gh-publishmenu-button').click();
+            screen("paso7");
+            cy.waitUntil(() => cy.contains('Published').should('exist'), { timeout: 5000, interval: 500 });
+            screen("paso8");
         });
 
         it('Registrar y Publicar un nuevo Post con imagen', () => {
+            let screen = screenshot.bind(null, "Add Post", "Registrar y Publicar un nuevo Post con imagen");
             signIn();
-            cy.wait(1000);
+            screen("paso1");
             cy.get('[title="New post"]').click();
-            cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
-            cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post con Imagen');
-            cy.wait(1000);
+            screen("paso2");
+            cy.get('[placeholder="Post Title"]').invoke('attr','placeholder').should('contain','Post Title')
+            screen("paso3");
+            cy.get('[placeholder="Post Title"]').type('Titulo Primer Post con Imagen');
+            screen("paso4");
             cy.get('div[data-placeholder="Begin writing your post..."]').type('/image https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png{enter}');
-            cy.wait(1000);
-            cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
-            cy.wait(1000);
-            cy.get('div > div > div.gh-publish-cta > button').click();
-            cy.wait(1000);
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            cy.wait(1000);
-            cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post con Imagen');
+            screen("paso5");
+            cy.get('.gh-publishmenu').click();//publicar
+            screen("paso6");
+            cy.get('.gh-publishmenu-button').click();
+            screen("paso7");
+            cy.waitUntil(() => cy.contains('Published').should('exist'), { timeout: 5000, interval: 500 });
+            screen("paso8");
+
         });
 
-        it('Registrar y Publicar un nuevo Post con boton', () => {
+        it('Registrar y Publicar un nuevo Post con youtube', () => {
+            let screen = screenshot.bind(null, "Add Post", "Registrar y Publicar un nuevo Post con Youtube");
+
             signIn();
-            cy.wait(1000);
+            screen("paso1");
             cy.get('[title="New post"]').click();
-            cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
-            cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post con boton');
-            cy.get('div[data-placeholder="Begin writing your post..."]').type('/button{enter}');
-            cy.get('input.gh-input#button-text-input[placeholder="Add button text"]').type('Ir a Uniandes');
-            cy.get('input.gh-input-with-select-input[placeholder="https://yoursite.com/#/portal/signup/"]').type('https://sistemas.uniandes.edu.co/maestrias/miso/virtual/');
-            cy.wait(1000);
-            cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
-            cy.wait(1000);
-            cy.get('div > div > div.gh-publish-cta > button').click();
-            cy.wait(1000);
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            cy.wait(1000);
-            cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post con boton');
+            screen("paso2");
+            cy.get('[placeholder="Post Title"]').invoke('attr','placeholder').should('contain','Post Title')
+            screen("paso3");
+            cy.get('[placeholder="Post Title"]').type('Titulo Primer Post con boton');
+            screen("paso4");
+            cy.get('div[data-placeholder="Begin writing your post..."]').type('/youtube https://www.youtube.com/watch?v=1Nr_tqkMsJs{enter}');
+            screen("paso5");
+            cy.waitUntil(() => cy.get('iframe.bn.miw-100').should('exist'), { timeout: 10000, interval: 1000 });
+            screen("paso6");
+            cy.get('.gh-publishmenu').click();//publicar
+            screen("paso7");
+            cy.get('.gh-publishmenu-button').click();
+            screen("paso8");
+            cy.waitUntil(() => cy.contains('Published').should('exist'), { timeout: 5000, interval: 500 });
+            screen("paso9");
         });
 
 })
