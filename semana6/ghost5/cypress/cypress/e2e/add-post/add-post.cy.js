@@ -1,6 +1,6 @@
 const { signIn, screenshot } = require('../../support/utils');
 describe('Add Post', function() {
-    it('Registrar y Publicar un nuevo Post', function() {
+    it.only('Registrar y Publicar un nuevo Post', function() {
             let screen = screenshot.bind(null, "Add Post", "Registrar y Publicar un nuevo Post");
             signIn();
             
@@ -33,6 +33,28 @@ describe('Add Post', function() {
             cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post con Imagen');
             screen("paso4");
             cy.get('div[data-placeholder="Begin writing your post..."]').type('/image https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png{enter}');
+            screen("paso5");
+            cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
+            screen("paso6");
+            cy.get('div > div > div.gh-publish-cta > button').click();
+            screen("paso7");
+            cy.get('button[data-test-button="confirm-publish"]').click();
+            screen("paso8");
+            cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post con Imagen');
+            screen("paso9");
+        });
+
+            it('Registrar y Publicar un nuevo Post con youtube', () => {
+            let screen = screenshot.bind(null, "Add Post", "Registrar y Publicar un nuevo Post con Youtube");
+            signIn();
+            screen("paso1");
+            cy.get('[title="New post"]').click();
+            screen("paso2");
+            cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
+            screen("paso3");
+            cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post con Imagen');
+            screen("paso4");
+            cy.get('div[data-placeholder="Begin writing your post..."]').type('/youtube https://www.youtube.com/watch?v=1Nr_tqkMsJs{enter}');
             screen("paso5");
             cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
             screen("paso6");
