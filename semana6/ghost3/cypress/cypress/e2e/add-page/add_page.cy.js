@@ -1,4 +1,7 @@
 const { signIn, screenshot } = require('../../support/utils');
+const compareImages = require("resemblejs/compareImages");
+const fs = require('fs');
+
 
 describe('Add Page', function() {
     it('Registrar y publicar una nueva pagina', function() {
@@ -43,5 +46,23 @@ describe('Add Page', function() {
         cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("Page 1")').should('have.length.at.least', 1);
         screen("Paso 9");
     })
+
+    async function compareScreenshot(imageName) {
+        const data = await compareImages(
+            fs.readFileSync(`../../screenshots/add-page/${imageName}.png`),
+            fs.readFileSync(`/Users/jesus/Developer/uniandes/ciclo2/pruebas-automatizadas/semana6/MISW41031-E14/semana6/ghost5/cypress/cypress/screenshots/add-tag/${imageName}.png`),
+            options
+        );
+
+        resultInfo['chromium'] = {
+            isSameDimensions: data.isSameDimensions,
+            dimensionDifference: data.dimensionDifference,
+            rawMisMatchPercentage: data.rawMisMatchPercentage,
+            misMatchPercentage: data.misMatchPercentage,
+            diffBounds: data.diffBounds,
+            analysisTime: data.analysisTime
+        }
+        fs.writeFileSync(`./results/${datetime}/compare.png`, data.getBuffer());
+    }
 
 })
