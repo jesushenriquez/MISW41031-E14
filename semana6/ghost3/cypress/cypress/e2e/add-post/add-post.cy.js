@@ -1,58 +1,40 @@
 const { signIn } = require('../../support/utils');
 
+import 'cypress-wait-until';
 describe('Add Post', function() {
         it('Registrar y Publicar un nuevo Post', function() {
             signIn();
-            cy.wait(1000);
             cy.get('[title="New post"]').click();
-            cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
-            cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post');
+            cy.get('[placeholder="Post Title"]').invoke('attr','placeholder').should('contain','Post Title')
+            cy.get('[placeholder="Post Title"]').type('Titulo Primer Post');
             cy.get('div[data-placeholder="Begin writing your post..."]').type('lorem Ipsum Dolor Sip ammet');
-            cy.wait(1000);
-            cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
-            cy.wait(1000);
-            cy.get('div > div > div.gh-publish-cta > button').click();
-            cy.wait(1000);
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            cy.wait(1000);
-            cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post');
+            cy.get('.gh-publishmenu').click();//publicar
+            cy.get('.gh-publishmenu-button').click();
+            cy.waitUntil(() => cy.contains('Published').should('exist'), { timeout: 5000, interval: 500 });
         });
 
         it('Registrar y Publicar un nuevo Post con imagen', () => {
             signIn();
-            cy.wait(1000);
             cy.get('[title="New post"]').click();
-            cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
-            cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post con Imagen');
-            cy.wait(1000);
+            cy.get('[placeholder="Post Title"]').invoke('attr','placeholder').should('contain','Post Title')
+            cy.get('[placeholder="Post Title"]').type('Titulo Primer Post con Imagen');
             cy.get('div[data-placeholder="Begin writing your post..."]').type('/image https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png{enter}');
-            cy.wait(1000);
-            cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
-            cy.wait(1000);
-            cy.get('div > div > div.gh-publish-cta > button').click();
-            cy.wait(1000);
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            cy.wait(1000);
-            cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post con Imagen');
+            cy.get('.gh-publishmenu').click();//publicar
+            cy.get('.gh-publishmenu-button').click();
+            cy.waitUntil(() => cy.contains('Published').should('exist'), { timeout: 5000, interval: 500 });
+
         });
 
-        it('Registrar y Publicar un nuevo Post con boton', () => {
+        it('Registrar y Publicar un nuevo Post con youtube', () => {
             signIn();
-            cy.wait(1000);
             cy.get('[title="New post"]').click();
-            cy.get('textarea[data-test-editor-title-input]').invoke('attr','placeholder').should('contain','Post title')
-            cy.get('textarea[data-test-editor-title-input]').type('Titulo Primer Post con boton');
-            cy.get('div[data-placeholder="Begin writing your post..."]').type('/button{enter}');
-            cy.get('input.gh-input#button-text-input[placeholder="Add button text"]').type('Ir a Uniandes');
-            cy.get('input.gh-input-with-select-input[placeholder="https://yoursite.com/#/portal/signup/"]').type('https://sistemas.uniandes.edu.co/maestrias/miso/virtual/');
-            cy.wait(1000);
-            cy.get('header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger').click();
-            cy.wait(1000);
-            cy.get('div > div > div.gh-publish-cta > button').click();
-            cy.wait(1000);
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            cy.wait(1000);
-            cy.contains('.gh-post-bookmark-title', 'Titulo Primer Post con boton');
+            cy.get('[placeholder="Post Title"]').invoke('attr','placeholder').should('contain','Post Title')
+            cy.get('[placeholder="Post Title"]').type('Titulo Primer Post con boton');
+            cy.get('div[data-placeholder="Begin writing your post..."]').type('/youtube https://www.youtube.com/watch?v=1Nr_tqkMsJs{enter}');
+            cy.waitUntil(() => cy.get('iframe.bn.miw-100').should('exist'), { timeout: 10000, interval: 1000 });
+            cy.get('.gh-publishmenu').click();//publicar
+            cy.get('.gh-publishmenu-button').click();
+            cy.waitUntil(() => cy.contains('Published').should('exist'), { timeout: 5000, interval: 500 });
         });
 
 })
