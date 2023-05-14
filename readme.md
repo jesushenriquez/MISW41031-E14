@@ -13,6 +13,10 @@
 * Semana 5: ghost:5.40.2
 * Semana 6: ghost:3.42
 
+## Puertos utilizados:
+* ghost:5.40.2: 0.0.0.0/2368:2368 
+* ghost:3.42: 0.0.0.0/2369:2368
+
 ## Metodología:
 1. Modificación de los 40 escenarios de prueba de la semana 5 para incluir screenshots en cada paso sobre ghost:5.40.2.
    
@@ -43,7 +47,7 @@
 ## Proceso para ejecutar las pruebas:
 1. Consideraciones:
    1. Para ejecutar las pruebas de la funcionalidad de Members sobre ghost:3.42, es necesario activar la opción de administrar miembros dentro de la aplicación, siguiendo los pasos:
-      1. Levantar la aplicación
+      1. Levantar la aplicación con los pasos indicados en la sección de docker-compose
       2. Autenticar utilizando correo y contraseña configurados
       3. Ir al dashboard de la aplicación
       4. Ir a la opción "Labs"
