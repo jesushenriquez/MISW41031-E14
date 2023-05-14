@@ -12,6 +12,9 @@ async function executeTest(){
     }
     let resultInfo = {}
     let datetime = new Date().toISOString().replace(/:/g,".");
+    let ghost3FullPath;
+    let ghost5FullPath;
+
     for(b of browsers){
         if(!b in ['chromium']){
             return;
@@ -23,18 +26,17 @@ async function executeTest(){
         const ghost3Path = './results/ghost3';
         const ghost5Path = './results/ghost5';
 
-          fs.readdirSync(ghost5Path).forEach(file => {
+          fs.readdirSync(ghost5Path).forEach(async file => {
             console.log(file);
             if(path.extname(file).toLowerCase() === '.png') {
               const oldPath = path.join(ghost3Path, file);
               const newPath = path.join(ghost5Path, file);
   
-              const data = compareImages(
+              const data = await compareImages(
                 fs.readFileSync(oldPath),
                 fs.readFileSync(newPath),
                 options
               );
-              console.log(data);
               resultInfo[b] = {
                 isSameDimensions: data.isSameDimensions,
                 dimensionDifference: data.dimensionDifference,

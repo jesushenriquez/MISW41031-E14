@@ -47,22 +47,4 @@ describe('Add Page', function() {
         screen("Paso 9");
     })
 
-    async function compareScreenshot(imageName) {
-        const data = await compareImages(
-            fs.readFileSync(`../../screenshots/add-page/${imageName}.png`),
-            fs.readFileSync(`/Users/jesus/Developer/uniandes/ciclo2/pruebas-automatizadas/semana6/MISW41031-E14/semana6/ghost5/cypress/cypress/screenshots/add-tag/${imageName}.png`),
-            options
-        );
-
-        resultInfo['chromium'] = {
-            isSameDimensions: data.isSameDimensions,
-            dimensionDifference: data.dimensionDifference,
-            rawMisMatchPercentage: data.rawMisMatchPercentage,
-            misMatchPercentage: data.misMatchPercentage,
-            diffBounds: data.diffBounds,
-            analysisTime: data.analysisTime
-        }
-        fs.writeFileSync(`./results/${datetime}/compare.png`, data.getBuffer());
-    }
-
 })

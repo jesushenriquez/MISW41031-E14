@@ -1,5 +1,5 @@
 {
-    "url":"https://monitor177.github.io/color-palette/",
+    "url":"http://localhost:2368",
     "browsers":["chromium"],
     "options":{
         "output": {
