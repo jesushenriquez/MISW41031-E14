@@ -10,7 +10,8 @@ async function executeTest(){
     if(browsers.length === 0){
       return;
     }
-    let resultInfo = {}
+    let resultInfo = [];
+    let semaforo = 0;
     let datetime = new Date().toISOString().replace(/:/g,".");
     let ghost3FullPath;
     let ghost5FullPath;
@@ -25,34 +26,53 @@ async function executeTest(){
         
         const ghost3Path = './results/ghost3';
         const ghost5Path = './results/ghost5';
-
-          fs.readdirSync(ghost5Path).forEach(async file => {
-            console.log(file);
-            if(path.extname(file).toLowerCase() === '.png') {
-              const oldPath = path.join(ghost3Path, file);
-              const newPath = path.join(ghost5Path, file);
-  
-              const data = await compareImages(
-                fs.readFileSync(oldPath),
-                fs.readFileSync(newPath),
-                options
-              );
-              resultInfo[b] = {
-                isSameDimensions: data.isSameDimensions,
-                dimensionDifference: data.dimensionDifference,
-                rawMisMatchPercentage: data.rawMisMatchPercentage,
-                misMatchPercentage: data.misMatchPercentage,
-                diffBounds: data.diffBounds,
-                analysisTime: data.analysisTime
-            }
-            fs.writeFileSync(`./results/${datetime}/compare-${b}.png`, data.getBuffer());
+          fs.readdirSync(ghost3Path).forEach(async file => {
+            semaforo = semaforo + 1;
+            try{
+              if(path.extname(file).toLowerCase() === '.png') {
+                const oldPath = path.join(ghost3Path, file);
+                const newPath = path.join(ghost5Path, file);
+    
+                const data = await compareImages(
+                  fs.readFileSync(oldPath),
+                  fs.readFileSync(newPath),
+                  options
+                );
+                let [module, scenario, step] = file.split('.')[0].split('---');
+                resultInfo.push({
+                  isSameDimensions: data.isSameDimensions,
+                  dimensionDifference: data.dimensionDifference,
+                  rawMisMatchPercentage: data.rawMisMatchPercentage,
+                  misMatchPercentage: data.misMatchPercentage,
+                  diffBounds: data.diffBounds,
+                  analysisTime: data.analysisTime,
+                  module,
+                  scenario,
+                  step,
+                  screenshotOld: `../ghost3/${file}`,
+                  screenshotNew: `../ghost5/${file}`,
+                  screenshotResult: `${file}-result.png`
+                });
+                console.log(resultInfo[b])
+                fs.writeFileSync(`./results/${datetime}/${file}-result.png`, data.getBuffer());
+              }
+              semaforo = semaforo - 1;
+            } catch(e) {
+              console.error(e);
+              semaforo = semaforo - 1;
             }
           });
 
     }
-
-    fs.writeFileSync(`./results/${datetime}/report.html`, createReport(datetime, resultInfo));
-    fs.copyFileSync('./index.css', `./results/${datetime}/index.css`);
+    let interval = setInterval(() => {
+      if(semaforo == 0) {
+        fs.writeFileSync(`./results/${datetime}/report.html`, createReport(datetime, resultInfo));
+        fs.copyFileSync('./index.css', `./results/${datetime}/index.css`);
+      } else {
+        console.log("----" + semaforo)
+      }
+    }, 500);
+    
 
     console.log('------------------------------------------------------------------------------------')
     console.log("Execution finished. Check the report under the results folder")
@@ -78,14 +98,14 @@ function browser(b, info){
     <div class="imgline">
       <div class="imgcontainer">
         <span class="imgname">Diff</span>
-        <img class="imgfull" src="./compare-${b}.png" id="diffImage" label="Diff">
+        <img class="imgfull" src="${info.screenshotResult}" id="diffImage" label="Diff">
       </div>
     </div>
   </div>`
 }
 
 function createReport(datetime, resInfo){
-    return `
+    const topPage = `
     <html>
         <head>
             <title> VRT Report </title>
@@ -96,11 +116,41 @@ function createReport(datetime, resInfo){
                  <a href="${config.url}"> ${config.url}</a>
             </h1>
             <p>Executed: ${datetime}</p>
-            <div id="visualizer">
-                ${config.browsers.map(b=>browser(b, resInfo[b]))}
-            </div>
-        </body>
-    </html>`
+            
+    `;
+    let midpage = "";
+    const bottomPage = `
+    </body>
+    </html>
+    `;
+    midpage = midpage + "<br/><hr/><br/><table>";
+
+      // Agregar la primera fila de encabezados
+      midpage += "<tr>";
+      midpage += "<th>Module</th>";
+      midpage += "<th>Scenario</th>";
+      midpage += "<th>Step</th>";
+      midpage += "</tr>";
+    resInfo.forEach((step) => {
+      midpage += "<tr>";
+      midpage += "<td>" + step.module + "</td>";
+      midpage += "<td>" + step.scenario + "</td>";
+      midpage += "<td>" + step.step + "</td>";
+      midpage += "</tr>";
+
+      midpage += "<tr>";
+      midpage += "<td><img src='" + step.screenshotOld + "' style=\"width: 200px\"></td>";
+      midpage += "<td><img src='" + step.screenshotNew + "' style=\"width: 200px\"></td>";
+      midpage += "<td><img src='" + step.screenshotResult + "' style=\"width: 200px\"></td>";
+      midpage += "</tr>";
+      
+    });
+
+    midpage += "</table>";
+
+    return `${topPage}
+            ${midpage}
+            ${bottomPage}`;
 }
 
 (async ()=>console.log(await executeTest()))();
