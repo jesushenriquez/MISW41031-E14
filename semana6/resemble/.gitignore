@@ -40,10 +40,10 @@ testem.log
 
 # System files
 .DS_Store
-**/.DS_Store
 Thumbs.db
 
 package-lock.json
+results/*
 
 .DS_Store
 **/.DS_Store

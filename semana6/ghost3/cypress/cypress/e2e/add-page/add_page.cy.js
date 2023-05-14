@@ -1,4 +1,7 @@
 const { signIn, screenshot } = require('../../support/utils');
+const compareImages = require("resemblejs/compareImages");
+const fs = require('fs');
+
 
 describe('Add Page', function() {
     it('Registrar y publicar una nueva pagina', function() {

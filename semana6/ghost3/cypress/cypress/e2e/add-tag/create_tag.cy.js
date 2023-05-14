@@ -2,7 +2,7 @@ const { signIn, screenshot } = require('../../support/utils');
 
 describe('Create Tags', function() {
     it('Crear un nuevo tag desde el panel de Tags', function() {
-        let screen = screenshot.bind(null, "Create Tags", "Crear un nuevo tag desde el panel de Tags");
+        let screen = screenshot.bind(null, "Add Tags", "Crear un nuevo tag desde el panel de Tags");
         signIn();
         screen("Paso 1");
         cy.get('a[href="#/tags/"].ember-view').click();
@@ -23,8 +23,8 @@ describe('Create Tags', function() {
         screen("Paso 9");
     })
 
-    it('Crear un nuevo tag desde el panel de Tags sin Slug', function() {
-        let screen = screenshot.bind(null, "Create Tags", "Crear un nuevo tag desde el panel de Tags sin Slug");
+    it('Crear un nuevo tag desde el panel de Tags sin campo slug', function() {
+        let screen = screenshot.bind(null, "Add Tags", "Crear un nuevo tag desde el panel de Tags sin campo slug");
         signIn();
         screen("Paso 1");
         cy.get('a[href="#/tags/"].ember-view').click();
