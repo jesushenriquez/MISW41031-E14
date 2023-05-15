@@ -12,6 +12,42 @@
 | 3 | Daniel Jimenez     | d.jimenez112@uniandes.edu.co    |
 | 4 | Jesus Henriquez    | ja.henriquez@uniandes.edu.co    |
 
+## Funcionalidades:
+
+| # | Funcionalidad      |
+| - | ------------------ |
+| 1 | Sign in (Admin)    |
+| 2 | New Member (Admin) |
+| 3 | Add Post           |
+| 4 | Create Tag         |
+| 5 | Add Page           |
+
+
+## Escenarios:
+| Funcionalidad      | Nombre del escenario                                                                       | Responsable      |
+| ------------------ | ------------------------------------------------------------------------------------------ | ---------------- |
+| Add Page           | Registrar y publir una nueva pagina                                                        | Jesus Henriquez  |
+| Add Page           | Registrar Pagina con imagen                                                                | Jesus Henriquez  |
+| Add Page           | Registrar Pagina sin Titulo                                                                | Jesus Henriquez  |
+| Add Page           | Registrar Pagina sin foto             | Victor Castañeda |
+| Add Post           | Registrar y Publicar un nuevo Post                                                         | Daniel Jimenez   |
+| Add Post           | Registrar y Publicar un nuevo Post con Imagen                                              | Daniel Jimenez   |
+| Add Post           | Registrar y publir un nuevo Post con boton                                                 | Daniel Jimenez   |
+| Add Post           | Registrar y Publicar un nuevo Post con imagen y boton y texto                              | Yojan Hungria    |
+| Create Tag         | Crear un nuevo tag desde el panel de Tags                                                  | Jesus Henriquez  |
+| Create Tag         | Crear un nuevo tag desde el panel de Tags sin datos en los campos                          | Jesus Henriquez  |
+| Create Tag         | Crear un nuevo tag sin el campo Slug                                                       | Victor Castañeda |
+| Create Tag         | Crear un nuevo tag con detalles específicos                                                | Yojan Hungria    |
+| New Member (Admin) | Crear un miembro del blog desde el panel de administración en el modulo Members            | Victor Castañeda |
+| New Member (Admin) | Crear un miembro del blog desde el panel de administración en el modulo Members, utilizando solo el campo email | Victor Castañeda |
+| New Member (Admin) | Crear un miembro del blog desde el panel de administración sin el campo nota | Victor Castañeda |
+| New Member (Admin) | Crear un nuevo member solo con nombre                                                      | Yojan Hungria    |
+| Sign in (Admin)    | Iniciar sesión en el dashboard administrativo con un email y password existente y validos  | Daniel Jimenez   |
+| Sign in (Admin)    | Iniciar sesión en el dashboard administrativo con un email y password invalidos            | Daniel Jimenez   |
+| Sign in (Admin)    | Iniciar sesion con un email vacio                                                          | Yojan Hungria    |
+| Sign in (Admin)    | Iniciar sesion con un password vacio                                                       | Yojan Hungria    |
+
+
 ## Versiones de Ghost utilizadas:
 * Semana 5: ghost:5.40.2
 * Semana 6: ghost:3.42
