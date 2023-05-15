@@ -1,5 +1,8 @@
 # MISW41031-E14
 
+## Link al video de explicación
+[Video de explicación](https://drive.google.com/file/d/1cq4ZVlp3A0Hj3T5OVLSaQk9Dm2IttlP8/view?usp=sharing)
+
 ## Integrantes:
 
 | # | Nombre             | Correo                          |
