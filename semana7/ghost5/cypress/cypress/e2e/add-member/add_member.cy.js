@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 const { signIn, screenshot, readUsersData } = require('../../support/utils');
 
 describe('Create members', () => {
+    
     it('Test create member', () => {
         let screen =screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members");
         signIn();
@@ -46,115 +47,181 @@ describe('Create members', () => {
                 screen("Paso 9");
             }
         })
-        
-
-        /*
-        signIn();
-        screen("Paso 1");
-        cy.get('a[href="#/members/"]').click();
-        cy.wait(1000);
-        screen("Paso 2");
-        cy.get('a[href="#/members/new/"]').its('length').then((length) => {
-            if (length === 1) {
-                cy.get('a[href="#/members/new/"]').click()
-            } else {
-                cy.get('a[href="#/members/new/"]').first().click()
-            }
-        });	
-        cy.wait(1000);
-        screen("Paso 3");
-        cy.get('#member-name').type('Cypress member name');
-        cy.wait(1000);
-        screen("Paso 4");
-        cy.get('#member-email').type(faker.internet.email());
-        cy.wait(1000);
-        screen("Paso 5");
-        cy.get('#member-note').type('Cypress member note');
-        cy.wait(1000);
-        screen("Paso 6");
-        cy.get('button[data-test-button="save"]').click();
-        cy.wait(2000);
-        screen("Paso 7");
-        cy.get('a[data-test-link="members-back"]').click();
-        cy.wait(1000);
-        screen("Paso 8");
-        cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(':contains("Cypress member name")').should('have.length.at.least', 1);
-        screen("Paso 9");
-        */
-    })
-    /*
-    it('Test create member just using email', () => {
-        let screen = screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members solo usando el campo email");
-        signIn();
-        screen("Paso 1");
-        cy.get('a[href="#/members/"]').click();
-        cy.wait(1000);
-        screen("Paso 2");
-        cy.get('a[href="#/members/new/"]').click();	
-        cy.wait(1000);
-        screen("Paso 3");
-        cy.get('#member-email').type(faker.internet.email());
-        cy.wait(1000);
-        screen("Paso 4");
-        cy.get('button[data-test-button="save"]').click();
-        cy.wait(2000);
-        screen("Paso 5");
-        cy.get('a[data-test-link="members-back"]').click();
-        cy.wait(1000);
-        screen("Paso 6");
-        cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(':contains("")').should('have.length.at.least', 1);
-        screen("Paso 7");
     })
     
-    it('Test create member without note field', () => {
-        let screen = screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members sin usar el campo nota");
+    it('Test create member without name', () => {
+        let screen =screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members sin el campo name");
         signIn();
-        screen("Paso 1");
-        cy.get('a[href="#/members/"]').click();
-        cy.wait(1000);
-        screen("Paso 2");
-        cy.get('a[href="#/members/new/"]').click();	
-        cy.wait(1000);
-        screen("Paso 3");
-        cy.get('#member-name').type('Cypress member name');
-        cy.wait(1000);
-        screen("Paso 4");
-        cy.get('#member-email').type(faker.internet.email());
-        cy.wait(1000);
-        screen("Paso 5");
-        cy.get('button[data-test-button="save"]').click();
-        cy.wait(2000);
-        screen("Paso 6");
-        cy.get('a[data-test-link="members-back"]').click();
-        cy.wait(1000);
-        screen("Paso 7");
-        cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(':contains("Cypress member name")').should('have.length.at.least', 1);
-        screen("Paso 8");
-    });
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 10; index < 19; index++) {
+                screen("Paso 1");
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/"]').first().click()
+                    }
+                });
+                cy.wait(1000);
+                screen("Paso 2");
+                cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/new/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/new/"]').first().click()
+                    }
+                });
+                cy.wait(1000);
+                screen("Paso 3");
+                cy.get('#member-email').type(users[index].Username);
+                cy.wait(1000);
+                screen("Paso 4");
+                cy.get('#member-note').type(users[index].Department);
+                cy.wait(1000);
+                screen("Paso 5");
+                cy.get('button[data-test-button="save"]').click();
+                cy.wait(2000);
+                screen("Paso 6");
+                cy.get('a[data-test-link="members-back"]').click();
+                cy.wait(1000);
+                screen("Paso 7");
+                cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains("")`).should('have.length.at.least', 1);
+                screen("Paso 8");
+            }
+        })
+    })
 
-    it('Test create member just using name field', () => {
-        let screen = screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members usando solo el campo name");
+    it('Test create member without note', () => {
+        let screen =screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members sin usar el campo note");
         signIn();
-        screen("Paso 1");
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 20; index < 29; index++) {
+                screen("Paso 1");
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/"]').first().click()
+                    }
+                });
+                cy.wait(1000);
+                screen("Paso 2");
+                cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/new/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/new/"]').first().click()
+                    }
+                });	
+                cy.wait(1000);
+                screen("Paso 3");
+                cy.get('#member-name').type(users[index].Displayname);
+                cy.wait(1000);
+                screen("Paso 4");
+                cy.get('#member-email').type(users[index].Username);
+                cy.wait(1000);
+                screen("Paso 5");
+                cy.get('button[data-test-button="save"]').click();
+                cy.wait(2000);
+                screen("Paso 6");
+                cy.get('a[data-test-link="members-back"]').click();
+                cy.wait(1000);
+                screen("Paso 7");
+                cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${users[index].Displayname})`).should('have.length.at.least', 1);
+                screen("Paso 8");
+            }
+        })
+    })
 
-        cy.get('a[href="#/members/"]').click();
-        cy.wait(1000);
-        screen("Paso 2");
-        
-        cy.get('a[href="#/members/new/"]').click();	
-        cy.wait(1000);
-        screen("Paso 3");
-        
-        cy.get('#member-name').type('Cypress member name');
-        cy.wait(1000);
-        screen("Paso 4");
-        
-        cy.get('button[data-test-button="save"]').click();
-        cy.wait(2000);
-        screen("Paso 5");
+    it('Test edit name field of a existing member', () => {
+        let screen = screenshot.bind(null, "Add Members", "Editar el campo nombre de un miembro existente");
+        signIn();
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 0; index < 9; index++) {
+                screen("Paso 1");
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/"]').first().click()
+                    }
+                });
+                cy.wait(1000);
+                screen("Paso 2");
 
-        cy.get('p.response', { timeout: 10000 }).should('exist');
-        screen("Paso 6");
+                cy.get('a[data-test-table-data="details"]').first().click();
+                cy.wait(1000);
+                screen("Paso 3");
+
+                cy.get('#member-name').clear();
+                cy.wait(1000);
+                screen("Paso 4");
+
+                cy.get('#member-name').type(users[index].Displayname);
+                cy.wait(1000);
+                screen("Paso 5");
+
+                cy.get('button[data-test-button="save"]').click();
+                cy.wait(2000);
+                screen("Paso 6");
+
+                cy.get('a[data-test-link="members-back"]').click();
+                cy.wait(1000);
+                screen("Paso 7");
+
+                cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${users[index].Displayname})`).should('have.length.at.least', 1);
+                screen("Paso 8");
+            }
+        })
+        
+    })
+
+    /*
+    it('Test edit an existing member with a invalid email', () => {
+        let screen = screenshot.bind(null, "Add Members", "Editar miembro existente con un email invalido");
+        signIn();
+        cy.fixture('wrongEmail.json').then((wrongEmail)=>{
+            for (let index = 0; index < 9; index++) {
+                screen("Paso 1");
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/"]').first().click()
+                    }
+                });
+                cy.wait(1000);
+                screen("Paso 2");
+    
+                cy.get('a[data-test-table-data="details"]').first().click();
+                cy.wait(1000);
+                screen("Paso 3");
+    
+                cy.get('#member-email').clear();
+                cy.wait(1000);
+                screen("Paso 4");
+    
+                cy.get('#member-email').type(wrongEmail.value);
+                cy.wait(1000);
+                screen("Paso 5");
+    
+                cy.get('button[data-test-button="save"]').click();
+                cy.wait(2000);
+                screen("Paso 6");
+                
+                cy.get('p.response', { timeout: 10000 }).should('exist');
+                screen("Paso 7");
+
+                cy.get('a[data-test-link="members-back"]').click();
+                cy.wait(3000);
+                screen("Paso 8");
+
+                cy.get('button[data-test-leave-button=""]').click();
+                cy.wait(3000);
+                screen("Paso 9");
+                
+            }
+        })
     });
     */
 })
