@@ -1,10 +1,54 @@
 import { faker } from '@faker-js/faker';
 
-const { signIn, screenshot } = require('../../support/utils');
+const { signIn, screenshot, readUsersData } = require('../../support/utils');
 
 describe('Create members', () => {
     it('Test create member', () => {
         let screen =screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members");
+        signIn();
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 0; index < 9; index++) {
+                screen("Paso 1");
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/"]').first().click()
+                    }
+                });
+                cy.wait(1000);
+                screen("Paso 2");
+                cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        cy.get('a[href="#/members/new/"]').click()
+                    } else {
+                        cy.get('a[href="#/members/new/"]').first().click()
+                    }
+                });	
+                cy.wait(1000);
+                screen("Paso 3");
+                cy.get('#member-name').type(users[index].Displayname);
+                cy.wait(1000);
+                screen("Paso 4");
+                cy.get('#member-email').type(users[index].Username);
+                cy.wait(1000);
+                screen("Paso 5");
+                cy.get('#member-note').type(users[index].Department);
+                cy.wait(1000);
+                screen("Paso 6");
+                cy.get('button[data-test-button="save"]').click();
+                cy.wait(2000);
+                screen("Paso 7");
+                cy.get('a[data-test-link="members-back"]').click();
+                cy.wait(1000);
+                screen("Paso 8");
+                cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${users[index].Displayname})`).should('have.length.at.least', 1);
+                screen("Paso 9");
+            }
+        })
+        
+
+        /*
         signIn();
         screen("Paso 1");
         cy.get('a[href="#/members/"]').click();
@@ -36,8 +80,9 @@ describe('Create members', () => {
         screen("Paso 8");
         cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(':contains("Cypress member name")').should('have.length.at.least', 1);
         screen("Paso 9");
+        */
     })
-
+    /*
     it('Test create member just using email', () => {
         let screen = screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members solo usando el campo email");
         signIn();
@@ -111,5 +156,5 @@ describe('Create members', () => {
         cy.get('p.response', { timeout: 10000 }).should('exist');
         screen("Paso 6");
     });
-
+    */
 })
