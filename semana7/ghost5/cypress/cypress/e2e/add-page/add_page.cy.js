@@ -1,7 +1,6 @@
 const { signIn, screenshot } = require('../../support/utils');
 const {Page} = require('../../pageObjects/page');
 
-<<<<<<< HEAD
 describe('Add Page', function() {
 
     const pageData = [
@@ -301,7 +300,6 @@ describe('Add Page', function() {
     });
     
 })
-=======
 describe('Edit Page', function() {
     it('Editar la información de una pagina existente', function() {
         let screen = screenshot.bind(null, "Add Page", "Edit existing page information");
@@ -399,4 +397,3 @@ describe('Edit Page', function() {
         })
     })
 })
->>>>>>> develop

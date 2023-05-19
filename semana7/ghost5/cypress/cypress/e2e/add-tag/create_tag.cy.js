@@ -1,7 +1,6 @@
 const { signIn, screenshot } = require('../../support/utils');
 
 describe('Add Tags', function() {
-<<<<<<< HEAD
 
     const tagData = [
         { 
@@ -162,7 +161,6 @@ describe('Add Tags', function() {
             cy.get('h3.gh-tag-list-name', { timeout: 10000 }).filter(':contains("Tag 1")').should('have.length.at.least', 1);
         })
     });
-=======
     it('Editar información de un tag existente', function() {
         let screen = screenshot.bind(null, "Add Tags", "Edit existing tag information");
         signIn();
@@ -221,7 +219,6 @@ describe('Add Tags', function() {
             }
         })
     })
->>>>>>> develop
 
     it.only('Editar información de un tag existente dejando campos vacios', function() {
         let screen = screenshot.bind(null, "Add Tags", "Edit existing tag information leaving empty fields");
