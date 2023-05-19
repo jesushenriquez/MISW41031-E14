@@ -51,7 +51,7 @@ describe('Edit Page', function() {
         })
     })
 
-    it.only('Editar la información de una pagina existente sin titulo', function() {
+    it('Editar la información de una pagina existente sin titulo', function() {
         let screen = screenshot.bind(null, "Add Page", "Edit existing page without title");
         signIn();
         cy.fixture('pages.json').then((pages)=>{
