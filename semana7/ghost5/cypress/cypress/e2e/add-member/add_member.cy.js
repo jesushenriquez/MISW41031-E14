@@ -209,7 +209,7 @@ describe('Create members', () => {
                 screen("Paso 6");
     
                 cy.get('button[data-test-button="save"]').click();
-                cy.wait(2000);
+                cy.wait(1000);
                 screen("Paso 7");
                 
                 cy.get('p.response', { timeout: 10000 }).should('exist');
