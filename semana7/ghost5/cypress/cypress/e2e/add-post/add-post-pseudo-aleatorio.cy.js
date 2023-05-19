@@ -68,8 +68,10 @@ describe("Add Post", function () {
   generarPostsAleatorios(5).forEach((formData, i) =>{
      it(`Registrar y Publicar Post con Botón ${i + 1}`, () => {
        post.checkPlaceHolderTitle();
+
        post.title(formData.postTitle);
        post.addButton(formData.button.buttonText, formData.button.buttonUrl);
+       
        post.publish();
        post.checkPublish(formData.postTitle);
      });
@@ -85,8 +87,10 @@ describe("Add Post", function () {
   generarNftUrlsAleatorias(5).forEach((nftUrl, i) => {
     it.only("Registrar y Publicar un nuevo Post con nft " + i, () => {
       post.checkPlaceHolderTitle();
+
       post.title("Titulo Post con NFT " + i);
       post.addNFT(nftUrl);
+      
       post.checkErrorParsingUrl();
     });
   });

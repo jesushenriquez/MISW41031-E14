@@ -158,14 +158,24 @@ describe("Add Post", function () {
    */
   movies.forEach((pelicula) => {
     it.only("Registrar y Publicar un nuevo Post con texto, imagen, youtube y spotify", () => {
+      //siempre al inicio
       post.checkPlaceHolderTitle();
+      //----------------------------------
+
+
+      
       post.title(pelicula.postTitle);
+
       post.type(pelicula.postContent);
       post.addImage(pelicula.postImage);
+
       post.type("Miremos un video");
       post.addYoutube(pelicula.postYoutube);
+      
       post.type("Miremos la banda sonora de la pelicula");
       post.addSpotify(pelicula.postSpotify);
+
+      //siempre al final
       post.publish();
       post.checkPublish(pelicula.postTitle);
     });
