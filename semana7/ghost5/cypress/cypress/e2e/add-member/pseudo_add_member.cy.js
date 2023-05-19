@@ -5,6 +5,7 @@ const { signIn } = require('../../support/utils');
 describe('Create members', () => {    
     it('Test create member', () => {
         signIn();
+        let memberName = faker.person.fullName();
         for (let index = 0; index < 10; index++) {
             cy.get('a[href="#/members/"]').its('length').then((length) => {
                 if (length === 1) {
@@ -24,7 +25,7 @@ describe('Create members', () => {
             });	
             cy.wait(1000);
             
-            cy.get('#member-name').type(faker.person.fullName());
+            cy.get('#member-name').type(memberName);
             cy.wait(1000);
             
             cy.get('#member-email').type(faker.internet.email());
@@ -39,7 +40,7 @@ describe('Create members', () => {
             cy.get('a[data-test-link="members-back"]').click();
             cy.wait(1000);
             
-            cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${users[index].Displayname})`).should('have.length.at.least', 1);
+            cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${memberName})`).should('have.length.at.least', 1);
         }
     })
     
@@ -82,6 +83,7 @@ describe('Create members', () => {
 
     it('Test create member without note', () => {
         signIn();
+        let memberName = faker.person.fullName();
         for (let index = 22; index < 32; index++) {
             cy.get('a[href="#/members/"]').its('length').then((length) => {
                 if (length === 1) {
@@ -101,7 +103,7 @@ describe('Create members', () => {
             });	
             cy.wait(1000);
 
-            cy.get('#member-name').type(faker.person.fullName());
+            cy.get('#member-name').type(memberName);
             cy.wait(1000);
 
             cy.get('#member-email').type(faker.internet.email());
@@ -113,12 +115,13 @@ describe('Create members', () => {
             cy.get('a[data-test-link="members-back"]').click();
             cy.wait(1000);
 
-            cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${users[index].Displayname})`).should('have.length.at.least', 1);
+            cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${memberName})`).should('have.length.at.least', 1);
         }
     })
 
     it('Test edit name field of a existing member', () => {
         signIn();
+        let memberName = faker.person.fullName();
         for (let index = 0; index < 10; index++) {
             cy.get('a[href="#/members/"]').its('length').then((length) => {
                 if (length === 1) {
@@ -135,7 +138,7 @@ describe('Create members', () => {
             cy.get('#member-name').clear();
             cy.wait(1000);
 
-            cy.get('#member-name').type(faker.person.fullName());
+            cy.get('#member-name').type(memberName);
             cy.wait(1000);
 
             cy.get('button[data-test-button="save"]').click();
@@ -144,7 +147,7 @@ describe('Create members', () => {
             cy.get('a[data-test-link="members-back"]').click();
             cy.wait(1000);
 
-            cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${users[index].Displayname})`).should('have.length.at.least', 1);
+            cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${memberName})`).should('have.length.at.least', 1);
         }
     })
     
@@ -164,26 +167,20 @@ describe('Create members', () => {
                 }
             });
             cy.wait(1000);
-            screen("Paso 3");
 
             cy.get('a[data-test-table-data="details"]').first().click();
             cy.wait(1000);
-            screen("Paso 4");
 
             cy.get('#member-email').clear();
             cy.wait(1000);
-            screen("Paso 5");
 
             cy.get('#member-email').type(faker.lorem.lines(1));
             cy.wait(1000);
-            screen("Paso 6");
 
             cy.get('button[data-test-button="save"]').click();
             cy.wait(1000);
-            screen("Paso 7");
             
             cy.get('p.response', { timeout: 10000 }).should('exist');
-            screen("Paso 8");
         }
     });
     
