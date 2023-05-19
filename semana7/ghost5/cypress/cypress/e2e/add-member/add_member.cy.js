@@ -218,4 +218,52 @@ describe('Create members', () => {
         })
     });
     
+
+    it.only('Test edit an existing member with empty fields', () => {
+        let screen = screenshot.bind(null, "Add Members", "Editar miembro existente campos invalidos");
+        signIn();
+        for (let index = 0; index < 10; index++) {
+            screen("Paso 1");
+            
+            cy.reload()
+            screen("Paso 2")
+
+            cy.get('a[href="#/members/"]').its('length').then((length) => {
+                if (length === 1) {
+                    cy.get('a[href="#/members/"]').click()
+                } else {
+                    cy.get('a[href="#/members/"]').first().click()
+                }
+            });
+            cy.wait(1000);
+            screen("Paso 3");
+
+            cy.get('a[data-test-table-data="details"]').first().click();
+            cy.wait(1000);
+            screen("Paso 4");
+
+            cy.get('#member-email').clear();
+            cy.wait(1000);
+            screen("Paso 5");
+
+            cy.get('#member-name').clear();
+            cy.wait(1000);
+            screen("Paso 6");
+
+            cy.get('#member-note').clear();
+            cy.wait(1000);
+            screen("Paso 7");
+
+            cy.get('#member-note').clear();
+            cy.wait(1000);
+            screen("Paso 8");
+
+            cy.get('button[data-test-button="save"]').click();
+            cy.wait(2000);
+            screen("Paso 9");
+            
+            cy.get('p.response', { timeout: 10000 }).should('exist');
+            screen("Paso 10");
+        }
+    });
 })
