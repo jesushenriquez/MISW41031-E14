@@ -167,6 +167,28 @@ describe("Add Post", function () {
       title: "Queen - Don't Stop Me Now",
     },
   ];
+  const youtubeBadUrls = [
+    {
+      title: "Resumen de El arte de amar",
+      url: "https://www.youtube.com/watch?v=1ukzldeYBOE&feature=em-share_video_user",
+    },
+    {
+      title: "Resumen de Más allá del bien y del mal",
+      url: "https://www.youtube.com/watch?v=Xl8dgzoZehk&feature=em-share_video_user",
+    },
+    {
+      title: "Resumen de Así habló Zaratustra",
+      url: "https://www.youtube.com/watch?v=rrtPLj71mmk&feature=em-share_video_user",
+    },
+    {
+      title: "Resumen de La república",
+      url: "https://www.youtube.com/watch?v=saJd42R4ZSE&feature=em-share_video_user",
+    },
+    {
+      title: "Resumen de Meditaciones",
+      url: "https://www.youtube.com/watch?v=9otI7-HwPDo",
+    },
+  ];
 
   const tracksSpotify = [
     {
@@ -272,6 +294,118 @@ describe("Add Post", function () {
       name: "Rockstar",
       artist: "Post Malone ft. 21 Savage",
       url: "https://open.spotify.com/track/7wGoVu4Dady5GV0Sv4UIsx",
+      duration: 218.147,
+      album: "beerbongs & bentleys",
+      genre: "Hip-Hop",
+      popularity: 91,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b2731c2aa7fdd5bdf301b07e854f",
+    },
+  ];
+  const tracksBadSpotify = [
+    {
+      name: "Shape of You",
+      artist: "Ed Sheeran",
+      url: "https://open.spotify.com/track/7qiZfU4dY1lWllzX7mPBI",
+      duration: 233.713,
+      album: "÷ (Deluxe)",
+      genre: "Pop",
+      popularity: 100,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b273e8deef5ff3d4fbedcfa5603a",
+    },
+    {
+      name: "Blinding Lights",
+      artist: "The Weeknd",
+      url: "https://open.spotify.com/track/0VjIjW4GlUZAMYd2vXMi3",
+      duration: 201.573,
+      album: "After Hours",
+      genre: "R&B",
+      popularity: 99,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b27330e295f326e07a4bea50dfe2",
+    },
+    {
+      name: "Uptown Funk",
+      artist: "Mark Ronson ft. Bruno Mars",
+      url: "https://open.spotify.com/track/32OlwWuMpZ6b0aN2RZOeM",
+      duration: 269.866,
+      album: "Uptown Special",
+      genre: "Pop",
+      popularity: 98,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b273430e8548edfbc79ad8aa26bb",
+    },
+    {
+      name: "Don't Start Now",
+      artist: "Dua Lipa",
+      url: "https://open.spotify.com/track/6WrI0LAC5M1Rw2MnX2ZvE",
+      duration: 183.267,
+      album: "Future Nostalgia",
+      genre: "Pop",
+      popularity: 97,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b273dc8d3ee79b3d1adab7862e8d",
+    },
+    {
+      name: "Thinking out Loud",
+      artist: "Ed Sheeran",
+      url: "https://open.spotify.com/track/34gCuhDGsG4bRPIf9bb02",
+      duration: 281.853,
+      album: "x (Deluxe Edition)",
+      genre: "Pop",
+      popularity: 96,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b273487fc887e1c1f8b2f625d95c",
+    },
+    {
+      name: "Happier",
+      artist: "Marshmello ft. Bastille",
+      url: "https://open.spotify.com/track/2dpaYNEQHiRxtZbfNsse9",
+      duration: 214.289,
+      album: "Happier",
+      genre: "Dance",
+      popularity: 95,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b27332b66606d8a75f5582a19463",
+    },
+    {
+      name: "Dance Monkey",
+      artist: "Tones and I",
+      url: "https://open.spotify.com/track/1rgnBhdG2JDFTbYkYRZAk",
+      duration: 209.755,
+      album: "The Kids Are Coming",
+      genre: "Pop",
+      popularity: 94,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b273a5a230c3e8d32281b569f4cc",
+    },
+    {
+      name: "Someone You Loved",
+      artist: "Lewis Capaldi",
+      url: "https://open.spotify.com/track/7qEHsqek33rTcFNT9PFqL",
+      duration: 182.615,
+      album: "Divinely Uninspired To A Hellish Extent",
+      genre: "Pop",
+      popularity: 93,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b273541c4ee5ac9a5ce462756df2",
+    },
+    {
+      name: "Bad Guy",
+      artist: "Billie Eilish",
+      url: "https://open.spotify.com/track/2Fxmhks0bxGSBdJ92vM42",
+      duration: 194.088,
+      album: "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
+      genre: "Pop",
+      popularity: 92,
+      albumCover:
+        "https://i.scdn.co/image/ab67616d0000b273c617e18cc06baca0fc1ec32c",
+    },
+    {
+      name: "Rockstar",
+      artist: "Post Malone ft. 21 Savage",
+      url: "https://open.spotify.com/track/7wGoVu4Dady5GV0Sv4UIs",
       duration: 218.147,
       album: "beerbongs & bentleys",
       genre: "Hip-Hop",
@@ -408,7 +542,7 @@ describe("Add Post", function () {
    */
 
   nftUrls.forEach((nftUrl, i) => {
-    it("Registrar y Publicar un nuevo Post con nft "+i, () => {
+    it("Registrar y Publicar un nuevo Post con nft " + i, () => {
       cy.get("textarea[data-test-editor-title-input]")
         .invoke("attr", "placeholder")
         .should("contain", "Post title");
@@ -427,8 +561,8 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  youtubeUrls.forEach(url =>{
-    it("Registrar y Publicar un nuevo Post con youtube "+url.title, () => {
+  youtubeUrls.forEach((url) => {
+    it("Registrar y Publicar un nuevo Post con youtube " + url.title, () => {
       cy.get("textarea[data-test-editor-title-input]")
         .invoke("attr", "placeholder")
         .should("contain", "Post title");
@@ -443,13 +577,29 @@ describe("Add Post", function () {
       ).click();
       cy.get("div > div > div.gh-publish-cta > button").click();
       cy.get('button[data-test-button="confirm-publish"]').click();
-      cy.contains(
-        ".gh-post-bookmark-title",
-        `Post de ${url.title}`
-      );
+      cy.contains(".gh-post-bookmark-title", `Post de ${url.title}`);
     });
   });
-  
+  /**
+   * -------------------------------------------------------------
+   *                          YOUTUBE BAD
+   * -------------------------------------------------------------
+   */
+
+  youtubeBadUrls.forEach((url) => {
+    it("Registrar  un nuevo Post con url mal youtube " + url.title, () => {
+      cy.get("textarea[data-test-editor-title-input]")
+        .invoke("attr", "placeholder")
+        .should("contain", "Post title");
+      cy.get("textarea[data-test-editor-title-input]").type(
+        `Post de ${url.title}`
+      );
+      cy.get('div[data-placeholder="Begin writing your post..."]').type(
+        `/youtube ${url.url}{enter}`
+      );
+      cy.contains("span.mr3", "There was an error when parsing the URL.");
+    });
+  });
 
   /**
    * -------------------------------------------------------------
@@ -457,26 +607,46 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-    tracksSpotify.forEach((track) => {
-        it.only("Registrar y Publicar un nuevo Post con Spotify", () => {
-            cy.get("textarea[data-test-editor-title-input]")
-            .invoke("attr", "placeholder")
-            .should("contain", "Post title");
-            cy.get("textarea[data-test-editor-title-input]").type(
-            `Post of ${track.name} by ${track.artist} (${track.genre})`
-            );
-            cy.get('div[data-placeholder="Begin writing your post..."]').type(
-            `/Spotify ${track.url}{enter}`
-            );
-            cy.get(
-            "header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger"
-            ).click();
-            cy.get("div > div > div.gh-publish-cta > button").click();
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            cy.contains(
-              ".gh-post-bookmark-title",
-              `Post of ${track.name} by ${track.artist} (${track.genre})`
-            );
-        });
+  tracksSpotify.forEach((track) => {
+    it("Registrar y Publicar un nuevo Post con Spotify "+track.name, () => {
+      cy.get("textarea[data-test-editor-title-input]")
+        .invoke("attr", "placeholder")
+        .should("contain", "Post title");
+      cy.get("textarea[data-test-editor-title-input]").type(
+        `Post of ${track.name} by ${track.artist} (${track.genre})`
+      );
+      cy.get('div[data-placeholder="Begin writing your post..."]').type(
+        `/Spotify ${track.url}{enter}`
+      );
+      cy.get(
+        "header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger"
+      ).click();
+      cy.get("div > div > div.gh-publish-cta > button").click();
+      cy.get('button[data-test-button="confirm-publish"]').click();
+      cy.contains(
+        ".gh-post-bookmark-title",
+        `Post of ${track.name} by ${track.artist} (${track.genre})`
+      );
     });
+  });
+  /**
+   * -------------------------------------------------------------
+   *                          SPOTIFY BAD
+   * -------------------------------------------------------------
+   */
+
+  tracksBadSpotify.forEach((track) => {
+    it("Registrar y Publicar un nuevo Post con Spotify que sale mal "+ track.name, () => {
+      cy.get("textarea[data-test-editor-title-input]")
+        .invoke("attr", "placeholder")
+        .should("contain", "Post title");
+      cy.get("textarea[data-test-editor-title-input]").type(
+        `Post of ${track.name} by ${track.artist} (${track.genre})`
+      );
+      cy.get('div[data-placeholder="Begin writing your post..."]').type(
+        `/Spotify ${track.url}{enter}`
+      );
+      cy.contains("span.mr3", "There was an error when parsing the URL.");
+    });
+  });
 });
