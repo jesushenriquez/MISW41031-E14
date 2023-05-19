@@ -1,5 +1,3 @@
-import { faker } from '@faker-js/faker';
-
 const { signIn, screenshot, readUsersData } = require('../../support/utils');
 
 describe('Create members', () => {
