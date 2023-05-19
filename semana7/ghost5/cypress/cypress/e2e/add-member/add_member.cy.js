@@ -8,7 +8,7 @@ describe('Create members', () => {
         let screen =screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members");
         signIn();
         cy.fixture('users.json').then((users)=>{
-            for (let index = 0; index < 9; index++) {
+            for (let index = 0; index < 10; index++) {
                 screen("Paso 1");
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
@@ -53,7 +53,7 @@ describe('Create members', () => {
         let screen =screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members sin el campo name");
         signIn();
         cy.fixture('users.json').then((users)=>{
-            for (let index = 10; index < 19; index++) {
+            for (let index = 11; index < 21; index++) {
                 screen("Paso 1");
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
@@ -95,7 +95,7 @@ describe('Create members', () => {
         let screen =screenshot.bind(null, "Add Members", "Crear un nuevo miembro desde el panel de members sin usar el campo note");
         signIn();
         cy.fixture('users.json').then((users)=>{
-            for (let index = 20; index < 29; index++) {
+            for (let index = 22; index < 32; index++) {
                 screen("Paso 1");
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
@@ -137,7 +137,7 @@ describe('Create members', () => {
         let screen = screenshot.bind(null, "Add Members", "Editar el campo nombre de un miembro existente");
         signIn();
         cy.fixture('users.json').then((users)=>{
-            for (let index = 0; index < 9; index++) {
+            for (let index = 0; index < 10; index++) {
                 screen("Paso 1");
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
@@ -175,14 +175,17 @@ describe('Create members', () => {
         })
         
     })
-
-    /*
+    
     it('Test edit an existing member with a invalid email', () => {
         let screen = screenshot.bind(null, "Add Members", "Editar miembro existente con un email invalido");
         signIn();
         cy.fixture('wrongEmail.json').then((wrongEmail)=>{
-            for (let index = 0; index < 9; index++) {
+            for (let index = 0; index < 10; index++) {
                 screen("Paso 1");
+                
+                cy.reload()
+                screen("Paso 2")
+
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
                         cy.get('a[href="#/members/"]').click()
@@ -191,37 +194,28 @@ describe('Create members', () => {
                     }
                 });
                 cy.wait(1000);
-                screen("Paso 2");
+                screen("Paso 3");
     
                 cy.get('a[data-test-table-data="details"]').first().click();
                 cy.wait(1000);
-                screen("Paso 3");
+                screen("Paso 4");
     
                 cy.get('#member-email').clear();
                 cy.wait(1000);
-                screen("Paso 4");
+                screen("Paso 5");
     
                 cy.get('#member-email').type(wrongEmail.value);
                 cy.wait(1000);
-                screen("Paso 5");
+                screen("Paso 6");
     
                 cy.get('button[data-test-button="save"]').click();
                 cy.wait(2000);
-                screen("Paso 6");
+                screen("Paso 7");
                 
                 cy.get('p.response', { timeout: 10000 }).should('exist');
-                screen("Paso 7");
-
-                cy.get('a[data-test-link="members-back"]').click();
-                cy.wait(3000);
                 screen("Paso 8");
-
-                cy.get('button[data-test-leave-button=""]').click();
-                cy.wait(3000);
-                screen("Paso 9");
-                
             }
         })
     });
-    */
+    
 })
