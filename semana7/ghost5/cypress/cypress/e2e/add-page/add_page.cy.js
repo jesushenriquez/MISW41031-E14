@@ -1,4 +1,5 @@
 const { signIn, screenshot } = require('../../support/utils');
+const {Page} = require('../../pageObjects/page');
 
 describe('Edit Page', function() {
     it('Editar la información de una pagina existente', function() {
