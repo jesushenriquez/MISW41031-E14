@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 const { signIn, screenshot, readUsersData } = require('../../support/utils');
 
 describe('Create members', () => {
@@ -26,13 +28,13 @@ describe('Create members', () => {
                 });	
                 cy.wait(1000);
                 screen("Paso 3");
-                cy.get('#member-name').type(users[index].Displayname);
+                cy.get('#member-name').type(faker.person.fullName());
                 cy.wait(1000);
                 screen("Paso 4");
-                cy.get('#member-email').type(users[index].Username);
+                cy.get('#member-email').type(faker.internet.email());
                 cy.wait(1000);
                 screen("Paso 5");
-                cy.get('#member-note').type(users[index].Department);
+                cy.get('#member-note').type(faker.lorem.lines(2));
                 cy.wait(1000);
                 screen("Paso 6");
                 cy.get('button[data-test-button="save"]').click();
@@ -71,10 +73,10 @@ describe('Create members', () => {
                 });
                 cy.wait(1000);
                 screen("Paso 3");
-                cy.get('#member-email').type(users[index].Username);
+                cy.get('#member-email').type(faker.internet.email());
                 cy.wait(1000);
                 screen("Paso 4");
-                cy.get('#member-note').type(users[index].Department);
+                cy.get('#member-note').type(faker.lorem.lines(2));
                 cy.wait(1000);
                 screen("Paso 5");
                 cy.get('button[data-test-button="save"]').click();
@@ -113,10 +115,10 @@ describe('Create members', () => {
                 });	
                 cy.wait(1000);
                 screen("Paso 3");
-                cy.get('#member-name').type(users[index].Displayname);
+                cy.get('#member-name').type(faker.person.fullName());
                 cy.wait(1000);
                 screen("Paso 4");
-                cy.get('#member-email').type(users[index].Username);
+                cy.get('#member-email').type(faker.internet.email());
                 cy.wait(1000);
                 screen("Paso 5");
                 cy.get('button[data-test-button="save"]').click();
@@ -155,7 +157,7 @@ describe('Create members', () => {
                 cy.wait(1000);
                 screen("Paso 4");
 
-                cy.get('#member-name').type(users[index].Displayname);
+                cy.get('#member-name').type(faker.person.fullName());
                 cy.wait(1000);
                 screen("Paso 5");
 
@@ -202,7 +204,7 @@ describe('Create members', () => {
                 cy.wait(1000);
                 screen("Paso 5");
     
-                cy.get('#member-email').type(wrongEmail.value);
+                cy.get('#member-email').type(faker.lorem.lines(1));
                 cy.wait(1000);
                 screen("Paso 6");
     
