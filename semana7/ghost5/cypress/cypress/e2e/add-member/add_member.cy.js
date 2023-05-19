@@ -217,7 +217,7 @@ describe('Create members', () => {
     });
     
 
-    it.only('Test edit an existing member with empty fields', () => {
+    it('Test edit an existing member with empty fields', () => {
         let screen = screenshot.bind(null, "Add Members", "Editar miembro existente campos invalidos");
         signIn();
         for (let index = 0; index < 10; index++) {
