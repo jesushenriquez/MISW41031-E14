@@ -1,9 +1,8 @@
-const { signIn, screenshot } = require('../../support/utils');
+const { signIn } = require('../../support/utils');
 import { faker } from '@faker-js/faker';
 
 describe('Edit Page', function() {
     it('Editar la información de una pagina existente', function() {
-        let screen = screenshot.bind(null, "Add Page", "Edit existing page information");
         signIn();
         for (let index = 0; index < 10; index++) {
             let pageTitle = faker.lorem.lines(1);
@@ -43,7 +42,6 @@ describe('Edit Page', function() {
     })
 
     it('Editar la información de una pagina existente sin titulo', function() {
-        let screen = screenshot.bind(null, "Add Page", "Edit existing page without title");
         signIn();
         for (let index = 22; index < 32; index++) {
             cy.get('a[data-test-nav="pages"]').its('length').then((length) => {
