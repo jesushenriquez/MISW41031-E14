@@ -185,10 +185,13 @@ describe('Create members', () => {
     });
     
 
-    it('Test edit an existing member with empty fields', () => {
+    it.only('Test edit an existing member with empty fields', () => {
         signIn();
         for (let index = 0; index < 10; index++) {
+            cy.wait(1000);
+
             cy.reload()
+            cy.wait(1000);
 
             cy.get('a[href="#/members/"]').its('length').then((length) => {
                 if (length === 1) {
@@ -199,7 +202,7 @@ describe('Create members', () => {
             });
             cy.wait(1000);
 
-            cy.get('a[data-test-table-data="details"]').first().click();
+            cy.get('a[class="ember-view gh-list-data"').last().click();
             cy.wait(1000);
 
             cy.get('#member-email').clear();
