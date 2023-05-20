@@ -171,7 +171,7 @@ describe('Create members', () => {
                         member.clickFirstMemberLink();
                     }
                 });
-                cy.wait(1000);
+                cy.wait(2000);
     
                 member.clickFirstMembersListElement();
                 cy.wait(1000);
@@ -186,6 +186,7 @@ describe('Create members', () => {
                 cy.wait(1000);
                 
                 member.checkErrorMessageExist();
+                cy.wait(1000);
             }
         })
     });
@@ -204,7 +205,7 @@ describe('Create members', () => {
                     member.clickFirstMemberLink();
                 }
             });
-            cy.wait(1000);
+            cy.wait(2000);
             
             member.clickFirstMembersListElement();
             cy.wait(2000);
@@ -222,6 +223,7 @@ describe('Create members', () => {
             cy.wait(2000);
             
             member.checkErrorMessageExist();
+            cy.wait(2000);
         }
     });
 })
