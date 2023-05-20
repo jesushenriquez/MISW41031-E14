@@ -37,6 +37,12 @@ class Page {
       .last()
       .type(`${value}{enter}`, { force: true });
   }
+  addImage(url) {
+    this.type(`/image ${url}{enter}`);
+  }
+  addYoutube(url) {
+    this.type(`/youtube ${url}{enter}`);
+  }
 
   publishAndBackToEditor() {
     cy.get('button[data-test-button="publish-flow"]').click();
