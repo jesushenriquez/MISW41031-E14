@@ -225,7 +225,7 @@ describe('Add Page', function() {
     });
 
     pageDataLongDescription.forEach((data) => {
-        it.only('Registrar y Publicar una nueva page con Imagen destacada, un texto de al menos 1000 caracteres y un video de youtube.', function() {
+        it('Registrar y Publicar una nueva page con Imagen destacada, un texto de al menos 1000 caracteres y un video de youtube.', function() {
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
