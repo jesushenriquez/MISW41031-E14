@@ -359,4 +359,54 @@ describe('Create members', () => {
             }
         })
     });
+
+    it.only('Test create member without subscribe', () => {
+        signIn();
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 23; index < 26; index++) {
+                let memberName = `${users[index].Displayname}-${names[Math.floor(Math.random()*names.length)]}`;
+                let memberEmail = `${emails[Math.floor(Math.random()*emails.length)]}-${users[index].Username}`;
+                let memberNote = `${users[index].Department}-${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
+
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        member.clickMemberLink();
+                    } else {
+                        member.clickFirstMemberLink();
+                    }
+                });
+                cy.wait(1000);
+
+                cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        member.clickNewMemberLink();
+                    } else {
+                        member.clickFirstNewMemberLink();
+                    }
+                });	
+                cy.wait(3000);
+                
+                member.typeName(memberName);
+                cy.wait(1000);
+                
+                member.typeEmail(memberEmail);
+                cy.wait(1000);
+                
+                member.typeNote(memberNote);
+                cy.wait(1000);
+                
+                member.uncheckSubscribe();
+                cy.wait(1000);
+
+                member.saveCreation();
+                cy.wait(2000);
+                
+                member.returnMembersList();
+                cy.wait(1000);
+                
+                member.checkNameInList(memberName);
+                cy.wait(2000);
+            }
+        })
+    })
 })
