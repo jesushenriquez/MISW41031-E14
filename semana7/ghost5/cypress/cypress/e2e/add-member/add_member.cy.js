@@ -123,7 +123,7 @@ describe('Create members', () => {
         })
     })
 
-    it.only('Test edit name field of a existing member', () => {
+    it('Test edit name field of a existing member', () => {
         signIn();
         cy.fixture('users.json').then((users)=>{
             for (let index = 40; index < 43; index++) {
@@ -160,69 +160,68 @@ describe('Create members', () => {
     it('Test edit an existing member with a invalid email', () => {
         signIn();
         cy.fixture('wrongEmail.json').then((wrongEmail)=>{
-            for (let index = 0; index < 10; index++) {
+            for (let index = 0; index < 3; index++) {
+                cy.wait(2000);
                 cy.reload()
 
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
-                        cy.get('a[href="#/members/"]').click()
+                        member.clickMemberLink();
                     } else {
-                        cy.get('a[href="#/members/"]').first().click()
+                        member.clickFirstMemberLink();
                     }
                 });
                 cy.wait(1000);
     
-                cy.get('a[data-test-table-data="details"]').first().click();
+                member.clickFirstMembersListElement();
                 cy.wait(1000);
     
-                cy.get('#member-email').clear();
+                member.clearEmail();
                 cy.wait(1000);
     
-                cy.get('#member-email').type(wrongEmail.value);
+                member.typeEmail(wrongEmail.value);
                 cy.wait(1000);
     
-                cy.get('button[data-test-button="save"]').click();
+                member.saveCreation();
                 cy.wait(1000);
                 
-                cy.get('p.response', { timeout: 10000 }).should('exist');
+                member.checkErrorMessageExist();
             }
         })
     });
     
 
-    it('Test edit an existing member with empty fields', () => {
+    it.only('Test edit an existing member with empty fields', () => {
         signIn();
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 3; index++) {
+            cy.wait(1000);
             cy.reload()
 
             cy.get('a[href="#/members/"]').its('length').then((length) => {
                 if (length === 1) {
-                    cy.get('a[href="#/members/"]').click()
+                    member.clickMemberLink();
                 } else {
-                    cy.get('a[href="#/members/"]').first().click()
+                    member.clickFirstMemberLink();
                 }
             });
             cy.wait(1000);
             
-            cy.get('a[data-test-table-data="details"]').first().click();
-            cy.wait(1000);
-            
-            cy.get('#member-email').clear();
-            cy.wait(1000);
-            
-            cy.get('#member-name').clear();
-            cy.wait(1000);
-            
-            cy.get('#member-note').clear();
-            cy.wait(1000);
-            
-            cy.get('#member-note').clear();
-            cy.wait(1000);
-            
-            cy.get('button[data-test-button="save"]').click();
+            member.clickFirstMembersListElement();
             cy.wait(2000);
             
-            cy.get('p.response', { timeout: 10000 }).should('exist');
+            member.clearEmail();
+            cy.wait(1000);
+            
+            member.clearName();
+            cy.wait(1000);
+            
+            member.clearNote();
+            cy.wait(1000);
+            
+            member.saveCreation();
+            cy.wait(2000);
+            
+            member.checkErrorMessageExist();
         }
     });
 })

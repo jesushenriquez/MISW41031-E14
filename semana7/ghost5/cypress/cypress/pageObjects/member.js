@@ -25,11 +25,15 @@ class Member {
     }
 
     clearEmail(){
-        
+        cy.get('#member-email').clear();
     }
 
     typeEmail(email) {
         cy.get('#member-email').type(email);
+    }
+
+    clearNote(){
+        cy.get('#member-note').clear();
     }
 
     typeNote(note) {
@@ -58,6 +62,10 @@ class Member {
         cy.get('h3.gh-members-list-name ', { timeout: 10000 })
             .filter(':contains("")')
             .should('have.length.at.least', 1);
+    }
+
+    checkErrorMessageExist(name){
+        cy.get('p.response', { timeout: 10000 }).should('exist');
     }
 }
 
