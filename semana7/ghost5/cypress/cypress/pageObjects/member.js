@@ -16,8 +16,16 @@ class Member {
         cy.get('a[href="#/members/new/"]').first().click();
     }
 
+    clearName(){
+        cy.get('#member-name').clear();
+    }
+
     typeName(name) {
         cy.get('#member-name').type(name);
+    }
+
+    clearEmail(){
+        
     }
 
     typeEmail(email) {
@@ -34,6 +42,10 @@ class Member {
 
     returnMembersList(){
         cy.get('a[data-test-link="members-back"]').click();
+    }
+
+    clickFirstMembersListElement(){
+        cy.get('a[data-test-table-data="details"]').first().click();
     }
 
     checkNameInList(name){

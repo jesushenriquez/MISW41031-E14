@@ -85,7 +85,7 @@ describe('Create members', () => {
         })
     })
 
-    it.only('Test create member without note', () => {
+    it('Test create member without note', () => {
         signIn();
         cy.fixture('users.json').then((users)=>{
             for (let index = 20; index < 23; index++) {
@@ -123,35 +123,35 @@ describe('Create members', () => {
         })
     })
 
-    it('Test edit name field of a existing member', () => {
+    it.only('Test edit name field of a existing member', () => {
         signIn();
         cy.fixture('users.json').then((users)=>{
-            for (let index = 0; index < 10; index++) {
+            for (let index = 40; index < 43; index++) {
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
-                        cy.get('a[href="#/members/"]').click()
+                        member.clickMemberLink();
                     } else {
-                        cy.get('a[href="#/members/"]').first().click()
+                        member.clickFirstMemberLink();
                     }
                 });
                 cy.wait(1000);
 
-                cy.get('a[data-test-table-data="details"]').first().click();
+                member.clickFirstMembersListElement();
                 cy.wait(1000);
 
-                cy.get('#member-name').clear();
+                member.clearName();
                 cy.wait(1000);
 
-                cy.get('#member-name').type(users[index].Displayname);
+                member.typeName(users[index].Displayname);
                 cy.wait(1000);
 
-                cy.get('button[data-test-button="save"]').click();
+                member.saveCreation();
                 cy.wait(2000);
 
-                cy.get('a[data-test-link="members-back"]').click();
+                member.returnMembersList();
                 cy.wait(1000);
 
-                cy.get('h3.gh-members-list-name ', { timeout: 10000 }).filter(`:contains(${users[index].Displayname})`).should('have.length.at.least', 1);
+                member.checkNameInList(users[index].Displayname);
             }
         })
         
