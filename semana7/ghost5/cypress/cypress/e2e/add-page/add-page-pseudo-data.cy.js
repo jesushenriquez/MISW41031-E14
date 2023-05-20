@@ -1,7 +1,7 @@
 const { signIn, screenshot } = require('../../support/utils');
 const { Page } = require('../../pageObjects/page');
 
-/*
+
 describe('Add Page', function() {
 
     const page = new Page();
@@ -240,7 +240,7 @@ describe('Add Page', function() {
     });
     
 })
-*/
+
 
 describe('Edit Page', function() {
     let titles = ["Josh", "Max", "Jhonn", "Terry", "Wilson", "Mark"];

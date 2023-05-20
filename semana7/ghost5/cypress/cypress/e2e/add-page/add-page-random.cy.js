@@ -20,7 +20,7 @@ describe('Add Page', function() {
     });
 
     generarPagesAleatorias(3).forEach((data) => {
-        it.only('Registrar y publicar una nueva pagina con imagen', function() {
+        it('Registrar y publicar una nueva pagina con imagen', function() {
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
