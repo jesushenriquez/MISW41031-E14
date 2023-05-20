@@ -1,5 +1,5 @@
 const { signIn, readUsersData } = require('../../support/utils');
-const {Member} = require("../../pageObjects/member")
+const {Member} = require("../../pageObjects/member");
 
 describe('Create members', () => {
     
@@ -118,7 +118,7 @@ describe('Create members', () => {
                 member.returnMembersList();
                 cy.wait(1000);
                 
-                member.checkEmptyStringNameInList();
+                member.checkNameInList(users[index].Displayname);
             }
         })
     })
@@ -191,7 +191,7 @@ describe('Create members', () => {
     });
     
 
-    it.only('Test edit an existing member with empty fields', () => {
+    it('Test edit an existing member with empty fields', () => {
         signIn();
         for (let index = 0; index < 3; index++) {
             cy.wait(1000);
