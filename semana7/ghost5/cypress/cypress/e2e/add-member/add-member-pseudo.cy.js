@@ -360,7 +360,7 @@ describe('Create members', () => {
         })
     });
 
-    it.only('Test create member without subscribe', () => {
+    it('Test create member without subscribe', () => {
         signIn();
         cy.fixture('users.json').then((users)=>{
             for (let index = 23; index < 26; index++) {
