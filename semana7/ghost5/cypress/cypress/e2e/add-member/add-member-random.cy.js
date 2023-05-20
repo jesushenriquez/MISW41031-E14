@@ -222,4 +222,97 @@ describe('Create members', () => {
             cy.wait(2000);
         }
     });
+
+    it('Add member with more fields than allowed in note field', () => {
+        signIn();
+        for (let index = 50; index < 53; index++) {
+            cy.wait(1000);
+            cy.reload();
+
+            let memberNote = faker.lorem.lines(15);
+            
+            cy.get('a[href="#/members/"]').its('length').then((length) => {
+                if (length === 1) {
+                    member.clickMemberLink();
+                } else {
+                    member.clickFirstMemberLink();
+                }
+            });
+            cy.wait(2000);
+
+            cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                if (length === 1) {
+                    member.clickNewMemberLink();
+                } else {
+                    member.clickFirstNewMemberLink();
+                }
+            });	
+            cy.wait(3000);
+            
+            member.typeName(faker.person.fullName());
+            cy.wait(1000);
+            
+            member.typeEmail(faker.internet.email());
+            cy.wait(1000);
+            
+            member.typeNote(memberNote);
+            cy.wait(1000);
+            
+            member.saveCreation();
+            cy.wait(2000);
+            
+            member.checkErrorMessageExist();
+            cy.wait(2000);
+
+            member.clickFirstMemberLink();
+            
+            member.clickLeave();
+        }
+        
+    });
+
+    it('Test edit an existing member with exceded note field', () => {
+        signIn();
+        for (let index = 26; index < 29; index++) {
+            cy.wait(1000);
+            cy.reload();
+
+            let memberNote = faker.lorem.lines(15);
+            
+            cy.get('a[href="#/members/"]').its('length').then((length) => {
+                if (length === 1) {
+                    member.clickMemberLink();
+                } else {
+                    member.clickFirstMemberLink();
+                }
+            });
+            cy.wait(3000);
+
+            member.clickFirstMembersListElement();
+            cy.wait(3000);
+            
+            member.clearName();
+            cy.wait(1000);
+            
+            member.typeName(faker.person.fullName());
+            cy.wait(1000);
+
+            member.clearEmail();
+            cy.wait(1000);
+
+            member.typeEmail(faker.internet.email());
+            cy.wait(1000);
+            
+            member.clearNote();
+
+            member.typeNote(memberNote);
+            cy.wait(1000);
+            
+            member.saveCreation();
+            cy.wait(2000);
+            
+            member.checkErrorMessageExist();
+            cy.wait(2000);
+        }
+    });
 })
