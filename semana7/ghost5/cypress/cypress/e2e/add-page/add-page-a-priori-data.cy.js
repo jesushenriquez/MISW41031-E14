@@ -186,8 +186,7 @@ describe('Add Page', function() {
     
     
     pageData.forEach((data) => {
-        it.only('Registrar y publicar una nueva pagina', function() {
-            let screen = screenshot.bind(null, "Add Page", "Registrar y publicar una nueva pagina");
+        it('Registrar y publicar una nueva pagina', function() {
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
@@ -200,30 +199,15 @@ describe('Add Page', function() {
     });
     
     pageData.forEach((data) => {
-        it('Registrar y publicar una nueva pagina con imagen', function() {
-            let screen = screenshot.bind(null, "Add Page", "Registrar y publicar una nueva pagina con imagen");
+        it.only('Registrar y publicar una nueva pagina con imagen', function() {
             signIn();
-            screen("Paso 1");
-            cy.get('a[data-test-nav="pages"]').click();
-            screen("Paso 2");
-            cy.get('a[href="#/editor/page/"]').click();
-            screen("Paso 3");
-            cy.get('textarea[placeholder="Page title"]').type(data.title);
-            screen("Paso 4");
-            cy.get('div[data-placeholder="Begin writing your page..."]').type(`/image ${data.image}{enter}`);
-            screen("Paso 5");
-            cy.get('button[data-test-button="publish-flow"]').click();
-            screen("Paso 6");
-            cy.get('button[data-test-button="continue"]').click();
-            screen("Paso 7");
-            cy.get('button[data-test-button="confirm-publish"]').click();
-            screen("Paso 8");
-            cy.get('button[data-test-button="back-to-editor"]').click();
-            screen("Paso 9");
-            cy.get('a[data-test-link="pages"]').click();
-            screen("Paso 10");
-            cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("Page 1")').should('have.length.at.least', 1);
-            screen("Paso 11");
+            page.clickPageLink();
+            page.clickNavigateToPageEditor();
+            page.title(data.title);
+            page.type(`/image ${data.image}`);
+            page.publishAndBackToEditor();
+            page.gotoPagesList();
+            page.checkTitleInList(data.title);
         })
     });
 
