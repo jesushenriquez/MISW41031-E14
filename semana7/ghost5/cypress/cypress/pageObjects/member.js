@@ -41,6 +41,12 @@ class Member {
             .filter(`:contains(${name})`)
             .should('have.length.at.least', 1);
     }
+
+    checkEmptyStringNameInList(name){
+        cy.get('h3.gh-members-list-name ', { timeout: 10000 })
+            .filter(':contains("")')
+            .should('have.length.at.least', 1);
+    }
 }
 
 module.exports = {Member}
