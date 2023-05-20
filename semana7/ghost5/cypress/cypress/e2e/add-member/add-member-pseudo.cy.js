@@ -1,4 +1,4 @@
-const { signIn, readUsersData } = require('../../support/utils');
+const { signIn, readUsersData, randomIntFromInterval } = require('../../support/utils');
 const {Member} = require("../../pageObjects/member");
 
 describe('Create members', () => {
@@ -260,5 +260,103 @@ describe('Create members', () => {
             member.checkErrorMessageExist();
             cy.wait(2000);
         }
+    });
+
+    it.only('Add member with more fields than allowed in note field', () => {
+        signIn();
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 50; index < 53; index++) {
+                cy.wait(1000);
+                cy.reload();
+
+                let memberNote = users[index].Department.repeat(randomIntFromInterval(30, 32));
+                
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        member.clickMemberLink();
+                    } else {
+                        member.clickFirstMemberLink();
+                    }
+                });
+                cy.wait(1000);
+
+                cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        member.clickNewMemberLink();
+                    } else {
+                        member.clickFirstNewMemberLink();
+                    }
+                });	
+                cy.wait(3000);
+                
+                member.typeName(users[index].Displayname);
+                cy.wait(1000);
+                
+                member.typeEmail(users[index].Username);
+                cy.wait(1000);
+                
+                member.typeNote(memberNote);
+                cy.wait(1000);
+                
+                member.saveCreation();
+                cy.wait(2000);
+                
+                member.checkErrorMessageExist();
+                cy.wait(2000);
+
+                member.clickFirstMemberLink();
+                
+                member.clickLeave();
+            }
+        })
+        
+    });
+
+    it('Test edit an existing member with exceded note field', () => {
+        signIn();
+
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 26; index < 29; index++) {
+                cy.wait(1000);
+                cy.reload();
+
+                let memberNote = users[index].Department.repeat(randomIntFromInterval(30, 32));
+                
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        member.clickMemberLink();
+                    } else {
+                        member.clickFirstMemberLink();
+                    }
+                });
+                cy.wait(1000);
+
+                member.clickFirstMembersListElement();
+                cy.wait(3000);
+                
+                member.clearName();
+                cy.wait(1000);
+
+                member.typeName(users[index].Displayname);
+                cy.wait(1000);
+
+                member.clearEmail();
+                cy.wait(1000);
+
+                member.typeEmail(users[index].Username);
+                cy.wait(1000);
+                
+                member.clearNote();
+
+                member.typeNote(memberNote);
+                cy.wait(1000);
+                
+                member.saveCreation();
+                cy.wait(2000);
+                
+                member.checkErrorMessageExist();
+                cy.wait(2000);
+            }
+        })
     });
 })

@@ -14,5 +14,10 @@ function signIn() {
 function screenshot(feature, scenario, step) {
   cy.screenshot(`${feature} - ${scenario} - ${step}`)
 }
-  module.exports = { signIn, screenshot };
+
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+module.exports = { signIn, screenshot, randomIntFromInterval };
   
