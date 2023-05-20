@@ -5,6 +5,25 @@ describe('Add Tags', function() {
 
     const tag = new Tag();
 
+    let names = ["Josh", "Max", "Jhonn", "Terry", "Wilson", "Mark"];
+    let slugs = ["blue", "red", "green", "orange", "gray", "black"];
+    let descriptions = [
+        "accept", 
+        "afford", 
+        "agree", 
+        "alert", 
+        "allow", 
+        "welcome", 
+        "wish", 
+        "wobble", 
+        "wonder", 
+        "work", 
+        "worry", 
+        "wrap", 
+        "wreck"
+    ];
+
+
     const tagWithoutData = [
         { 
             id: 1
@@ -353,6 +372,10 @@ describe('Add Tags', function() {
         signIn();
         cy.fixture('tags.json').then((tags)=>{
             for (let index = 0; index < 3; index++) {
+                let tagName = `${tags[index].name} ${names[Math.floor(Math.random()*names.length)]}`;
+                let tagSlug = `${tags[index].slug}-${slugs[Math.floor(Math.random()*slugs.length)]}`;
+                let tagDescription = `${tags[index].description} ${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
+
                 cy.get('a[href="#/tags/"].ember-view').its('length').then((length) => {
                     if (length === 1) {
                         tag.clickNavigateTags();
@@ -368,16 +391,16 @@ describe('Add Tags', function() {
                 tag.clearName();
                 cy.wait(1000);
 
-                tag.name(tags[index].name);
+                tag.name(tagName);
                 cy.wait(1000);
                 
-                tag.slug(tags[index].slug);
+                tag.slug(tagSlug);
                 cy.wait(1000);
                 
                 tag.clearDescription();
                 cy.wait(1000);
                 
-                tag.description(tags[index].description);
+                tag.description(tagDescription);
                 cy.wait(1000);
                 
                 tag.save();
@@ -386,7 +409,7 @@ describe('Add Tags', function() {
                 tag.clickFirstNavigateEmberView();
                 cy.wait(1000);
 
-                tag.checkTitleInList(tags[index].name);
+                tag.checkTitleInList(tagName);
             }
         })
     })
@@ -395,6 +418,9 @@ describe('Add Tags', function() {
         signIn();
         cy.fixture('tags.json').then((tags)=>{
             for (let index = 11; index < 14; index++) {
+                let tagName = `${tags[index].name} ${names[Math.floor(Math.random()*names.length)]}`;
+                let tagSlug = `${tags[index].slug}-${slugs[Math.floor(Math.random()*slugs.length)]}`;
+                let tagDescription = `${tags[index].description} ${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
                 cy.get('a[href="#/tags/"].ember-view').its('length').then((length) => {
                     if (length === 1) {
                         tag.clickNavigateTags();
@@ -410,10 +436,10 @@ describe('Add Tags', function() {
                 tag.clearName();
                 cy.wait(1000);
                 
-                tag.name(tags[index].name);
+                tag.name(tagName);
                 cy.wait(1000);
                 
-                tag.slug(tags[index].slug);
+                tag.slug(tagSlug);
                 cy.wait(1000);
                 
                 tag.clearDescription();
@@ -425,7 +451,7 @@ describe('Add Tags', function() {
                 tag.clickFirstNavigateEmberView();
                 cy.wait(1000);
                 
-                tag.checkTitleInList(tags[index].name);
+                tag.checkTitleInList(tagName);
             }
         })
     })

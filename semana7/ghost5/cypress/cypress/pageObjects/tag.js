@@ -1,4 +1,29 @@
 class Tag {
+    
+    clickNavigateTags() {
+      cy.get('a[href="#/tags/"]').click();
+    }
+
+    clickFirstNavigateTags() {
+      cy.get('href="#/tags/"]').first().click()
+    }
+
+    clickFirstNavigateEmberView(){
+      cy.get('a[href="#/tags/"].ember-view').first().click();
+    }
+
+    clickEditaLastTag(){
+      cy.get('a[title="Edit tag"').last().click();
+    }
+
+    clearName(){
+      cy.get('#tag-name').clear();
+    }
+
+    clearDescription(){
+      cy.get('#tag-description').clear();
+    }
+
     clickTagLink() {
       cy.wait(1000)
       cy.get('a[data-test-nav="tags"]').click();
