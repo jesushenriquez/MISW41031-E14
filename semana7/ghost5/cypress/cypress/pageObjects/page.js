@@ -63,6 +63,12 @@ class Page {
       .filter(`:contains("${title}")`)
       .should("have.length.at.least", 1);
   }
+
+  checkEmptyTitleInList(){
+    cy.get("h3.gh-content-entry-title")
+      .filter(`:contains("Untitled")`)
+      .should("have.length.at.least", 1);
+  }
 }
 
 module.exports = {Page}
