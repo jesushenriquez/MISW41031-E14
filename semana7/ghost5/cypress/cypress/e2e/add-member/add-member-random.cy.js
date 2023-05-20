@@ -315,4 +315,48 @@ describe('Create members', () => {
             cy.wait(2000);
         }
     });
+
+    it('Test create member without subscribe', () => {
+        signIn();
+        let memberName = faker.person.fullName();
+        for (let index = 0; index < 3; index++) {
+            cy.get('a[href="#/members/"]').its('length').then((length) => {
+                if (length === 1) {
+                    member.clickMemberLink();
+                } else {
+                    member.clickFirstMemberLink();
+                }
+            });
+            cy.wait(2000);
+
+            cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                if (length === 1) {
+                    member.clickNewMemberLink();
+                } else {
+                    member.clickFirstNewMemberLink();
+                }
+            });	
+            cy.wait(3000);
+            
+            member.typeName(memberName);
+            cy.wait(1000);
+            
+            member.typeEmail(faker.internet.email());
+            cy.wait(1000);
+            
+            member.typeNote(faker.lorem.lines(2));
+            cy.wait(1000);
+            
+            member.uncheckSubscribe();
+            cy.wait(1000);
+
+            member.saveCreation();
+            cy.wait(2000);
+            
+            member.returnMembersList();
+            cy.wait(1000);
+            
+            member.checkNameInList(memberName);
+        }
+    })
 })
