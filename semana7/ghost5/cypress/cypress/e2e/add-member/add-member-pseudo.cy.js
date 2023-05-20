@@ -65,11 +65,12 @@ describe('Create members', () => {
                 cy.wait(1000);
                 
                 member.checkNameInList(memberName);
+                cy.wait(2000);
             }
         })
     })
     
-    it.only('Test create member without name', () => {
+    it('Test create member without name', () => {
         signIn();
         cy.fixture('users.json').then((users)=>{
 
@@ -91,7 +92,7 @@ describe('Create members', () => {
                         member.clickFirstNewMemberLink();
                     }
                 });
-                cy.wait(1000);
+                cy.wait(2000);
 
                 member.typeEmail(memberEmail);
                 cy.wait(1000);
@@ -106,6 +107,7 @@ describe('Create members', () => {
                 cy.wait(1000);
                 
                 member.checkEmptyStringNameInList();
+                cy.wait(2000);
             }
         })
     })
@@ -132,7 +134,7 @@ describe('Create members', () => {
                         member.clickFirstNewMemberLink();
                     }
                 });
-                cy.wait(1000);
+                cy.wait(2000);
 
                 member.typeName(memberName);
                 cy.wait(1000);
@@ -147,6 +149,7 @@ describe('Create members', () => {
                 cy.wait(1000);
                 
                 member.checkNameInList(memberName);
+                cy.wait(2000);
             }
         })
     })
@@ -164,7 +167,7 @@ describe('Create members', () => {
                         member.clickFirstMemberLink();
                     }
                 });
-                cy.wait(1000);
+                cy.wait(2000);
 
                 member.clickFirstMembersListElement();
                 cy.wait(1000);
@@ -182,6 +185,7 @@ describe('Create members', () => {
                 cy.wait(1000);
 
                 member.checkNameInList(memberName);
+                cy.wait(2000);
             }
         })
         
@@ -191,7 +195,7 @@ describe('Create members', () => {
         signIn();
         cy.fixture('wrongEmail.json').then((wrongEmail)=>{
             for (let index = 0; index < 3; index++) {
-                let wrongEmail = `${wrongEmail.value}-${names[Math.floor(Math.random()*names.length)]}`;
+                let newWrongEmail = `${wrongEmail.value}-${names[Math.floor(Math.random()*names.length)]}`;
                 
                 cy.wait(2000);
                 cy.reload()
@@ -203,7 +207,7 @@ describe('Create members', () => {
                         member.clickFirstMemberLink();
                     }
                 });
-                cy.wait(1000);
+                cy.wait(2000);
     
                 member.clickFirstMembersListElement();
                 cy.wait(1000);
@@ -211,13 +215,14 @@ describe('Create members', () => {
                 member.clearEmail();
                 cy.wait(1000);
     
-                member.typeEmail(wrongEmail);
+                member.typeEmail(newWrongEmail);
                 cy.wait(1000);
     
                 member.saveCreation();
                 cy.wait(1000);
                 
                 member.checkErrorMessageExist();
+                cy.wait(2000);
             }
         })
     });
@@ -235,7 +240,7 @@ describe('Create members', () => {
                     member.clickFirstMemberLink();
                 }
             });
-            cy.wait(1000);
+            cy.wait(2000);
             
             member.clickFirstMembersListElement();
             cy.wait(2000);
@@ -253,6 +258,7 @@ describe('Create members', () => {
             cy.wait(2000);
             
             member.checkErrorMessageExist();
+            cy.wait(2000);
         }
     });
 })
