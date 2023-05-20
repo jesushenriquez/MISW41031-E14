@@ -28,7 +28,7 @@ describe('Create members', () => {
         cy.fixture('users.json').then((users)=>{
             for (let index = 0; index < 3; index++) {
                 let memberName = `${users[index].Displayname}-${names[Math.floor(Math.random()*names.length)]}`;
-                let memberEmail = `${users[index].Username}-${emails[Math.floor(Math.random()*emails.length)]}`;
+                let memberEmail = `${emails[Math.floor(Math.random()*emails.length)]}-${users[index].Username}`;
                 let memberNote = `${users[index].Department}-${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
 
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
@@ -47,7 +47,7 @@ describe('Create members', () => {
                         member.clickFirstNewMemberLink();
                     }
                 });	
-                cy.wait(1000);
+                cy.wait(2000);
                 
                 member.typeName(memberName);
                 cy.wait(1000);
@@ -69,13 +69,13 @@ describe('Create members', () => {
         })
     })
     
-    it('Test create member without name', () => {
+    it.only('Test create member without name', () => {
         signIn();
         cy.fixture('users.json').then((users)=>{
-            let memberEmail = `${users[index].Username}-${emails[Math.floor(Math.random()*emails.length)]}`;
-            let memberNote = `${users[index].Department}-${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
 
             for (let index = 10; index < 13; index++) {
+                let memberEmail = `${emails[Math.floor(Math.random()*emails.length)]}-${users[index].Username}`;
+                let memberNote = `${users[index].Department}-${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
                         member.clickMemberLink();
@@ -115,8 +115,7 @@ describe('Create members', () => {
         cy.fixture('users.json').then((users)=>{
             for (let index = 20; index < 23; index++) {
                 let memberName = `${users[index].Displayname}-${names[Math.floor(Math.random()*names.length)]}`;
-                let memberEmail = `${users[index].Username}-${emails[Math.floor(Math.random()*emails.length)]}`;
-                let memberNote = `${users[index].Department}-${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
+                let memberEmail = `${emails[Math.floor(Math.random()*emails.length)]}-${users[index].Username}`;
 
                 cy.get('a[href="#/members/"]').its('length').then((length) => {
                     if (length === 1) {
