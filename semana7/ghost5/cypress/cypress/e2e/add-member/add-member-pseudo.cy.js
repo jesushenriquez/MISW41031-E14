@@ -262,7 +262,7 @@ describe('Create members', () => {
         }
     });
 
-    it.only('Add member with more fields than allowed in note field', () => {
+    it('Add member with more fields than allowed in note field', () => {
         signIn();
         cy.fixture('users.json').then((users)=>{
             for (let index = 50; index < 53; index++) {
