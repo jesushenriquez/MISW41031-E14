@@ -16,6 +16,10 @@ class Member {
         cy.get('a[href="#/members/new/"]').first().click();
     }
 
+    clickLeave(){
+        cy.get('button[data-test-leave-button=""]').click()
+    }
+
     clearName(){
         cy.get('#member-name').clear();
     }
