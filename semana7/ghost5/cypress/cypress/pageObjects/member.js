@@ -20,6 +20,10 @@ class Member {
         cy.get('button[data-test-leave-button=""]').click()
     }
 
+    uncheckSubscribe(){
+        cy.get('input[data-test-checkbox="member-subscribed"]').click({ force: true })
+    }
+
     clearName(){
         cy.get('#member-name').clear();
     }
