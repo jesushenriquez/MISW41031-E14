@@ -196,7 +196,7 @@ describe('Create members', () => {
         signIn();
         for (let index = 0; index < 3; index++) {
             cy.wait(1000);
-            cy.reload()
+            cy.reload();
 
             cy.get('a[href="#/members/"]').its('length').then((length) => {
                 if (length === 1) {
@@ -225,5 +225,55 @@ describe('Create members', () => {
             member.checkErrorMessageExist();
             cy.wait(2000);
         }
+    });
+
+    it.only('Add member with more fields than allowed in note field', () => {
+        signIn();
+        cy.fixture('users.json').then((users)=>{
+            for (let index = 50; index < 53; index++) {
+                cy.wait(1000);
+                cy.reload();
+
+                let memberNote = users[index].Department.repeat(30);
+                
+                cy.get('a[href="#/members/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        member.clickMemberLink();
+                    } else {
+                        member.clickFirstMemberLink();
+                    }
+                });
+                cy.wait(1000);
+
+                cy.get('a[href="#/members/new/"]').its('length').then((length) => {
+                    if (length === 1) {
+                        member.clickNewMemberLink();
+                    } else {
+                        member.clickFirstNewMemberLink();
+                    }
+                });	
+                cy.wait(3000);
+                
+                member.typeName(users[index].Displayname);
+                cy.wait(1000);
+                
+                member.typeEmail(users[index].Username);
+                cy.wait(1000);
+                
+                member.typeNote(memberNote);
+                cy.wait(1000);
+                
+                member.saveCreation();
+                cy.wait(2000);
+                
+                member.checkErrorMessageExist();
+                cy.wait(2000);
+
+                member.clickFirstMemberLink();
+                
+                cy.get('button[data-test-leave-button=""]').click()
+            }
+        })
+        
     });
 })
