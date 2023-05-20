@@ -391,7 +391,7 @@ describe('Add Tags', function() {
         })
     })
 
-    it.only('Editar información de un tag existente dejando campos vacios', function() {
+    it('Editar información de un tag existente dejando campos vacios', function() {
         signIn();
         cy.fixture('tags.json').then((tags)=>{
             for (let index = 11; index < 14; index++) {
