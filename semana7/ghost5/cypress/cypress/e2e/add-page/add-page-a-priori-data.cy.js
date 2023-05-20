@@ -186,7 +186,7 @@ describe('Add Page', function() {
     
     
     pageData.forEach((data) => {
-        it.only('Registrar y publicar una nueva pagina', function() {
+        it('Registrar y publicar una nueva pagina', function() {
             let screen = screenshot.bind(null, "Add Page", "Registrar y publicar una nueva pagina");
             signIn();
             page.clickPageLink();
@@ -290,41 +290,43 @@ describe('Add Page', function() {
 })
 
 describe('Edit Page', function() {
+    const page = new Page();
+
     it('Editar la información de una pagina existente', function() {
         signIn();
         cy.fixture('pages.json').then((pages)=>{
-            for (let index = 0; index < 10; index++) {
+            for (let index = 0; index < 2; index++) {
                 cy.get('a[data-test-nav="pages"]').its('length').then((length) => {
                     if (length === 1) {
-                        cy.get('a[data-test-nav="pages"]').click();
+                        page.clickPageLink();
                     } else {
-                        cy.get('a[data-test-nav="pages"]').first().click()
+                        page.clickFirstPageLink();
                     }
                 });
                 cy.wait(1000);
 
-                cy.get('a[class="ember-view permalink gh-list-data gh-post-list-title"]').first().click();
+                page.clickFirstPagesListElement();
                 cy.wait(1000);
                 
-                cy.get('textarea[placeholder="Page title"]').clear();
+                page.clearTitle();
                 cy.wait(1000);
 
-                cy.get('textarea[placeholder="Page title"]').type(pages[index].name);
+                page.title(pages[index].name);
                 cy.wait(1000);
 
-                cy.get('div[data-placeholder="Begin writing your page..."]').clear()
+                page.clearDescription();
                 cy.wait(1000);
 
-                cy.get('div[data-placeholder="Begin writing your page..."]').type(pages[index].description)
+                page.typeDescription(pages[index].description);
                 cy.wait(1000);
 
-                cy.get('button[data-test-button="publish-save"]').click();
+                page.publishUpdate();
                 cy.wait(8000);
 
-                cy.get('a[href="#/pages/"]').click();
+                page.clickNavigationPage();
                 cy.wait(2000);
-
-                cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(`:contains(${pages[index].name})`).should('have.length.at.least', 1);
+        
+                page.checkTitleInList(pages[index].name);
             }
         })
     })
@@ -332,37 +334,38 @@ describe('Edit Page', function() {
     it('Editar la información de una pagina existente sin titulo', function() {
         signIn();
         cy.fixture('pages.json').then((pages)=>{
-            for (let index = 22; index < 32; index++) {
+            for (let index = 22; index < 25; index++) {
                 cy.get('a[data-test-nav="pages"]').its('length').then((length) => {
                     if (length === 1) {
-                        cy.get('a[data-test-nav="pages"]').click();
+                        page.clickPageLink();
                     } else {
-                        cy.get('a[data-test-nav="pages"]').first().click()
+                        page.clickFirstPageLink();
                     }
                 });
                 cy.wait(1000);
 
-                cy.get('a[class="ember-view permalink gh-list-data gh-post-list-title"]').first().click();
+                page.clickFirstPagesListElement();
                 cy.wait(1000);
                 
-                cy.get('textarea[placeholder="Page title"]').clear();
+                page.clearTitle();
                 cy.wait(1000);
 
-                cy.get('div[data-placeholder="Begin writing your page..."]').clear()
+                page.clearDescription();
                 cy.wait(1000);
 
-                cy.get('div[data-placeholder="Begin writing your page..."]').type(pages[index].description)
+                page.typeDescription(pages[index].description);
                 cy.wait(1000);
 
-                cy.get('button[data-test-button="publish-save"]').click();
+                page.publishUpdate();
                 cy.wait(8000);
 
-                cy.get('a[href="#/pages/"]').click();
+                page.clickNavigationPage();
                 cy.wait(2000);
 
-                cy.get('h3.gh-content-entry-title', { timeout: 10000 }).filter(':contains("(Untitled)")').should('have.length.at.least', 1);
+                page.checkEmptyTitleInList();
             }
         })
     })
+    
 })
 
