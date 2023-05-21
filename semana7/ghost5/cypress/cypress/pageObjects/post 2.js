@@ -1,53 +1,50 @@
 class Post {
-  async title(value) {
+  title(value) {
     cy.get("textarea[data-test-editor-title-input]").type(value);
   }
-  async type(value) {
+  type(value) {
     cy.get("div.koenig-editor__editor-wrapper > div").last().scrollIntoView();
     cy.get("div.koenig-editor__editor-wrapper > div")
       .last()
       .type(`${value}{enter}`, { force: true });
   }
-  async addSpotify(url) {
-    this.type(`/Spotify ${url}`);
+  addSpotify(url) {
+    this.type(`/Spotify ${url}{enter}`);
   }
-  async addYoutube(url) {
-    this.type(`/youtube ${url}`);
+  addYoutube(url) {
+    this.type(`/youtube ${url}{enter}`);
   }
-  async addImage(url) {
-    this.type(`/image ${url}`);
+  addImage(url) {
+    this.type(`/image ${url}{enter}`);
   }
-  async addButton(text, url) {
-    this.type(`/button`);
-   
+  addButton(text, url) {
+    this.type("/button{enter}");
     cy.get(
       'input.gh-input#button-text-input[placeholder="Add button text"]'
     ).type(text);
-   
     cy.get(
       'input.gh-input-with-select-input[placeholder="https://yoursite.com/#/portal/signup/"]'
     ).type(url);
-   
   }
-  async addNFT(url) {
+  addNFT(url) {
     this.type(`/nft ${url}{enter}`);
   }
-  async checkPlaceHolderTitle() {
+  checkPlaceHolderTitle() {
     cy.get("textarea[data-test-editor-title-input]")
       .invoke("attr", "placeholder")
       .should("contain", "Post title");
   }
-  async checkErrorParsingUrl() {
+  checkErrorParsingUrl() {
     cy.contains("span.mr3", "There was an error when parsing the URL.");
   }
-  async publish() {
+  publish() {
     cy.get(
       "header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger"
     ).click();
     cy.get("div > div > div.gh-publish-cta > button").click();
     cy.get('button[data-test-button="confirm-publish"]').click();
   }
-  async schedule() {
+  schedule() {
     cy.get(
       "header > section > button.gh-btn.gh-btn-editor.darkgrey.gh-publish-trigger"
     ).click();
@@ -59,13 +56,10 @@ class Post {
     cy.get("div > div > div.gh-publish-cta > button").click();
     cy.get('button[data-test-button="confirm-publish"]').click();
   }
-  async checkPublish(title) {
+  checkPublish(title) {
     cy.contains(".gh-post-bookmark-title", title);
-  }
-
-  async goToPostList() {
-    cy.navigate("http://localhost:2368/ghost/#/posts");
   }
 }
 
-module.exports = { Post };
+
+module.exports = {Post}

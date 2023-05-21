@@ -1,7 +1,16 @@
+const { faker, random } = require("@faker-js/faker");
 const { signIn } = require("../../support/utils");
-const {movies, nftUrls,tracksBadSpotify,formDataSet,tracksSpotify,youtubeBadUrls, youtubeUrls} = require("../../data/dataPost")
-const {Post} = require("../../pageObjects/post")
-
+const {
+  generarPostsAleatorios,
+  generarNftUrlsAleatorias,
+  generarYoutubeUrls,
+  generarYoutubeBadUrls,
+  generarTracksSpotify,
+  generarTracksBadSpotify,
+  generarMovies,
+  movies,
+} = require("../../data/dataPost");
+const { Post } = require("../../pageObjects/post");
 
 describe("Add Post", function () {
   before(() => {});
@@ -18,7 +27,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  formDataSet.forEach((formData, index) => {
+  generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registro y Publicación: ${formData.postTitle}`, function () {
       post.checkPlaceHolderTitle();
       post.title(formData.postTitle);
@@ -32,7 +41,7 @@ describe("Add Post", function () {
    *                    POST REGISTRO Y SCHEDULE
    * -------------------------------------------------------------
    */
-  formDataSet.forEach((formData, index) => {
+  generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registro y Publicación: ${formData.postTitle}`, function () {
       post.checkPlaceHolderTitle();
       post.title(formData.postTitle);
@@ -46,7 +55,7 @@ describe("Add Post", function () {
    *                          IMAGEN
    * -------------------------------------------------------------
    */
-  formDataSet.forEach((formData, index) => {
+  generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registrar y Publicar un nuevo Post con Imagen (${index + 1})`, () => {
       post.checkPlaceHolderTitle();
       post.title(formData.postTitle);
@@ -61,16 +70,21 @@ describe("Add Post", function () {
    *                          BOTON
    * -------------------------------------------------------------
    */
-  for (let i = 0; i < formDataSet.length; i++) {
-    const formData = formDataSet[i];
+  generarPostsAleatorios(2).forEach((formData, i) => {
     it(`Registrar y Publicar Post con Botón ${i + 1}`, () => {
       post.checkPlaceHolderTitle();
+
       post.title(formData.postTitle);
       post.addButton(formData.button.buttonText, formData.button.buttonUrl);
+
       post.publish();
       post.checkPublish(formData.postTitle);
     });
-  }
+  });
+  
+  
+
+
 
   /**
    * -------------------------------------------------------------
@@ -78,11 +92,13 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  nftUrls.forEach((nftUrl, i) => {
+  generarNftUrlsAleatorias(2).forEach((nftUrl, i) => {
     it("Registrar y Publicar un nuevo Post con nft " + i, () => {
       post.checkPlaceHolderTitle();
+
       post.title("Titulo Post con NFT " + i);
       post.addNFT(nftUrl);
+
       post.checkErrorParsingUrl();
     });
   });
@@ -92,7 +108,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  youtubeUrls.forEach((url) => {
+  generarYoutubeUrls(2).forEach((url) => {
     it("Registrar y Publicar un nuevo Post con youtube " + url.title, () => {
       post.checkPlaceHolderTitle();
       post.title(`Post de ${url.title}`);
@@ -107,7 +123,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  youtubeBadUrls.forEach((url) => {
+  generarYoutubeBadUrls(2).forEach((url) => {
     it("Registrar  un nuevo Post con url mal youtube " + url.title, () => {
       post.checkPlaceHolderTitle();
       post.title(`Post de ${url.title}`);
@@ -122,7 +138,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  tracksSpotify.forEach((track) => {
+  generarTracksSpotify(2).forEach((track) => {
     it("Registrar y Publicar un nuevo Post con Spotify " + track.name, () => {
       post.checkPlaceHolderTitle();
       post.title(`Post of ${track.name} by ${track.artist} (${track.genre})`);
@@ -139,7 +155,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  tracksBadSpotify.forEach((track) => {
+  generarTracksBadSpotify(2).forEach((track) => {
     it(
       "Registrar y Publicar un nuevo Post con Spotify que sale mal " +
         track.name,
@@ -156,26 +172,18 @@ describe("Add Post", function () {
    *               TEXTO, IMAGEN, YOUTUBE, SPOTIFY
    * -------------------------------------------------------------
    */
-  movies.forEach((pelicula) => {
+  generarMovies(1).forEach((pelicula) => {
     it("Registrar y Publicar un nuevo Post con texto, imagen, youtube y spotify", () => {
-      //siempre al inicio
       post.checkPlaceHolderTitle();
-      //----------------------------------
-
-
-      
       post.title(pelicula.postTitle);
-
       post.type(pelicula.postContent);
       post.addImage(pelicula.postImage);
-
-      post.type("Miremos un video");
+      post.type("Miremos un video " + faker.lorem.sentence());
       post.addYoutube(pelicula.postYoutube);
-      
-      post.type("Miremos la banda sonora de la pelicula");
+      post.type(
+        "Miremos la banda sonora de la pelicula " + faker.lorem.sentence()
+      );
       post.addSpotify(pelicula.postSpotify);
-
-      //siempre al final
       post.publish();
       post.checkPublish(pelicula.postTitle);
     });
