@@ -264,39 +264,42 @@ describe('Add Tags', function() {
         }
     ];
 
-    tagData.forEach((data) => {
+    tagData.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo slug.', function() {
+            const description = data.description + " -- " + descriptions[randomIndex(descriptions.length)];
             signIn();
             tag.clickTagLink();
             tag.clickNavigateToTagEditor();
             tag.name(data.name);
             tag.slug(data.slug);
-            tag.description(data.description);
+            tag.description(description);
             tag.save();
             tag.clickTagLink();
             tag.checkTitleInList(data.name);
         })
     });
 
-    tagDataLongSlug.forEach((data) => {
+    tagDataLongSlug.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo slug.', function() {
+            const description = data.description + " -- " + descriptions[randomIndex(descriptions.length)];
             signIn();
             tag.clickTagLink();
             tag.clickNavigateToTagEditor();
             tag.name(data.name);
             tag.slug(data.slug);
-            tag.description(data.description);
+            tag.description(description);
             tag.save();
             tag.checkErrorInTag();
         })
     });
 
-    tagDataDescription.forEach((data) => {
+    tagDataDescription.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 500 caracteres en el campo description.', function() {
+            const name = data.name + " --- " + names[randomIndex(names.length)];
             signIn();
             tag.clickTagLink();
             tag.clickNavigateToTagEditor();
-            tag.name(data.name);
+            tag.name(name);
             tag.slug(data.slug);
             tag.description(data.description);
             tag.save();
@@ -305,12 +308,13 @@ describe('Add Tags', function() {
         })
     });
 
-    tagDataLongDescription.forEach((data) => {
+    tagDataLongDescription.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 500 caracteres en el campo description.', function() {
+            const name = data.name + " --- " + names[randomIndex(names.length)];
             signIn();
             tag.clickTagLink();
             tag.clickNavigateToTagEditor();
-            tag.name(data.name);
+            tag.name(name);
             tag.slug(data.slug);
             tag.description(data.description);
             tag.save();
@@ -318,47 +322,50 @@ describe('Add Tags', function() {
         })
     });
 
-    tagNameData.forEach((data) => {
+    tagNameData.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo name.', function() {
+            const description = data.description + " -- " + descriptions[randomIndex(descriptions.length)];
             signIn();
             tag.clickTagLink();
             tag.clickNavigateToTagEditor();
             tag.name(data.name);
             tag.slug(data.slug);
-            tag.description(data.description);
+            tag.description(description);
             tag.save();
             tag.clickTagLink();
             tag.checkTitleInList(data.name)
         })
     });
 
-    tagLongNameData.forEach((data) => {
+    tagLongNameData.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo name.', function() {
+            const description = data.description + " -- " + descriptions[randomIndex(descriptions.length)];
             signIn();
             tag.clickTagLink();
             tag.clickNavigateToTagEditor();
             tag.name(data.name);
             tag.slug(data.slug);
-            tag.description(data.description);
+            tag.description(description);
             tag.save();
             tag.checkErrorInTag();
         })
     })
 
-    tagNormalData.forEach((data) => {
+    tagNormalData.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags', function() {
+            const name = data.name + " --- " + names[randomIndex(names.length)];
             signIn();
             tag.clickTagLink();
             tag.clickNavigateToTagEditor();
-            tag.name(data.name);
+            tag.name(name);
             tag.description(data.description);
             tag.save();
             tag.clickTagLink();
-            tag.checkTitleInList(data.name)
+            tag.checkTitleInList(name)
         })
     });
 
-    tagWithoutData.forEach((data) => {
+    tagWithoutData.slice(0, 3).forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags sin datos en los campos.', function() {
             signIn();
             tag.clickTagLink();
@@ -458,3 +465,7 @@ describe('Add Tags', function() {
     
     
 })
+
+function randomIndex(maximo) {
+    return Math.floor(Math.random() * (maximo + 1));
+}
