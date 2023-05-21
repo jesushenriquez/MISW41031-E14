@@ -245,6 +245,11 @@ describe('Add Tags', function() {
         }
     ];
 
+     /**
+   * -------------------------------------------------------------
+   *                    Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo slug
+   * -------------------------------------------------------------
+   */
     tagData.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo slug.', function() {
             signIn();
@@ -259,6 +264,11 @@ describe('Add Tags', function() {
         })
     });
 
+    /**
+   * -------------------------------------------------------------
+   *  Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo slug
+   * -------------------------------------------------------------
+   */
     tagDataLongSlug.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo slug.', function() {
             signIn();
@@ -272,6 +282,11 @@ describe('Add Tags', function() {
         })
     });
 
+    /**
+   * -------------------------------------------------------------
+   *  Crear un nuevo tag desde el panel de Tags con menos de 500 caracteres en el campo description
+   * -------------------------------------------------------------
+   */
     tagDataDescription.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 500 caracteres en el campo description.', function() {
             signIn();
@@ -286,6 +301,11 @@ describe('Add Tags', function() {
         })
     });
 
+    /**
+   * -------------------------------------------------------------
+   *  Crear un nuevo tag desde el panel de Tags con mas de 500 caracteres en el campo description
+   * -------------------------------------------------------------
+   */
     tagDataLongDescription.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 500 caracteres en el campo description.', function() {
             signIn();
@@ -299,6 +319,11 @@ describe('Add Tags', function() {
         })
     });
 
+     /**
+   * -------------------------------------------------------------
+   *  Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo name
+   * -------------------------------------------------------------
+   */
     tagNameData.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo name.', function() {
             signIn();
@@ -313,6 +338,11 @@ describe('Add Tags', function() {
         })
     });
 
+    /**
+   * -------------------------------------------------------------
+   *  Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo name
+   * -------------------------------------------------------------
+   */
     tagLongNameData.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo name.', function() {
             signIn();
@@ -326,6 +356,11 @@ describe('Add Tags', function() {
         })
     })
 
+    /**
+   * -------------------------------------------------------------
+   *  Crear un nuevo tag desde el panel de Tags
+   * -------------------------------------------------------------
+   */
     tagNormalData.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags', function() {
             signIn();
@@ -339,6 +374,11 @@ describe('Add Tags', function() {
         })
     });
 
+    /**
+   * -------------------------------------------------------------
+   *  Crear un nuevo tag desde el panel de Tags sin datos en los campos
+   * -------------------------------------------------------------
+   */
     tagWithoutData.forEach((data) => {
         it('Crear un nuevo tag desde el panel de Tags sin datos en los campos.', function() {
             signIn();
