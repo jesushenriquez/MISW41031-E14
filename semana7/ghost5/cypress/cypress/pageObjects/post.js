@@ -59,6 +59,10 @@ class Post {
   checkPublish(title) {
     cy.contains(".gh-post-bookmark-title", title);
   }
+
+  goToPostList(){
+    cy.navigate("http://localhost:2368/ghost/#/posts");
+  }
 }
 
 

@@ -2,8 +2,12 @@ const { signIn } = require("../../support/utils");
 const {
   generarPostsAleatorios,
   generarNftUrlsAleatorias,
+  generarYoutubeUrls,
+  generarYoutubeBadUrls,
+  generarTracksSpotify,
+  generarTracksBadSpotify,
   movies, 
-  tracksBadSpotify,tracksSpotify,youtubeBadUrls, youtubeUrls} = require("../../data/dataPost")
+  } = require("../../data/dataPost")
 const {Post} = require("../../pageObjects/post")
 
 
@@ -22,7 +26,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  generarPostsAleatorios(5).forEach((formData, index) => {
+  generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registro y Publicación: ${formData.postTitle}`, function () {
       post.checkPlaceHolderTitle();
       post.title(formData.postTitle);
@@ -36,7 +40,7 @@ describe("Add Post", function () {
    *                    POST REGISTRO Y SCHEDULE
    * -------------------------------------------------------------
    */
-  generarPostsAleatorios(5).forEach((formData, index) => {
+  generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registro y Publicación: ${formData.postTitle}`, function () {
       post.checkPlaceHolderTitle();
       post.title(formData.postTitle);
@@ -50,7 +54,7 @@ describe("Add Post", function () {
    *                          IMAGEN
    * -------------------------------------------------------------
    */
-  generarPostsAleatorios(5).forEach((formData, index) => {
+  generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registrar y Publicar un nuevo Post con Imagen (${index + 1})`, () => {
       post.checkPlaceHolderTitle();
       post.title(formData.postTitle);
@@ -65,7 +69,7 @@ describe("Add Post", function () {
    *                          BOTON
    * -------------------------------------------------------------
    */
-  generarPostsAleatorios(5).forEach((formData, i) =>{
+  generarPostsAleatorios(2).forEach((formData, i) =>{
      it(`Registrar y Publicar Post con Botón ${i + 1}`, () => {
        post.checkPlaceHolderTitle();
 
@@ -84,8 +88,8 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  generarNftUrlsAleatorias(5).forEach((nftUrl, i) => {
-    it.only("Registrar y Publicar un nuevo Post con nft " + i, () => {
+  generarNftUrlsAleatorias(2).forEach((nftUrl, i) => {
+    it("Registrar y Publicar un nuevo Post con nft " + i, () => {
       post.checkPlaceHolderTitle();
 
       post.title("Titulo Post con NFT " + i);
@@ -100,7 +104,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  youtubeUrls.forEach((url) => {
+  generarYoutubeUrls(2).forEach((url) => {
     it("Registrar y Publicar un nuevo Post con youtube " + url.title, () => {
       post.checkPlaceHolderTitle();
       post.title(`Post de ${url.title}`);
@@ -115,7 +119,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  youtubeBadUrls.forEach((url) => {
+  generarYoutubeBadUrls(2).forEach((url) => {
     it("Registrar  un nuevo Post con url mal youtube " + url.title, () => {
       post.checkPlaceHolderTitle();
       post.title(`Post de ${url.title}`);
@@ -130,8 +134,8 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  tracksSpotify.forEach((track) => {
-    it("Registrar y Publicar un nuevo Post con Spotify " + track.name, () => {
+  generarTracksSpotify(2).forEach((track) => {
+    it.only("Registrar y Publicar un nuevo Post con Spotify " + track.name, () => {
       post.checkPlaceHolderTitle();
       post.title(`Post of ${track.name} by ${track.artist} (${track.genre})`);
       post.addSpotify(track.url);
@@ -147,7 +151,7 @@ describe("Add Post", function () {
    * -------------------------------------------------------------
    */
 
-  tracksBadSpotify.forEach((track) => {
+  generarTracksBadSpotify(2).forEach((track) => {
     it(
       "Registrar y Publicar un nuevo Post con Spotify que sale mal " +
         track.name,

@@ -546,6 +546,90 @@ function generarNftUrlsAleatorias(cantidad) {
   return urls;
 }
 
+function generarYoutubeUrl(){
+  let {url, title} = faker.helpers.arrayElement(youtubeUrls);
+  return {
+    url: url,
+    title: title + " " + Math.floor(Math.random() * 100000),
+  };
+}
+function generarYoutubeUrls(cantidad){
+  let urls = [];
+  for (let i = 0; i < cantidad; i++) {
+    urls.push(generarYoutubeUrl());
+  }
+  return urls;
+}
+
+function generarYoutubeBadUrl() {
+  let { url, title } = faker.helpers.arrayElement(youtubeBadUrls);
+  return {
+    url: url,
+    title: title + " " + Math.floor(Math.random() * 100000),
+  };
+}
+function generarYoutubeBadUrls(cantidad) {
+  let urls = [];
+  for (let i = 0; i < cantidad; i++) {
+    urls.push(generarYoutubeBadUrl());
+  }
+  return urls;
+}
+function generarTrackSpotify() {
+  
+  let { url }  = faker.helpers.arrayElement(tracksSpotify);
+  return {
+    name: faker.lorem.words(2),
+    artist: faker.person.fullName(),
+    url,
+  }
+}
+function generarTracksSpotify(cantidad) {
+  let urls = [];
+  for (let i = 0; i < cantidad; i++) {
+    urls.push(generarTrackSpotify());
+  }
+  return urls;
+}
+function generarTrackBadSpotify() {
+  let { url } = faker.helpers.arrayElement(tracksBadSpotify);
+  return {
+    name: faker.lorem.words(2),
+    artist: faker.person.fullName(),
+    url,
+  };
+}
+function generarTracksBadSpotify(cantidad) {
+  let urls = [];
+  for (let i = 0; i < cantidad; i++) {
+    urls.push(generarTrackBadSpotify());
+  }
+  return urls;
+}
+function generarMovie() {
+  let 
+   {
+    postTitle,
+    postContent,
+    postImage,
+    postYoutube,
+    postSpotify,
+  } = faker.helpers.arrayElement(movies);
+  return {
+    postTitle: postTitle + faker.lorem.words(2),
+    postContent: faker.lorem.paragraphs(10),
+    postYoutube,
+    postSpotify,
+  };
+}
+function generarMovies(cantidad) {
+  let urls = [];
+  for (let i = 0; i < cantidad; i++) {
+    urls.push(generarMovie());
+  }
+  return urls;
+}
+
 
 
 module.exports = {
@@ -558,4 +642,9 @@ module.exports = {
   formDataSet,
   generarPostsAleatorios,
   generarNftUrlsAleatorias,
+  generarYoutubeUrls,
+  generarYoutubeBadUrls,
+  generarTracksSpotify,
+  generarTracksBadSpotify,
+  generarMovies,
 };
