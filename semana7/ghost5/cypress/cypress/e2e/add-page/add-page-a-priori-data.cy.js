@@ -184,7 +184,11 @@ describe('Add Page', function() {
         }
     ];
     
-    
+    /**
+   * -------------------------------------------------------------
+   *                    PAGE REGISTRO Y PUBLICACION
+   * -------------------------------------------------------------
+   */
     pageData.forEach((data) => {
         it('Registrar y publicar una nueva pagina', function() {
             signIn();
@@ -198,6 +202,11 @@ describe('Add Page', function() {
         })
     });
     
+    /**
+   * -------------------------------------------------------------
+   *                    PAGE Registrar y publicar una nueva pagina con imagen
+   * -------------------------------------------------------------
+   */
     pageData.forEach((data) => {
         it('Registrar y publicar una nueva pagina con imagen', function() {
             signIn();
@@ -211,6 +220,11 @@ describe('Add Page', function() {
         })
     });
 
+    /**
+   * -------------------------------------------------------------
+   *                    PAGE Registrar y Publicar una nueva page con un texto de al menos 1000 caracteres y un video de youtube
+   * -------------------------------------------------------------
+   */
     pageDataWithYoutube.forEach((data) => {
         it('Registrar y Publicar una nueva page con un texto de al menos 1000 caracteres y un video de youtube.', function() {
             signIn();
@@ -224,8 +238,13 @@ describe('Add Page', function() {
         })
     });
 
+     /**
+   * -------------------------------------------------------------
+   *                    PAGE Registrar y Publicar una nueva page con un texto de al menos 10000 caracteres y un video de youtube.
+   * -------------------------------------------------------------
+   */
     pageDataLongDescription.forEach((data) => {
-        it('Registrar y Publicar una nueva page un texto de al menos 1000 caracteres y un video de youtube.', function() {
+        it('Registrar y Publicar una nueva page con un texto de al menos 10000 caracteres y un video de youtube.', function() {
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
