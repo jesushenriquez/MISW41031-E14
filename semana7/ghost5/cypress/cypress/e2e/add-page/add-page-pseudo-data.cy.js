@@ -1,6 +1,7 @@
 const { signIn, screenshot } = require('../../support/utils');
 const { Page } = require('../../pageObjects/page');
 
+
 describe('Add Page', function() {
 
     const page = new Page();
@@ -240,13 +241,34 @@ describe('Add Page', function() {
     
 })
 
+
 describe('Edit Page', function() {
+    let titles = ["Josh", "Max", "Jhonn", "Terry", "Wilson", "Mark"];
+    let descriptions = [
+        "accept", 
+        "afford", 
+        "agree", 
+        "alert", 
+        "allow", 
+        "welcome", 
+        "wish", 
+        "wobble", 
+        "wonder", 
+        "work", 
+        "worry", 
+        "wrap", 
+        "wreck"
+    ];
+
     const page = new Page();
 
     it('Editar la información de una pagina existente', function() {
         signIn();
         cy.fixture('pages.json').then((pages)=>{
             for (let index = 0; index < 2; index++) {
+                let pageTitle = `${pages[index].name}-${titles[Math.floor(Math.random()*titles.length)]}`;
+                let pageDescription = `${pages[index].description}-${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
+                
                 cy.get('a[data-test-nav="pages"]').its('length').then((length) => {
                     if (length === 1) {
                         page.clickPageLink();
@@ -262,13 +284,13 @@ describe('Edit Page', function() {
                 page.clearTitle();
                 cy.wait(1000);
 
-                page.title(pages[index].name);
+                page.title(pageTitle);
                 cy.wait(1000);
 
                 page.clearDescription();
                 cy.wait(1000);
 
-                page.typeDescription(pages[index].description);
+                page.typeDescription(pageDescription);
                 cy.wait(1000);
 
                 page.publishUpdate();
@@ -277,7 +299,7 @@ describe('Edit Page', function() {
                 page.clickNavigationPage();
                 cy.wait(2000);
         
-                page.checkTitleInList(pages[index].name);
+                page.checkTitleInList(pageTitle);
             }
         })
     })
@@ -286,6 +308,7 @@ describe('Edit Page', function() {
         signIn();
         cy.fixture('pages.json').then((pages)=>{
             for (let index = 22; index < 25; index++) {
+                let pageDescription = `${pages[index].description}-${descriptions[Math.floor(Math.random()*descriptions.length)]}`;
                 cy.get('a[data-test-nav="pages"]').its('length').then((length) => {
                     if (length === 1) {
                         page.clickPageLink();
@@ -304,7 +327,7 @@ describe('Edit Page', function() {
                 page.clearDescription();
                 cy.wait(1000);
 
-                page.typeDescription(pages[index].description);
+                page.typeDescription(pageDescription);
                 cy.wait(1000);
 
                 page.publishUpdate();
