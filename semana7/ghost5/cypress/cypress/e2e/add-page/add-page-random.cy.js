@@ -12,7 +12,7 @@ describe('Add Page', function() {
    * -------------------------------------------------------------
    */
     generarPagesAleatorias(3, null).forEach((data) => {
-        it.only('Registrar y publicar una nueva pagina', function() {
+        it('Registrar y publicar una nueva pagina', function() {
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
