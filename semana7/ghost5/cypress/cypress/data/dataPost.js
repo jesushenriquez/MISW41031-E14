@@ -1,4 +1,4 @@
-const { faker } = require("@faker-js/faker");
+const { faker, random } = require("@faker-js/faker");
 
 const formDataSet = [
   {
@@ -494,6 +494,174 @@ let movies = [
     postSpotify: "https://open.spotify.com/track/7wGoVu4Dady5GV0Sv4UIsx",
   },
 ];
+let canciones = [
+  {
+    title: "Una canción para ti",
+    thumbnail: "https://i.ytimg.com/vi/eEM0W4t3mTk/default.jpg",
+    url: "https://youtu.be/eEM0W4t3mTk",
+  },
+  {
+    title: "ekimosis - solo",
+    thumbnail: "https://i.ytimg.com/vi/maEblz99mGI/default.jpg",
+    url: "https://youtu.be/maEblz99mGI",
+  },
+  {
+    title: "PENSANDO EN TI - ANGELES DEL INFIERNO",
+    thumbnail: "https://i.ytimg.com/vi/fnD0MKzq6QI/default.jpg",
+    url: "https://youtu.be/fnD0MKzq6QI",
+  },
+  {
+    title: "Andrés Calamaro - Flaca (Videoclip Oficial)",
+    thumbnail: "https://i.ytimg.com/vi/UCF9oHXhDMU/default.jpg",
+    url: "https://youtu.be/UCF9oHXhDMU",
+  },
+  {
+    title: 'JARABE DE PALO - "EL LADO OSCURO"',
+    thumbnail: "https://i.ytimg.com/vi/jW89DwNY3Os/default.jpg",
+    url: "https://youtu.be/jW89DwNY3Os",
+  },
+  {
+    title: "Café Tacvba - Eres (Video Oficial)",
+    thumbnail: "https://i.ytimg.com/vi/98Akpf1ph2o/default.jpg",
+    url: "https://youtu.be/98Akpf1ph2o",
+  },
+  {
+    title:
+      "Gianluca Grignani - Mi Historia Entre Tus Dedos (1995) [ESP/ITA/CHI/ENG - CC]",
+    thumbnail: "https://i.ytimg.com/vi/fp16CKQqMAA/default.jpg",
+    url: "https://youtu.be/fp16CKQqMAA",
+  },
+  {
+    title: "Caifanes - No dejes que...",
+    thumbnail: "https://i.ytimg.com/vi/OrYfuNAxSUA/default.jpg",
+    url: "https://youtu.be/OrYfuNAxSUA",
+  },
+  {
+    title: "es por tí - complices (original - audio HQ)",
+    thumbnail: "https://i.ytimg.com/vi/fQlxwUbLbMg/default.jpg",
+    url: "https://youtu.be/fQlxwUbLbMg",
+  },
+  {
+    title: "Angeles del Infierno - Si tu no estas aqui",
+    thumbnail: "https://i.ytimg.com/vi/riE6NFOzuCk/default.jpg",
+    url: "https://youtu.be/riE6NFOzuCk",
+  },
+  {
+    title: '"Jugando al amor" ANGELES DEL INFIERNO',
+    thumbnail: "https://i.ytimg.com/vi/uvcZ7E8FPPs/default.jpg",
+    url: "https://youtu.be/uvcZ7E8FPPs",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/1L3XxUxEb6U/default.jpg",
+    Titulo: "Smoke On The Water (Remastered 2012)",
+    url: "https://youtu.be/1L3XxUxEb6U",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/tAGnKpE4NCI/default.jpg",
+    Titulo: "Metallica: Nothing Else Matters (Official Music Video)",
+    url: "https://youtu.be/tAGnKpE4NCI",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/dAlH74kie7A/default.jpg",
+    Titulo: "Pour Some Sugar On Me (Live)",
+    url: "https://youtu.be/dAlH74kie7A",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/1w7OgIMMRc4/default.jpg",
+    Titulo: "Guns N' Roses - Sweet Child O' Mine (Official Music Video)",
+    url: "https://youtu.be/1w7OgIMMRc4",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/lDK9QqIzhwk/default.jpg",
+    Titulo: "Bon Jovi - Livin' On A Prayer",
+    url: "https://youtu.be/lDK9QqIzhwk",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/Rbm6GXllBiw/default.jpg",
+    Titulo: "Guns N' Roses - Paradise City (Official Music Video)",
+    url: "https://youtu.be/Rbm6GXllBiw",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/L397TWLwrUU/default.jpg",
+    Titulo: "Judas Priest - Breaking The Law (Official Music Video)",
+    url: "https://youtu.be/L397TWLwrUU",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/tA5A_AcBKvs/default.jpg",
+    Titulo: "Walk This Way",
+    url: "https://youtu.be/tA5A_AcBKvs",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/EZjevnnkA20/default.jpg",
+    Titulo: "Kiss - Heaven's On Fire",
+    url: "https://youtu.be/EZjevnnkA20",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/CD-E-LDc384/default.jpg",
+    Titulo: "Metallica: Enter Sandman (Official Music Video)",
+    url: "https://youtu.be/CD-E-LDc384",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/bTJNowPGmLI/default.jpg",
+    Titulo: "Home Sweet Home",
+    url: "https://youtu.be/bTJNowPGmLI",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/SRwrg0db_zY/default.jpg",
+    Titulo: "Twisted Sister - I Wanna Rock (Official Music Video)",
+    url: "https://youtu.be/SRwrg0db_zY",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/2-ptLktOjrA/default.jpg",
+    Titulo: "Def Leppard - Love Bites",
+    url: "https://youtu.be/2-ptLktOjrA",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/wS0L2oLzl-Y/default.jpg",
+    Titulo: "AC/DC - Back In Black (Official Video)",
+    url: "https://youtu.be/wS0L2oLzl-Y",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/ZyhnulRP068/default.jpg",
+    Titulo: "Deep Purple - Highway Star (Official Video)",
+    url: "https://youtu.be/ZyhnulRP068",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/3tmd-ClpJxA/default.jpg",
+    Titulo: "Scorpions - Wind Of Change (Official Music Video)",
+    url: "https://youtu.be/3tmd-ClpJxA",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/3wkuqRFXNvI/default.jpg",
+    Titulo: "Poison - Every Rose Has Its Thorn (Official Video)",
+    url: "https://youtu.be/3wkuqRFXNvI",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/5Xqyf_qf6F4/default.jpg",
+    Titulo: "Motley Crue - Kickstart My Heart (Official Music Video)",
+    url: "https://youtu.be/5Xqyf_qf6F4",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/Lcm9qqo_qB0/default.jpg",
+    Titulo: "Van Halen - Jump (Official Music Video)",
+    url: "https://youtu.be/Lcm9qqo_qB0",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/Dn8vzTsnPps/default.jpg",
+    Titulo: "Europe - The Final Countdown (Official Video)",
+    url: "https://youtu.be/Dn8vzTsnPps",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/9b4dP5Xb8gA/default.jpg",
+    Titulo: "Whitesnake - Here I Go Again '87",
+    url: "https://youtu.be/9b4dP5Xb8gA",
+  },
+  {
+    Imagen: "https://i.ytimg.com/vi/lwlogyj7nFE/default.jpg",
+    Titulo: "Def Leppard - Pour Some Sugar On Me",
+    url: "https://youtu.be/lwlogyj7nFE",
+  },
+];
 
 function generarPostAleatorio() {
   return {
@@ -615,22 +783,34 @@ function generarMovie() {
     postYoutube,
     postSpotify,
   } = faker.helpers.arrayElement(movies);
-  return {
+  const ancho = faker.number.int({ min: 100, max: 600 });
+  const alto = faker.number.int({ min: 100, max: 600 });
+  const codigo = faker.string.alphanumeric(10).toLowerCase();
+   return {
     postTitle: postTitle + faker.lorem.words(2),
-    postContent: faker.lorem.paragraphs(10),
-    postYoutube,
-    postSpotify,
-  };
+    postContent: faker.datatype.boolean()
+      ? faker.lorem.paragraphs(1) + postContent + faker.lorem.paragraphs(1)
+      : postContent,
+    postYoutube: faker.datatype.boolean()
+      ? postYoutube
+      : `https://youtu.be/${codigo}`,
+    postSpotify: faker.datatype.boolean()
+      ? postSpotify
+      : `https://open.spotify.com/track/${codigo}`,
+    postImage: faker.datatype.boolean()
+      ? `https://picsum.photos/${ancho}/${alto}`
+      : postImage,
+  }; 
+ 
 }
+
 function generarMovies(cantidad) {
-  let urls = [];
+  let movies = [];
   for (let i = 0; i < cantidad; i++) {
-    urls.push(generarMovie());
+    movies.push(generarMovie());
   }
-  return urls;
+    return movies;
 }
-
-
 
 module.exports = {
   movies,

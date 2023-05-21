@@ -1,4 +1,7 @@
-const { loginDataFake, loginDataFakeLarge } = require("../../data/dataSignIn");
+const {
+  generarloginDataFake,
+  generarloginDataFakeLarge
+} = require("../../data/dataSignIn");
 const { Login } = require("../../pageObjects/login");
 let login = new Login();
 describe("Sign-in", function () {
@@ -6,7 +9,7 @@ describe("Sign-in", function () {
     cy.fixture("sign-in.json").as("loginData");
   });
 
-  loginDataFake.forEach((logindata, index) => {
+  generarloginDataFake(2).forEach((logindata, index) => {
     it("Intento de inicio de sesion fallido " + index, () => {
       login.visit();
       login.identificationType(logindata.username);
@@ -40,13 +43,13 @@ describe("Sign-in", function () {
     });
   });
 
-  loginDataFakeLarge.forEach((logindata) => {
-    it("Iniciar sesión en el dashboard administrativo con un email y password invalidos, introduciendo mucho texto en los campos. ", () => {
-      login.visit();
-      login.identificationType(logindata.username);
-      login.passwordType(logindata.password);
-      login.enviarClick();
-      login.checkEnviarIsRetry();
-    });
+generarloginDataFakeLarge(2).forEach((logindata) => {
+  it("Iniciar sesión en el dashboard administrativo con un email y password invalidos, introduciendo mucho texto en los campos. ", () => {
+    login.visit();
+    login.identificationType(logindata.username);
+    login.passwordType(logindata.password);
+    login.enviarClick();
+    login.checkEnviarIsRetry();
   });
+});
 });

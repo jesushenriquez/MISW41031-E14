@@ -18,6 +18,26 @@ function screenshot(feature, scenario, step) {
 function randomIntFromInterval(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
+function mezclarAccionesAleatorio(array) {
+  let indiceActual = array.length,
+    indiceAleatorio;
 
-module.exports = { signIn, screenshot, randomIntFromInterval };
+  while (indiceActual !== 0) {
+    indiceAleatorio = Math.floor(Math.random() * indiceActual);
+    indiceActual--;
+
+    [array[indiceActual], array[indiceAleatorio]] = [
+      array[indiceAleatorio],
+      array[indiceActual],
+    ];
+  }
+
+  return array;
+}
+module.exports = {
+  signIn,
+  screenshot,
+  randomIntFromInterval,
+  mezclarAccionesAleatorio,
+};
   

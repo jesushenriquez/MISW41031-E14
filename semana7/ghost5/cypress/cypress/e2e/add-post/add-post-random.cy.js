@@ -1,4 +1,5 @@
-const { signIn } = require("../../support/utils");
+const { faker, random } = require("@faker-js/faker");
+const { signIn, mezclarAccionesAleatorio } = require("../../support/utils");
 const {
   generarPostsAleatorios,
   generarNftUrlsAleatorias,
@@ -6,10 +7,10 @@ const {
   generarYoutubeBadUrls,
   generarTracksSpotify,
   generarTracksBadSpotify,
-  movies, 
-  } = require("../../data/dataPost")
-const {Post} = require("../../pageObjects/post")
-
+  generarMovies,
+  movies,
+} = require("../../data/dataPost");
+const { Post } = require("../../pageObjects/post");
 
 describe("Add Post", function () {
   before(() => {});
@@ -29,8 +30,14 @@ describe("Add Post", function () {
   generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registro y Publicación: ${formData.postTitle}`, function () {
       post.checkPlaceHolderTitle();
-      post.title(formData.postTitle);
-      post.type(formData.postContent);
+
+      const acciones = [
+        () => post.title(formData.postTitle),
+        () => post.addImage(formData.postImage),
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
+
       post.publish();
       post.checkPublish(formData.postTitle);
     });
@@ -43,8 +50,14 @@ describe("Add Post", function () {
   generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registro y Publicación: ${formData.postTitle}`, function () {
       post.checkPlaceHolderTitle();
-      post.title(formData.postTitle);
-      post.type(formData.postContent);
+
+      const acciones = [
+        () => post.title(formData.postTitle),
+        () => post.addImage(formData.postImage),
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
+
       post.schedule();
       post.checkPublish(formData.postTitle);
     });
@@ -57,8 +70,13 @@ describe("Add Post", function () {
   generarPostsAleatorios(2).forEach((formData, index) => {
     it(`Registrar y Publicar un nuevo Post con Imagen (${index + 1})`, () => {
       post.checkPlaceHolderTitle();
-      post.title(formData.postTitle);
-      post.addImage(formData.postImage);
+
+      const acciones = [
+        () => post.title(formData.postTitle),
+        () => post.addImage(formData.postImage)
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
       post.publish();
       post.checkPublish(formData.postTitle);
     });
@@ -69,18 +87,24 @@ describe("Add Post", function () {
    *                          BOTON
    * -------------------------------------------------------------
    */
-  generarPostsAleatorios(2).forEach((formData, i) =>{
-     it(`Registrar y Publicar Post con Botón ${i + 1}`, () => {
-       post.checkPlaceHolderTitle();
+  generarPostsAleatorios(2).forEach((formData, i) => {
+    it(`Registrar y Publicar Post con Botón ${i + 1}`, () => {
+      post.checkPlaceHolderTitle();
 
-       post.title(formData.postTitle);
-       post.addButton(formData.button.buttonText, formData.button.buttonUrl);
-       
-       post.publish();
-       post.checkPublish(formData.postTitle);
-     });
+      const acciones = [
+        () => post.title(formData.postTitle),
+        () => post.addButton(formData.button.buttonText, formData.button.buttonUrl),
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach(async (accion) => await accion()); 
+      post.publish();
+      post.checkPublish(formData.postTitle);
+    });
   });
   
+  
+
+
 
   /**
    * -------------------------------------------------------------
@@ -92,9 +116,14 @@ describe("Add Post", function () {
     it("Registrar y Publicar un nuevo Post con nft " + i, () => {
       post.checkPlaceHolderTitle();
 
-      post.title("Titulo Post con NFT " + i);
-      post.addNFT(nftUrl);
-      
+      const acciones = [
+        () => post.title("Titulo Post con NFT " + i),
+        () => post.addNFT(nftUrl),
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
+
+
       post.checkErrorParsingUrl();
     });
   });
@@ -107,8 +136,14 @@ describe("Add Post", function () {
   generarYoutubeUrls(2).forEach((url) => {
     it("Registrar y Publicar un nuevo Post con youtube " + url.title, () => {
       post.checkPlaceHolderTitle();
-      post.title(`Post de ${url.title}`);
-      post.addYoutube(url.url);
+
+      const acciones = [
+        () => post.title(`Post de ${url.title}`),
+        () => post.addYoutube(url.url),
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
+
       post.publish();
       post.checkPublish(`Post de ${url.title}`);
     });
@@ -122,8 +157,13 @@ describe("Add Post", function () {
   generarYoutubeBadUrls(2).forEach((url) => {
     it("Registrar  un nuevo Post con url mal youtube " + url.title, () => {
       post.checkPlaceHolderTitle();
-      post.title(`Post de ${url.title}`);
-      post.addYoutube(url.url);
+       const acciones = [
+        () => post.title(`Post de ${url.title}`),
+        () => post.addYoutube(url.url)
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
+
       post.checkErrorParsingUrl();
     });
   });
@@ -135,10 +175,17 @@ describe("Add Post", function () {
    */
 
   generarTracksSpotify(2).forEach((track) => {
-    it.only("Registrar y Publicar un nuevo Post con Spotify " + track.name, () => {
+    it("Registrar y Publicar un nuevo Post con Spotify " + track.name, () => {
       post.checkPlaceHolderTitle();
-      post.title(`Post of ${track.name} by ${track.artist} (${track.genre})`);
-      post.addSpotify(track.url);
+  
+      const acciones = [
+        () => post.title(`Post of ${track.name} by ${track.artist} (${track.genre})`),
+        () => post.addSpotify(track.url)
+      ];
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
+
+
       post.publish();
       post.checkPublish(
         `Post of ${track.name} by ${track.artist} (${track.genre})`
@@ -157,8 +204,12 @@ describe("Add Post", function () {
         track.name,
       () => {
         post.checkPlaceHolderTitle();
-        post.title(`Post of ${track.name} by ${track.artist} (${track.genre})`);
-        post.addSpotify(track.url);
+        const acciones = [
+          () =>post.title(`Post of ${track.name} by ${track.artist} (${track.genre})`),
+          () =>post.addSpotify(track.url)
+        ]
+        mezclarAccionesAleatorio(acciones);
+        acciones.forEach((accion) => accion()); 
         post.checkErrorParsingUrl();
       }
     );
@@ -168,16 +219,26 @@ describe("Add Post", function () {
    *               TEXTO, IMAGEN, YOUTUBE, SPOTIFY
    * -------------------------------------------------------------
    */
-  movies.forEach((pelicula) => {
+  generarMovies(4).forEach((pelicula) => {
     it("Registrar y Publicar un nuevo Post con texto, imagen, youtube y spotify", () => {
       post.checkPlaceHolderTitle();
-      post.title(pelicula.postTitle);
-      post.type(pelicula.postContent);
-      post.addImage(pelicula.postImage);
-      post.type("Miremos un video");
-      post.addYoutube(pelicula.postYoutube);
-      post.type("Miremos la banda sonora de la pelicula");
-      post.addSpotify(pelicula.postSpotify);
+
+      const acciones = [
+        () => post.title(pelicula.postTitle),
+        () => post.type(pelicula.postContent),
+        () => post.addImage(pelicula.postImage),
+        () => post.type("Miremos un video " + faker.lorem.sentence()),
+        () => post.addYoutube(pelicula.postYoutube),
+        () =>
+          post.type(
+            "Miremos la banda sonora de la película " + faker.lorem.sentence()
+          ),
+        () => post.addSpotify(pelicula.postSpotify),
+      ];
+
+      mezclarAccionesAleatorio(acciones);
+      acciones.forEach((accion) => accion()); 
+      
       post.publish();
       post.checkPublish(pelicula.postTitle);
     });
