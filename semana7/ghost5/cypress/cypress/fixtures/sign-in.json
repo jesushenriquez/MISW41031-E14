@@ -1,0 +1,5 @@
+{
+  "LOGIN_URL": "http://localhost:2368/ghost/#/signin",
+  "LOGIN_USERNAME": "test@test.com",
+  "LOGIN_PASSWORD": "pnz5nrp.put7jxt_DCH"
+}
