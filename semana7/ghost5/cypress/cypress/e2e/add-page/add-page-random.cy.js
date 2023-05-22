@@ -6,7 +6,12 @@ describe('Add Page', function() {
 
     const page = new Page();
 
-    generarPagesAleatorias(3).forEach((data) => {
+     /**
+   * -------------------------------------------------------------
+   *                    PAGE REGISTRO Y PUBLICACION
+   * -------------------------------------------------------------
+   */
+    generarPagesAleatorias(3, null).forEach((data) => {
         it('Registrar y publicar una nueva pagina', function() {
             signIn();
             page.clickPageLink();
@@ -19,7 +24,12 @@ describe('Add Page', function() {
         })
     });
 
-    generarPagesAleatorias(3).forEach((data) => {
+     /**
+   * -------------------------------------------------------------
+   *                    PAGE Registrar y publicar una nueva pagina con imagen
+   * -------------------------------------------------------------
+   */
+    generarPagesAleatorias(3, null).forEach((data) => {
         it('Registrar y publicar una nueva pagina con imagen', function() {
             signIn();
             page.clickPageLink();
@@ -31,6 +41,44 @@ describe('Add Page', function() {
             page.checkTitleInList(data.title);
         });
     })
+
+    /**
+   * -------------------------------------------------------------
+   *                    PAGE Registrar y Publicar una nueva page con un texto de al menos 1000 caracteres y un video de youtube
+   * -------------------------------------------------------------
+   */
+    generarPagesAleatorias(3, "SHORT_DESCRIPTION").forEach((data) => {
+        it('Registrar y Publicar una nueva page con un texto de al menos 1000 caracteres y un video de youtube.', function() {
+            signIn();
+            page.clickPageLink();
+            page.clickNavigateToPageEditor();
+            page.title(data.title);
+            page.type(data.description);
+            page.addYoutube(data.youtube);
+            page.publishAndBackToEditor();
+            page.gotoPagesList();
+            page.checkTitleInList(data.title);
+        })
+    });
+
+    /**
+   * -------------------------------------------------------------
+   *                    PAGE Registrar y Publicar una nueva page con un texto de al menos 10000 caracteres y un video de youtube.
+   * -------------------------------------------------------------
+   */
+    generarPagesAleatorias(3, "LONG_DESCRIPTION").forEach((data) => {
+        it('Registrar y Publicar una nueva page con un texto de al menos 10000 caracteres y un video de youtube.', function() {
+            signIn();
+            page.clickPageLink();
+            page.clickNavigateToPageEditor();
+            page.title(data.title);
+            page.type(data.description);
+            page.addYoutube(data.youtube);
+            page.publishAndBackToEditor();
+            page.gotoPagesList();
+            page.checkTitleInList(data.title);
+        })
+    });
 })
 
 describe('Edit Page', function() {
@@ -120,10 +168,46 @@ function generarPageAleatoria() {
     };
 }
 
-function generarPagesAleatorias(cantidad) {
+function generarPageAleatoriaWithShortDescription() {
+    const seed = faker.datatype.uuid();
+    faker.seed(seed);
+
+    let descripcion = faker.lorem.paragraphs(10);
+    descripcion = descripcion.substring(0, 1000);
+    
+    return {
+        title: faker.lorem.words(5),
+        description: descripcion,
+        image: faker.image.imageUrl(),
+        youtube: faker.internet.url()
+    };
+}
+
+function generarPageAleatoriaWithLongDescription() {
+    const seed = faker.datatype.uuid();
+    faker.seed(seed);
+
+    let descripcion = faker.lorem.paragraphs(50);
+    descripcion = descripcion.substring(0, 10000);
+    
+    return {
+        title: faker.lorem.words(5),
+        description: descripcion,
+        image: faker.image.imageUrl(),
+        youtube: faker.internet.url()
+    };
+}
+
+function generarPagesAleatorias(cantidad, descriptionType) {
     let pages = [];
     for (let i = 0; i < cantidad; i++) {
-      pages.push(generarPageAleatoria());
+      if(descriptionType == "SHORT_DESCRIPTION"){
+        pages.push(generarPageAleatoriaWithShortDescription());
+      } else if(descriptionType == "LONG_DESCRIPTION"){
+        pages.push(generarPageAleatoriaWithLongDescription());
+      } else {
+        pages.push(generarPageAleatoria());
+      }
     }
     return pages;
   }

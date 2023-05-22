@@ -185,57 +185,79 @@ describe('Add Page', function() {
         }
     ];
     
-    
+    const titles = ["Josh", "Max", "Jhonn", "Terry", "Wilson", "Mark"];
+    const descriptions = [
+        "accept", 
+        "afford", 
+        "agree", 
+        "alert", 
+        "allow", 
+        "welcome", 
+        "wish", 
+        "wobble", 
+        "wonder", 
+        "work", 
+        "worry", 
+        "wrap", 
+        "wreck"
+    ];
     pageData.forEach((data) => {
         it('Registrar y publicar una nueva pagina', function() {
+            const title = data.title + " -- " + titles[randomIndex(titles.length)]
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
-            page.title(data.title);
+            page.title(title);
+            page.type(descriptions[randomIndex(descriptions.length)]);
             page.type(data.description);
             page.publishAndBackToEditor();
             page.gotoPagesList();
-            page.checkTitleInList(data.title);
+            page.checkTitleInList(title);
         })
     });
     
     pageData.forEach((data) => {
         it('Registrar y publicar una nueva pagina con imagen', function() {
+            const title = data.title + " -- " + titles[randomIndex(titles.length)]
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
-            page.title(data.title);
+            page.title(title);
             page.addImage(data.image);
             page.publishAndBackToEditor();
             page.gotoPagesList();
-            page.checkTitleInList(data.title);
+            page.checkTitleInList(title);
         })
     });
 
     pageDataWithYoutube.forEach((data) => {
         it('Registrar y Publicar una nueva page con un texto de al menos 1000 caracteres y un video de youtube.', function() {
+            const title = data.title + " -- " + titles[randomIndex(titles.length)]
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
-            page.title(data.title);
+            page.title(title);
+            page.type(descriptions[randomIndex(descriptions.length)]);
             page.addYoutube(data.youtube);
             page.publishAndBackToEditor();
             page.gotoPagesList();
-            page.checkTitleInList(data.title);
+            page.checkTitleInList(title);
         })
     });
 
     pageDataLongDescription.forEach((data) => {
         it('Registrar y Publicar una nueva page un texto de al menos 1000 caracteres y un video de youtube.', function() {
+            const title = data.title + " -- " + titles[randomIndex(titles.length)]
             signIn();
             page.clickPageLink();
             page.clickNavigateToPageEditor();
-            page.title(data.title);
+            page.title(title);
+            page.type(descriptions[randomIndex(descriptions.length)]);
             page.type(data.description);
             page.addYoutube(data.youtube);
             page.publishAndBackToEditor();
             page.gotoPagesList();
-            page.checkTitleInList(data.title);
+            page.checkTitleInList(title);
         })
     });
     
@@ -342,4 +364,8 @@ describe('Edit Page', function() {
     })
     
 })
+
+function randomIndex(maximo) {
+    return Math.floor(Math.random() * (maximo + 1));
+}
 
