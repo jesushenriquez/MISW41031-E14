@@ -34,3 +34,5 @@
       4. Para ejecutar las pruebas:
          1. Sistema operativo Windows utilice: `node node_modules/cypress/bin/cypress run`
          2. Sistemas operativos basado en UNIX utilice: `./node_modules/cypress/bin cypress run`
+
+**Es importante mencionar que los test de las estrategias de generación de datos aleatoria, las url de los recursos como youtube, spotify, etc. Al ser url no validas, no se van a visualizar los elementos embebidos dentro de las Pages y Posts.**
