@@ -40,3 +40,5 @@
 **Para la ejecución de los escenarios de prueba de la actual semana no se encontraron hallazgos en los que los escenarios de pruebas fallaran, por ende, no fueron reportados en la sección de issues del repositorio.
 
 **En el desarrollo de la estrategia de pruebas de la semana participaron los integrantes: Jesus Henriquez, Daniel Jimenez y Victor Castañeda.
+
+**Para verificar la descripcción de la estrategia de pruebas de la semana puede dirigirse a la wiki del repositorio utilizando el siguiente link https://github.com/jesushenriquez/MISW41031-E14/wiki
