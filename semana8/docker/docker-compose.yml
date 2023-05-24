@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  ghost5.49.0:
+    image: ghost:5.49.0
+    restart: always
+    ports:
+      - 2369:2368
+    volumes:
+      - ghost_data_new:/var/lib/ghost/content
+    environment:
+      - database__client=sqlite3
+      - database__connection__filename=/var/lib/ghost/content/data/ghost-local.db
+  ghost5.40.2:
+    image: ghost:5.40.2
+    restart: always
+    ports:
+      - 2368:2368
+    volumes:
+      - ghost_data:/var/lib/ghost/content
+    environment:
+      - database__client=sqlite3
+      - database__connection__filename=/var/lib/ghost/content/data/ghost-local.db
+volumes:
+  ghost_data_new:
+  ghost_data:
