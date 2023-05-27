@@ -69,7 +69,7 @@ Además, este documento también se encuentra disponible en el repositorio menci
 
 ## Inventario de pruebas manuales:
 
-A continuación, se adjunta el enlace al archivo de Excel que contiene el registro de pruebas manuales: [Archivo Excel - "Escenarios PE"]()
+A continuación, se adjunta el enlace al archivo de Excel que contiene el registro de pruebas manuales: [Archivo Excel - "Escenarios PE"](https://uniandes-my.sharepoint.com/:x:/r/personal/ja_henriquez_uniandes_edu_co/_layouts/15[…]s-exploratorias.xlsx&action=default&mobileredirect=true)
 
 #### Reporte de Issues:
 
