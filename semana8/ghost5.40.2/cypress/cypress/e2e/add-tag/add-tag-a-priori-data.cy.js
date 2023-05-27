@@ -1,4 +1,4 @@
-const { signIn } = require('../../support/utils');
+const { signIn, screenshot } = require('../../support/utils');
 const { Tag } = require('../../pageObjects/tag');
 
 describe('Add Tags', function() {
@@ -245,22 +245,32 @@ describe('Add Tags', function() {
         }
     ];
 
-     /**
+    /**
    * -------------------------------------------------------------
    *                    Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo slug
    * -------------------------------------------------------------
    */
-    tagData.forEach((data) => {
+    tagData.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo slug.', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo slug. ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.name(data.name);
+            screen("paso4");
             tag.slug(data.slug);
+            screen("paso5");
             tag.description(data.description);
+            screen("paso6");
             tag.save();
+            screen("paso7");
             tag.clickTagLink();
+            screen("paso8");
             tag.checkTitleInList(data.name);
+            screen("paso9");
         })
     });
 
@@ -269,16 +279,25 @@ describe('Add Tags', function() {
    *  Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo slug
    * -------------------------------------------------------------
    */
-    tagDataLongSlug.forEach((data) => {
+    tagDataLongSlug.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo slug.', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo slug. ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.name(data.name);
+            screen("paso4");
             tag.slug(data.slug);
+            screen("paso5");
             tag.description(data.description);
+            screen("paso6");
             tag.save();
+            screen("paso7");
             tag.checkErrorInTag();
+            screen("paso8");
         })
     });
 
@@ -287,17 +306,27 @@ describe('Add Tags', function() {
    *  Crear un nuevo tag desde el panel de Tags con menos de 500 caracteres en el campo description
    * -------------------------------------------------------------
    */
-    tagDataDescription.forEach((data) => {
+    tagDataDescription.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 500 caracteres en el campo description.', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags con menos de 500 caracteres en el campo description. ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.name(data.name);
+            screen("paso4");
             tag.slug(data.slug);
+            screen("paso5");
             tag.description(data.description);
+            screen("paso6");
             tag.save();
+            screen("paso7");
             tag.clickTagLink();
-            tag.checkTitleInList(data.name)
+            screen("paso8");
+            tag.checkTitleInList(data.name);
+            screen("paso9");
         })
     });
 
@@ -306,35 +335,54 @@ describe('Add Tags', function() {
    *  Crear un nuevo tag desde el panel de Tags con mas de 500 caracteres en el campo description
    * -------------------------------------------------------------
    */
-    tagDataLongDescription.forEach((data) => {
+    tagDataLongDescription.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 500 caracteres en el campo description.', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags con mas de 500 caracteres en el campo description. ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.name(data.name);
+            screen("paso4");
             tag.slug(data.slug);
+            screen("paso5");
             tag.description(data.description);
+            screen("paso6");
             tag.save();
+            screen("paso7");
             tag.checkErrorInTag();
+            screen("paso8");
         })
     });
 
-     /**
+    /**
    * -------------------------------------------------------------
    *  Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo name
    * -------------------------------------------------------------
    */
-    tagNameData.forEach((data) => {
+    tagNameData.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo name.', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags con menos de 191 caracteres en el campo name. ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.name(data.name);
+            screen("paso4");
             tag.slug(data.slug);
+            screen("paso5");
             tag.description(data.description);
+            screen("paso6");
             tag.save();
+            screen("paso7");
             tag.clickTagLink();
-            tag.checkTitleInList(data.name)
+            screen("paso8");
+            tag.checkTitleInList(data.name);
+            screen("paso9");
         })
     });
 
@@ -343,16 +391,25 @@ describe('Add Tags', function() {
    *  Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo name
    * -------------------------------------------------------------
    */
-    tagLongNameData.forEach((data) => {
+    tagLongNameData.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo name.', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags con mas de 191 caracteres en el campo name. ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.name(data.name);
+            screen("paso4");
             tag.slug(data.slug);
+            screen("paso5");
             tag.description(data.description);
+            screen("paso6");
             tag.save();
+            screen("paso7");
             tag.checkErrorInTag();
+            screen("paso8");
         })
     })
 
@@ -361,16 +418,25 @@ describe('Add Tags', function() {
    *  Crear un nuevo tag desde el panel de Tags
    * -------------------------------------------------------------
    */
-    tagNormalData.forEach((data) => {
+    tagNormalData.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.name(data.name);
+            screen("paso4");
             tag.description(data.description);
+            screen("paso5");
             tag.save();
+            screen("paso6");
             tag.clickTagLink();
-            tag.checkTitleInList(data.name)
+            screen("paso7");
+            tag.checkTitleInList(data.name);
+            screen("paso8");
         })
     });
 
@@ -379,13 +445,19 @@ describe('Add Tags', function() {
    *  Crear un nuevo tag desde el panel de Tags sin datos en los campos
    * -------------------------------------------------------------
    */
-    tagWithoutData.forEach((data) => {
+    tagWithoutData.forEach((data, index) => {
         it('Crear un nuevo tag desde el panel de Tags sin datos en los campos.', function() {
+            let screen = screenshot.bind(null, "Add Tag", `Crear un nuevo tag desde el panel de Tags sin datos en los campos. ${index}`);
             signIn();
+            screen("paso1");
             tag.clickTagLink();
+            screen("paso2");
             tag.clickNavigateToTagEditor();
+            screen("paso3");
             tag.save();
+            screen("paso4");
             tag.checkErrorInTag();
+            screen("paso5");
         })
     })
 
@@ -393,6 +465,7 @@ describe('Add Tags', function() {
         signIn();
         cy.fixture('tags.json').then((tags)=>{
             for (let index = 0; index < 3; index++) {
+                let screen = screenshot.bind(null, "Add Members", `Editar información de un tag existente ${index}`);
                 cy.get('a[href="#/tags/"].ember-view').its('length').then((length) => {
                     if (length === 1) {
                         tag.clickNavigateTags();
@@ -401,32 +474,42 @@ describe('Add Tags', function() {
                     }
                 });
                 cy.wait(1000);
+                screen("paso1");
 
                 tag.clickEditaLastTag();
                 cy.wait(1000);
+                screen("paso2");
                 
                 tag.clearName();
                 cy.wait(1000);
+                screen("paso3");
 
                 tag.name(tags[index].name);
                 cy.wait(1000);
-                
+                screen("paso4");
+
                 tag.slug(tags[index].slug);
                 cy.wait(1000);
-                
+                screen("paso5");
+
                 tag.clearDescription();
                 cy.wait(1000);
-                
+                screen("paso6");
+
                 tag.description(tags[index].description);
                 cy.wait(1000);
-                
+                screen("paso7");
+
                 tag.save();
                 cy.wait(1000);
-                
+                screen("paso8");
+
                 tag.clickFirstNavigateEmberView();
                 cy.wait(1000);
+                screen("paso9");
 
                 tag.checkTitleInList(tags[index].name);
+                screen("paso10");
             }
         })
     })
@@ -435,6 +518,8 @@ describe('Add Tags', function() {
         signIn();
         cy.fixture('tags.json').then((tags)=>{
             for (let index = 11; index < 14; index++) {
+                let screen = screenshot.bind(null, "Add Members", `Editar información de un tag existente dejando campos vacios ${index}`);
+
                 cy.get('a[href="#/tags/"].ember-view').its('length').then((length) => {
                     if (length === 1) {
                         tag.clickNavigateTags();
@@ -443,29 +528,38 @@ describe('Add Tags', function() {
                     }
                 });
                 cy.wait(1000);
-                
+                screen("paso1");
+
                 tag.clickEditaLastTag();
                 cy.wait(1000);
-                
+                screen("paso2");
+
                 tag.clearName();
                 cy.wait(1000);
+                screen("paso3");
                 
                 tag.name(tags[index].name);
                 cy.wait(1000);
-                
+                screen("paso4");
+
                 tag.slug(tags[index].slug);
                 cy.wait(1000);
-                
+                screen("paso5");
+
                 tag.clearDescription();
                 cy.wait(1000);
-                
+                screen("paso6");
+
                 tag.save();
                 cy.wait(1000);
-                
+                screen("paso7");
+
                 tag.clickFirstNavigateEmberView();
                 cy.wait(1000);
-                
+                screen("paso8");
+
                 tag.checkTitleInList(tags[index].name);
+                screen("paso9");
             }
         })
     })
