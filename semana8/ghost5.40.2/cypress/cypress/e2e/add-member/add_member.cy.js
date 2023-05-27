@@ -35,22 +35,22 @@ describe('Create members', () => {
 
                 member.typeEmail(users[index].Username);
                 cy.wait(1000);
-                screen("paso3");
+                screen("paso4");
 
                 member.typeNote(users[index].Department);
                 cy.wait(1000);
-                screen("paso4");
+                screen("paso5");
 
                 member.saveCreation();
                 cy.wait(2000);
-                screen("paso5");
+                screen("paso6");
 
                 member.returnMembersList();
                 cy.wait(1000);
-                screen("paso6");
+                screen("paso7");
 
                 member.checkNameInList(users[index].Displayname);
-                screen("paso7");
+                screen("paso8");
             }
         })
     })
@@ -374,42 +374,42 @@ describe('Create members', () => {
                     }
                 });
                 cy.wait(1000);
-                screen("paso2");
+                screen("paso3");
 
                 member.clickFirstMembersListElement();
                 cy.wait(3000);
-                screen("paso3");
+                screen("paso4");
 
                 member.clearName();
                 cy.wait(1000);
-                screen("paso4");
+                screen("paso5");
 
                 member.typeName(users[index].Displayname);
                 cy.wait(1000);
-                screen("paso5");
+                screen("paso6");
 
                 member.clearEmail();
                 cy.wait(1000);
-                screen("paso6");
+                screen("paso7");
 
                 member.typeEmail(users[index].Username);
                 cy.wait(1000);
-                screen("paso7");
+                screen("paso8");
                 
                 member.clearNote();
-                screen("paso8");
+                screen("paso9");
 
                 member.typeNote(memberNote);
                 cy.wait(1000);
-                screen("paso9");
+                screen("paso10");
                 
                 member.saveCreation();
                 cy.wait(2000);
-                screen("paso10");
+                screen("paso11");
                 
                 member.checkErrorMessageExist();
                 cy.wait(2000);
-                screen("paso11");
+                screen("paso12");
             }
         })
     });
