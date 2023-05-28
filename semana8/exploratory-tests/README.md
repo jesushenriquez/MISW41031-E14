@@ -3,13 +3,9 @@ Antes de iniciar con la explicación de como ejecutar el monkey desarrollado me 
 
 Por favor siga los siguientes pasos y validaciones para poder ejecutar el monkey:
 
-1. Para poder ejecutar el monkey desarrollado es importante tener cypress en las siguiente versión:
-- Cypress package version: 12.11.0
-- Cypress binary version: 12.11.0
-- Electron version: 21.0.0
-- Bundled Node version: 16.16.0
+1. Para poder ejecutar el monkey desarrollado es importante instalar todas las dependencias de npm con `npm install`.
 
-2. Abrir cypress con `cypress open` y hacer click en el boton "Add project" y seleccionar el directorio donde tenemos nuestro archivo cypress.config.js.
+2. Abrir cypress con `./node_modules/cypress/bin/cypress open`.
 3. Luego hacer click en la sección donde dice E2E Testing.
 4. Seleccionar Chrome y luego hacer click en el boton "Start E2E Testing in Chrome".
 5. Esto abrira una ventana de Chrome en el apartado de Specs.
