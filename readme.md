@@ -139,6 +139,11 @@ A continuación, se adjunta el enlace al archivo de Excel que contiene el regist
 Dentro del repositorio, en la sección de "Issues", se encuentra disponible la pestaña correspondiente. [Issues](https://github.com/jesushenriquez/MISW41031-E14/issues), En la pestaña de "Issues" del repositorio se pueden encontrar los defectos identificados durante la ejecución de la estrategia de pruebas.
 
 
+## Resultado de las pruebas de regresión visual:
+
+A continuación, se adjunta el adjuto del resultado de las pruebas de regresión visual: [Archivo.zip - "Results.zip"](https://uniandes-my.sharepoint.com/personal/ja_henriquez_uniandes_edu_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fja%5Fhenriquez%5Funiandes%5Fedu%5Fco%2FDocuments%2F1%20semestre%2FPruebas%20Automatizadas%2FProyecto%20%2D%20Pruebas%20Automatizadas%2FSemana%208%2Fresults%2Ezip&parent=%2Fpersonal%2Fja%5Fhenriquez%5Funiandes%5Fedu%5Fco%2FDocuments%2F1%20semestre%2FPruebas%20Automatizadas%2FProyecto%20%2D%20Pruebas%20Automatizadas%2FSemana%208&ct=1685288562195&or=Teams%2DHL&ga=1&LOF=1)
 
 
+## Link al video de Explicación:
 
+A continuación, se adjunta el video de explicación: [Video de explicación - "Semana8"]()
