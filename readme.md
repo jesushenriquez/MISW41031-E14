@@ -146,4 +146,4 @@ A continuación, se adjunta el adjuto del resultado de las pruebas de regresión
 
 ## Link al video de Explicación:
 
-A continuación, se adjunta el video de explicación: [Video de explicación - "Semana8"]()
+A continuación, se adjunta el video de explicación: [Video de explicación - "Semana8"](https://drive.google.com/file/d/1mGGhB9Z-igPcj217Ns7pcw0Pf_tq45DF/view?usp=sharing)
