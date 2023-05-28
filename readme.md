@@ -34,24 +34,87 @@ Se implementó un plan en el cual cada ingeniero llevó a cabo las siguientes ta
    
    2. Es necesario tener instalado docker y docker-compose 
 
-2. Proceso de ejecución de las pruebas:
-   1. Clonar el repositorio usando `git clone https://github.com/jesushenriquez/MISW41031-E14.git`
-   
-   2. Levantar Ghost utilizando Docker compose:
-      1. Ubicarse en la carpeta semana6/docker utilizando el comando: `cd semana7/docker`
-      2. Ejecutar el comando: `docker-compose up -d`
-   
-   3. Para la ejecución de las pruebas de ghost:5: 
-      1. Ubicarse en la carpeta semana6/ghost3/cypress usando el comando:
-         1. `cd semana7/ghost5/cypress/`
-   
-      2. Para ejecutar este paso asegurar que la versión de NodeJS es la versión 14, para comprobar la versión utilizar el comando: `node --version`
-   
-      3. Instalar las dependencias del proyecto usando el comando `npm install` o `yarn install`
-   
-      4. Para ejecutar las pruebas:
-         1. Sistema operativo Windows utilice: `node node_modules/cypress/bin/cypress run`
-         2. Sistemas operativos basado en UNIX utilice: `./node_modules/cypress/bin cypress run`
+2. Proceso de ejecución de pruebas:
+   1. Proceso de ejecución de las pruebas ghost:5.40.2:
+      1. Clonar el repositorio usando `git clone https://github.com/jesushenriquez/MISW41031-E14.git`
+      
+      2. Levantar Ghost utilizando Docker compose:
+         1. Ubicarse en la carpeta semana8/docker utilizando el comando: `cd semana8/docker`
+         2. Ejecutar el comando: `docker-compose up -d`
+      
+      3. Para la ejecución de las pruebas de ghost:5.40.2: 
+         1. Ubicarse en la carpeta semana8/ghost5.40.2/cypress usando el comando:
+            1. `cd semana8/ghost5.40.2/cypress/`
+      
+         2. Para ejecutar este paso asegurar que la versión de NodeJS es la versión 14, para comprobar la versión utilizar el comando: `node --version`
+      
+         3. Instalar las dependencias del proyecto usando el comando `npm install` o `yarn install`
+      
+         4. Para ejecutar las pruebas:
+            1. Sistema operativo Windows utilice: `node node_modules/cypress/bin/cypress run`
+            2. Sistemas operativos basado en UNIX utilice: `./node_modules/cypress/bin cypress run`
+
+   2. Proceso de ejecución de las pruebas ghost:5.49.0:
+      1. Clonar el repositorio usando `git clone https://github.com/jesushenriquez/MISW41031-E14.git`
+      
+      2. Levantar Ghost utilizando Docker compose:
+         1. Ubicarse en la carpeta semana8/docker utilizando el comando: `cd semana8/docker`
+         2. Ejecutar el comando: `docker-compose up -d`
+      
+      3. Para la ejecución de las pruebas de ghost:5.49.0: 
+         1. Ubicarse en la carpeta semana8/ghost5.49.0/cypress usando el comando:
+            1. `cd semana8/ghost5.49.0/cypress/`
+      
+         2. Para ejecutar este paso asegurar que la versión de NodeJS es la versión 14, para comprobar la versión utilizar el comando: `node --version`
+      
+         3. Instalar las dependencias del proyecto usando el comando `npm install` o `yarn install`
+      
+         4. Para ejecutar las pruebas:
+            1. Sistema operativo Windows utilice: `node node_modules/cypress/bin/cypress run`
+            2. Sistemas operativos basado en UNIX utilice: `./node_modules/cypress/bin cypress run`
+
+   3. Ejecutar el script que extrae los screenshots resultados de las pruebas ejecutadas:
+         1. Ubicarse en la carpeta semana8
+      
+         2. Asegurar tener en uso la versión 18 de NodeJS:
+            1. `nvm install 18`
+            2. `nvm use 18`
+            3. `node --version`
+      
+         3. Ejecutar utilizando el siguiente comando: `node getPhotos.js`
+      
+      1. Ejecutar el script para realizar el análisis de regresión visual y generación del reporte
+         1. Ubicarse en la carpeta semana8/resemble
+         2. Ejecute el siguiente comando: `npm install canvas`
+         3. Si el sistema operativo es MACOS, ejecute las siguientes lineas de brew:
+            1. `brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman`
+         4. Ejecutar el comando: `node index.js`
+      
+      2. Dentro de la carpeta semana8/resemble/results revisar la carpeta con la fecha más reciente dónde se encentran los resultados de la prueba de regresión visual.
+         1. Abrir el archivo report.html en un navegador web donde podrá visualizar el reporte con los resultados de la regresión visual
+
+
+   6. Pasos para la ejecución del monkey
+   Antes de iniciar con la explicación de como ejecutar el monkey desarrollado me parece importante mencionar que en la actividad existe algunos enunciados desactualizados, afortunadamente no es tan grave.
+
+   Por favor siga los siguientes pasos y validaciones para poder ejecutar el monkey:
+
+      1. Para poder ejecutar el monkey desarrollado es importante instalar todas las dependencias de npm con `npm install`.
+
+      2. Abrir cypress con `./node_modules/cypress/bin/cypress open`.
+      3. Luego hacer click en la sección donde dice E2E Testing.
+      4.  Seleccionar Chrome y luego hacer click en el boton "Start E2E Testing in Chrome".
+      5.  Esto abrira una ventana de Chrome en el apartado de Specs.
+      6.  Hacer click en la pantalla en el archivo monkey_testing.cy.js.
+      7.  Esto ejecutara las pruebas del monkey inmediatamente.
+
+      Nota: Es importante mencionar que se cuentan con los siguientes eventos:
+      - Hacer click en un link al azar
+      - Llenar un campo de texto al azar
+      - Seleccionar un combo al azar
+      - Hacer click en un botón al azar
+
+      Si en la pagina a testear no existe algun elemento que se inspecciona y se interactua el test en particular fallara.
 
 **Es importante mencionar que los test de las estrategias de generación de datos aleatoria, las url de los recursos como youtube, spotify, etc. Al ser url no validas, no se van a visualizar los elementos embebidos dentro de las Pages y Posts.**
 
