@@ -17,7 +17,6 @@ function getRandomInt(min, max) {
 const functions = [
     randomClick,
     typeRandomString,
-    selectRandomCombo,
     randomClickOnButton
 ]
 
