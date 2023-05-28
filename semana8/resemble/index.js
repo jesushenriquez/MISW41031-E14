@@ -24,8 +24,8 @@ async function executeTest(){
             fs.mkdirSync(`./results/${datetime}`, { recursive: true });
         }
         
-        const ghost3Path = './results/ghost3';
-        const ghost5Path = './results/ghost5';
+        const ghost3Path = './results/ghost5.40.2';
+        const ghost5Path = './results/ghost5.49.0';
           fs.readdirSync(ghost3Path).forEach(async file => {
             semaforo = semaforo + 1;
             try{
@@ -49,9 +49,9 @@ async function executeTest(){
                   module,
                   scenario,
                   step,
-                  screenshotOld: `../ghost3/${file}`,
-                  screenshotNew: `../ghost5/${file}`,
-                  screenshotResult: `${file}-result.png`
+                  screenshotOld: `../ghost5.40.2/${file}`,
+                  screenshotNew: `../ghost5.49.0/${file}`,
+                  screenshotResult: `${file}-result.png`,
                 });
                 console.log(resultInfo[b])
                 fs.writeFileSync(`./results/${datetime}/${file}-result.png`, data.getBuffer());
